@@ -4,7 +4,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
     // Data to pass to the template
     const data = {
-        homePage: true,
         pageTitle: "Foodies | The best online delivery application!",
         foodCategories: [
             { name: 'Burger', image: 'images/food/burger.jpg', alt: 'Burger' },
