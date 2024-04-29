@@ -1,0 +1,101 @@
+#stores {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 2em 0;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+h2{
+    margin-right: 17.5em;
+}
+
+.store {
+    background-color: var(--white-color);
+    margin-top: 2em;
+    border-radius: 0.625em;
+    transition: transform 0.3s ease;
+    max-width: 40em;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.store-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+}
+
+.store-image {
+    height: 10em;   
+    width: 10em;   
+    margin: 1em 2em;
+    padding:0em;
+    border-radius: 0.625em; 
+    overflow: hidden; 
+}
+
+.store-image img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.store-description {
+    margin: 1em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.store-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.store-rating {
+    display: flex; 
+    align-items: center; 
+    max-width: 5em;
+}
+
+.store-rating img {
+    width: 75%; 
+}
+
+.store-rating p {
+    margin-left: 0.3125em; 
+    font-size: 0.75em;
+}
+
+.store-requirements {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 0.5em;
+}
+
+.store-message {
+    margin-top: 1em;
+    color: #888;
+}
+
+.store:hover {
+    transform: translateY(-5px);
+}
+
+@media screen and (max-width: 768px) {
+    .store {
+        max-width: 100%;
+        margin-right: 0; 
+        margin-bottom: 2em; 
+    }
+    h1 {
+        margin-bottom: 0.5em; 
+    }
+
+    h2 {
+        margin-right: 0; 
+    }
+}

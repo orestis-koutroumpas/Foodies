@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
+    <title>{{pageTitle}}</title>
+    <!-- Link to external CSS files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.14.0/maps/maps.css">
+    <!-- Link to shared CSS files -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/header-styles.css">
+    <link rel="stylesheet" href="/css/footer-styles.css">
+    <!-- Dynamic inclusion of page-specific CSS file -->
+    {{#if homePage}}
+    <link rel="stylesheet" href="/css/home-styles.css">
+    {{else}}
+    <link rel="stylesheet" href="/css/search-styles.css">
+    {{/if}}
+    <!-- Icon -->
+    <link rel="icon" href="/images/logo/foodies-white.png">
+    <!-- Additional styling -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+        <defs>
+            <lineargradient id="instagram-gradient-color" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#feda75;stop-opacity:1" />
+                <stop offset="20%" style="stop-color:#fa7e1e;stop-opacity:1" />
+                <stop offset="40%" style="stop-color:#d62976;stop-opacity:1" />
+                <stop offset="60%" style="stop-color:#962fbf;stop-opacity:1" />
+                <stop offset="80%" style="stop-color:#4f5bd5;stop-opacity:1" />
+            </lineargradient>
+        </defs>
+    </svg>    
+</head>
+<body>
+    {{> header}}
+    {{{body}}}
+    {{> footer}}
+</body>
+</html>

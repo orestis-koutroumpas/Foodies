@@ -1,0 +1,51 @@
+<!-- Header section -->
+<header> 
+    <div class="header-container"> <!-- Container for header content -->
+        <div class="logo-location-group"> <!-- Group for logo and location -->
+            <div class="logo"> <!-- Logo -->
+                <a href="/home"> <!-- Link to main page -->
+                    <img src="/images/logo/foodies-dark.png" alt="Foodies Logo"> <!-- Image logo -->
+                </a>
+            </div>
+            <div id="location" class="location-icon"> <!-- Location icon -->
+                <i class="fa-solid fa-location-arrow fa-2x"></i> 
+                <span id="location-text">Location <i class="fa-solid fa-chevron-down"></i></span> 
+            </div>
+        </div>
+        <div class="search-form"> <!-- Search form -->
+            <form action="/search" method="get"> <!-- Form for search -->
+                <input type="text" id="search" name="q" placeholder="Search..."> <!-- Input field for search -->
+            </form>
+        </div>
+        <div class="user-cart-group">
+            <div id="user-profile" class="user-icon"> <!-- User profile icon -->
+                <span class="icon-group"> 
+                    <i class="fa-solid fa-circle-user fa-2x"></i> 
+                    <i id="arrow" class="fa-solid fa-chevron-down"></i> 
+                </span>
+            </div>
+            <div id="cart" class="cart-icon"> <!-- Cart icon -->
+                <i class="fa-solid fa-cart-plus fa-2x"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the search form element
+        var searchForm = document.getElementById('search-form');
+
+        // Add submit event listener to the search form
+        searchForm.addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Get the value entered in the search input field
+            var searchQuery = document.getElementById('search').value;
+
+            // Redirect to the search page with the entered query as a query parameter
+            window.location.href = '/search?q=' + encodeURIComponent(searchQuery);
+        });
+    });
+</script>

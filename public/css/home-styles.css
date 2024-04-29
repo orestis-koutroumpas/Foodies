@@ -1,0 +1,103 @@
+.container {
+    margin: 0 auto;
+    padding: 0 auto;
+    overflow: auto;
+}
+
+#services {
+    background-color: var(--white-color);
+}
+
+.services-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 1em;
+    margin: 1em;
+}
+
+.service {
+    margin-bottom: 1.875em;
+    padding: 1.25em;
+    border-radius: 0.3125em;
+    min-height: 3em;
+}
+
+.service h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.625em;
+}
+
+.service p {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.service-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: auto;
+    padding-bottom: 1.5em;
+}
+
+.service-item {
+    cursor: pointer;
+    flex: 0 0 300px;
+    height: 200px;
+    margin: 0.75em;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.625em;
+    border: 0.125em #fefefe;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.service-item img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.service-item p {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-style: normal;
+    transition: font-size 0.3s ease;
+    position: absolute;
+    top: 85%;
+    left: 0%;
+    width: 100%;
+    padding: 0 0;
+}
+
+.service-item p + p {
+    font-weight: lighter;
+    font-size: 0.9em;
+    top: 95%;
+    left: 0;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .service-item {
+        width: calc(50% - 1em); 
+        height: 10em;
+        margin: 0.5em; 
+    }
+
+    .service-container {
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        align-items: center; 
+    }
+}

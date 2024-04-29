@@ -1,0 +1,34 @@
+<!-- views/search.hbs -->
+
+<main>
+    <!-- Stores Section-->
+    <section id="stores">
+        <h1>Search results</h1>
+        <h2>We found {{numStores}} stores</h2>
+        <!-- Render each store dynamically -->
+        {{#each stores}}
+        <div class="store">
+            <div class="store-container">
+                <div class="store-image">
+                    <img src="{{this.image}}" alt="{{this.name}}">
+                </div>
+                <div class="store-description">
+                    <div class="store-title">
+                        <p>{{this.name}}</p>
+                    </div>
+                    <div class="store-rating">
+                        <img src="{{this.ratingImage}}" alt="Rating">
+                        <p>{{this.category}}</p>
+                    </div>
+                    <div class="store-requirements">
+                        <p>{{this.deliveryTime}} | Minimum {{this.minimumOrder}} | Delivery {{this.deliveryFee}}</p>
+                    </div>
+                    <div class="store-message">
+                        <p>{{this.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </section>
+</main>

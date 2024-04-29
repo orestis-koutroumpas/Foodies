@@ -1,0 +1,75 @@
+.footer {
+    width: 100%;
+    background-color: var(--footer-color);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    min-height: 200px;
+}
+
+/* Styles for social icons and navigation links */
+.footer .social-icons,
+.footer .nav-links {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+/* Styles for social icons */
+.footer .social-icons li,
+.footer .nav-links li {
+    list-style: none;
+}
+
+.footer .social-icons li a {
+    font-size: 1.5em;
+    transition: transform 0.3s ease; /* Added transition effect */
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.footer .social-icons li a:hover {
+    transform: translateY(-10px);
+}
+
+/* Styles for navigation links */
+.footer .nav-links li a {
+    font-size: 1.2em;
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--white-color);
+    opacity: 0.75;
+    transition: opacity 0.3s ease; /* Added transition effect */
+}
+
+.footer .nav-links li a:hover {
+    opacity: 1;
+}
+
+/* Styles for paragraph */
+.footer p {
+    color: var(--white-color);
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* Styles for Instagram icon */
+.footer #instagram-icon path {
+    fill: url(#instagram-gradient-color);
+    animation: fadeEffect 1s infinite;
+}
+
+@keyframes fadeEffect {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

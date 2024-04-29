@@ -1,0 +1,41 @@
+/* ------------ Google Fonts ------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+/* ------------ Variables ------------ */
+:root {
+    --header-color: #fff;
+    --footer-color:  #0C0C0C;
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --white-color: #fff;
+    --black-color: #000;
+    --lightgrey: lightgrey;
+    --font-family: 'Poppins', sans-serif;
+    --card-primary-color: hsl(0, 20%, 93%);
+    --card-secondary-color: #966c3967;
+}
+
+/* Reset default margin, padding, and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set body font-family */
+body {
+    font-family: var(--font-family);
+    background-color: var(--white-color);
+    color: var(--black-color);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    min-width: 20em;
+}
+
+body, html {
+    width: 100%;
+    max-width: 100%;
+}
