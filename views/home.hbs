@@ -1,61 +1,59 @@
 <!-- views/home.hbs -->
 
-<main>
-    <section id="services">
-        <div class="container">
-            <div id="services">
-                <!-- Service 1: Food Categories -->
-                <div class="service">
-                    <h3>Food Categories</h3>
-                    <p>Choose your favorite food or drink and get your order delivered within minutes.</p>
-                    <div class="services-wrapper">
-                        <!-- Individual service items -->
-                        <div class="service-container">
-                            {{#each foodCategories}}
-                                <div class="service-item">
-                                    <img src="{{image}}" alt="{{alt}}">
-                                    <p>{{name}}</p>
-                                </div>
-                            {{/each}}
-                        </div>
+<section id="services">
+    <div class="container">
+        <div id="services">
+            <!-- Service 1: Food Categories -->
+            <div class="service">
+                <h3>Food Categories</h3>
+                <p>Choose your favorite food or drink and get your order delivered within minutes.</p>
+                <div class="services-wrapper">
+                    <!-- Individual service items -->
+                    <div class="service-container">
+                        {{#each foodCategories}}
+                            <div class="service-item">
+                                <img src="{{image}}" alt="{{alt}}">
+                                <p>{{name}}</p>
+                            </div>
+                        {{/each}}
                     </div>
                 </div>
-                <!-- Service 2: Partner stores -->
-                <div class="service">
-                    <h3>Partner stores</h3>
-                    <p>Choose from a variety of restaurants and cuisines.</p>
-                    <div class="services-wrapper">
-                        <!-- Individual service items -->
-                        <div class="service-container">
-                            {{#each partnerStores}}
-                                <div class="service-item">
-                                    <img src="{{image}}" alt="{{alt}}">
-                                    <p>{{name}}</p>
-                                </div>
-                            {{/each}}
-                        </div>
+            </div>
+            <!-- Service 2: Partner stores -->
+            <div class="service">
+                <h3>Partner stores</h3>
+                <p>Choose from a variety of restaurants and cuisines.</p>
+                <div class="services-wrapper">
+                    <!-- Individual service items -->
+                    <div class="service-container">
+                        {{#each partnerStores}}
+                            <div class="service-item">
+                                <img src="{{image}}" alt="{{alt}}">
+                                <p>{{name}}</p>
+                            </div>
+                        {{/each}}
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all elements with the class 'service-item'
-            var serviceItems = document.querySelectorAll('.service-item');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements with the class 'service-item'
+        var serviceItems = document.querySelectorAll('.service-item');
 
-            // Add click event listener to each 'service-item'
-            serviceItems.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    // Get the text content of the clicked 'service-item'
-                    var serviceName = this.querySelector('p').textContent;
-                    
-                    // Redirect to the search page with the service name as query parameter
-                    window.location.href = '/search?q=' + encodeURIComponent(serviceName);
-                });
+        // Add click event listener to each 'service-item'
+        serviceItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                // Get the text content of the clicked 'service-item'
+                var serviceName = this.querySelector('p').textContent;
+                
+                // Redirect to the search page with the service name as query parameter
+                window.location.href = '/search?q=' + encodeURIComponent(serviceName);
             });
         });
-    </script>
-    
-</main>
+    });
+</script>
+
