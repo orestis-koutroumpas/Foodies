@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
         }
     ];
 
-    res.render('search', { pageTitle: "Foodies | Search for the best stores in Patras!", numStores: searchResults.length, stores: searchResults });
+    res.render('search', { pageTitle: "Search for the best stores in Patras!", numStores: searchResults.length, stores: searchResults });
 });
 
 export default router;
