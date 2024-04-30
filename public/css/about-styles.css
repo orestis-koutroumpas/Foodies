@@ -1,63 +1,74 @@
 /* css/about-styles.css */
 
+/* Styles for the .about section */
 .about {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    text-align: center; 
 }
 
+/* Styles for the main heading */
 .about h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
 }
 
+/* Styles for paragraphs within .about */
 .about p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 1.2rem; 
+    line-height: 1.6; 
+    margin-bottom: 15px; /
 }
 
+/* Styles for secondary headings */
 .about h2 {
-    font-size: 2rem;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    font-size: 2rem; 
+    margin-top: 40px; 
+    margin-bottom: 20px; 
 }
 
+/* Styles for team members section */
 .team-members {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
 }
 
+/* Styles for individual team members */
 .team-member {
-    margin: 20px;
+    margin: 20px; 
 }
 
+/* Styles for team member images */
 .team-member img {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 10px; 
 }
 
+/* Styles for team member names */
 .team-member h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    font-size: 1.5rem; 
+    margin-bottom: 5px; 
 }
 
+/* Styles for team member roles */
 .team-member p {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 1.1rem; 
+    color: #666; 
 }
 
+/* Styles for the unordered list */
 .about ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; 
+    padding: 0; 
 }
 
+/* Styles for list items */
 .about ul li {
-    font-size: 1.1rem;
+    font-size: 1.1rem; 
     margin-bottom: 10px;
 }

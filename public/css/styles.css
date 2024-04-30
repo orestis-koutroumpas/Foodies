@@ -1,19 +1,22 @@
+/* css/styles.css */
+
+
 /* ------------ Google Fonts ------------ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 /* ------------ Variables ------------ */
 :root {
-    --header-color: #fff;
-    --footer-color:  #0C0C0C;
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --white-color: #fff;
-    --black-color: #000;
-    --lightgrey: lightgrey;
-    --font-family: 'Poppins', sans-serif;
-    --card-primary-color: hsl(0, 20%, 93%);
-    --card-secondary-color: #966c3967;
+    --header-color: #fff; /* Header color */
+    --footer-color:  #0C0C0C; /* Footer color */
+    --primary-color: #3498db; /* Primary color, for stores page*/
+    --secondary-color: #2c3e50; /* Secondary color, for stores page*/
+    --white-color: #fff; /* White color */
+    --black-color: #000; /* Black color */
+    --lightgrey: lightgrey; /* Light grey color */
+    --font-family: 'Poppins', sans-serif; /* Font family */
+    --card-primary-color: hsl(0, 20%, 93%); /* Primary color for cards */
+    --card-secondary-color: #966c3967; /* Secondary color for cards */
 }
 
 /* Reset default margin, padding, and box-sizing */
@@ -23,19 +26,19 @@
     box-sizing: border-box;
 }
 
-/* Set body font-family */
+/* Set body font-family and basic styles */
 body {
-    font-family: var(--font-family);
-    background-color: var(--white-color);
-    color: var(--black-color);
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    min-width: 20em;
+    font-family: var(--font-family); /* Set font family */
+    background-color: var(--white-color); /* Set background color */
+    color: var(--black-color); /* Set text color */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
+    min-width: 20em; 
 }
 
 body, html {
-    width: 100%;
-    max-width: 100%;
+    width: 100%; 
+    max-width: 100%; 
 }

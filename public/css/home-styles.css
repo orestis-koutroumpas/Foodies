@@ -1,103 +1,118 @@
+/* css/home-styles.css */
+
+/* Styles for the container */
 .container {
-    margin: 0 auto;
-    padding: 0 auto;
-    overflow: auto;
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 0 auto; /* Center the content within the container */
+    overflow: auto; /* Enable overflow scrolling if needed */
 }
 
+/* Styles for the services section */
 #services {
-    background-color: var(--white-color);
+    background-color: var(--white-color); 
 }
 
+/* Styles for the services wrapper */
 .services-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding: 1em;
-    margin: 1em;
+    overflow-x: auto; /* Enable horizontal overflow scrolling */
+    overflow-y: hidden; /* Hide vertical overflow */
+    white-space: nowrap; /* Prevent wrapping of service items */
+    padding: 1em; 
+    margin: 1em; 
 }
 
+/* Styles for individual services */
 .service {
-    margin-bottom: 1.875em;
-    padding: 1.25em;
-    border-radius: 0.3125em;
-    min-height: 3em;
+    margin-bottom: 1.875em; 
+    padding: 1.25em; 
+    border-radius: 0.3125em; 
+    min-height: 3em; 
 }
 
+/* Styles for service headings */
 .service h3 {
-    font-size: 1.5em;
-    margin-bottom: 0.625em;
+    font-size: 1.5em; 
+    margin-bottom: 0.625em; 
 }
 
+/* Styles for service paragraphs */
 .service p {
-    font-size: 1em;
-    font-style: italic;
+    font-size: 1em; 
+    font-style: italic; 
 }
 
+/* Styles for the service container */
 .service-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: auto;
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    scrollbar-width: auto; 
     padding-bottom: 1.5em;
 }
 
+/* Styles for individual service items */
 .service-item {
-    cursor: pointer;
-    flex: 0 0 300px;
-    height: 200px;
-    margin: 0.75em;
+    cursor: pointer; /* Set cursor to pointer */
+    flex: 0 0 300px; 
+    height: 200px; 
+    margin: 0.75em; 
     text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 0.625em;
+    flex-direction: column; 
+    justify-content: center; 
+    border-radius: 0.625em; 
     border: 0.125em #fefefe;
-    overflow: hidden;
+    overflow: hidden; 
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; 
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
 }
 
+/* Styles for service item images */
 .service-item img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
+    width: 100%; 
+    height: 80%; 
+    object-fit: cover; 
 }
 
+/* Styles for service item paragraphs */
 .service-item p {
-    font-weight: bold;
-    font-size: 1.2em;
-    font-style: normal;
-    transition: font-size 0.3s ease;
+    font-weight: bold; 
+    font-size: 1.2em; 
+    font-style: normal; 
+    transition: font-size 0.3s ease; 
     position: absolute;
-    top: 85%;
-    left: 0%;
-    width: 100%;
-    padding: 0 0;
+    top: 85%; 
+    left: 0%; 
+    width: 100%; 
+    padding: 0 0; 
 }
 
+/* Additional styles for secondary paragraphs within service items */
 .service-item p + p {
-    font-weight: lighter;
-    font-size: 0.9em;
-    top: 95%;
-    left: 0;
+    font-weight: lighter; 
+    font-size: 0.9em; 
+    top: 95%; 
+    left: 0; 
 }
 
+/* Hover styles for service items */
 .service-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); 
 }
 
+/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
     .service-item {
-        width: calc(50% - 1em); 
-        height: 10em;
+        width: calc(50% - 1em); /* Set width for smaller screens */
+        height: 10em; /* Set height for smaller screens */
         margin: 0.5em; 
     }
 
     .service-container {
         display: flex; 
-        flex-wrap: wrap; 
+        flex-wrap: wrap; /* Allow items to wrap */
         justify-content: center; 
-        align-items: center; 
+        align-items: center; /* Center items vertically */
     }
 }

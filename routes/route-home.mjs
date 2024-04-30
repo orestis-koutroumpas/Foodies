@@ -28,7 +28,6 @@ router.get('/', (req, res) => {
             { name: 'Fresh', image: 'images/stores/fresh.jpg', alt: 'Fresh' }
         ]
     };
-    // Render the 'home' template with data
     res.render('home', data);
 });
 
