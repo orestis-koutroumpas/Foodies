@@ -1,10 +1,8 @@
-<!-- views/home.hbs -->
-
 <section id="services">
     <div class="container">
         <div id="services">
             <!-- Service 1: Food Categories -->
-            <div class="service">
+            <div class="service food-category"> <!-- Update class here -->
                 <h3>Food Categories</h3>
                 <p>Choose your favorite food or drink and get your order delivered within minutes.</p>
                 <div class="services-wrapper">
@@ -20,7 +18,7 @@
                 </div>
             </div>
             <!-- Service 2: Partner stores -->
-            <div class="service">
+            <div class="service partner-stores"> <!-- Update class here -->
                 <h3>Partner stores</h3>
                 <p>Choose from a variety of restaurants and cuisines.</p>
                 <div class="services-wrapper">
@@ -41,19 +39,24 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get all elements with the class 'service-item'
-        var serviceItems = document.querySelectorAll('.service-item');
-
-        // Add click event listener to each 'service-item'
-        serviceItems.forEach(function(item) {
+        // Get all food category elements
+        const foodCategoryItems = document.querySelectorAll('.food-category .service-item');
+        foodCategoryItems.forEach(function(item) {
             item.addEventListener('click', function() {
-                // Get the text content of the clicked 'service-item'
-                var serviceName = this.querySelector('p').textContent;
-                
-                // Redirect to the search page with the service name as query parameter
-                window.location.href = '/search?q=' + encodeURIComponent(serviceName);
+                const categoryName = this.querySelector('p').textContent;
+                // Redirect to the search page with the food category name as query parameter
+                window.location.href = '/search?q=' + encodeURIComponent(categoryName);
+            });
+        });
+
+        // Get all partner store elements
+        const partnerStoreItems = document.querySelectorAll('.partner-stores .service-item'); // Update class here
+        partnerStoreItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                const storeName = this.querySelector('p').textContent;
+                // Redirect to the store page
+                window.location.href = '/store?q=' + encodeURIComponent(storeName);
             });
         });
     });
 </script>
-
