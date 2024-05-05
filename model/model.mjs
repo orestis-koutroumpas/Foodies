@@ -1,20 +1,15 @@
-import pg from 'pg';
-import dotenv from 'dotenv';
+// model.mjs
 
-const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-         rejectUnauthorized: false 
-    }
-});
+import fs from 'fs';
+import path from 'path';
 
-async function connect() {
+// Function to read data from stores_data.json
+export const getAllStores = () => {
     try {
-        const client = await pool.connect();
-        return client;
+        const data = fs.readFileSync('C:/Users/okout/Programming Files/Internet Programming Course 2023-2024/Foodies/model/stores_data.json', 'utf-8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading stores_data.json:', error);
+        return null;
     }
-    catch(e) {
-        console.error(`Failed to connect ${e}`);
-    }
-}
-
+};
