@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
         {
             name: 'Burger Park',
             image: '/images/stores/burgerpark.jpg',
-            ratingImage: '/images/stores/stars5.png',
+            rating: '/images/stores/rating/stars5.png',
             category: 'Burgers',
             deliveryTime: '40\'',
             minimumOrder: '5,50€',
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
         {
             name: 'Henderson\'s',
             image: '/images/stores/hendersons.jpg',
-            ratingImage: '/images/stores/stars4.png',
+            rating: '/images/stores/rating/stars4.png',
             category: 'Sandwiches',
             deliveryTime: '35\'',
             minimumOrder: '6,50€',
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
         {
             name: 'Crepes Go',
             image: '/images/stores/crepesgo.jpg',
-            ratingImage: '/images/stores/stars3.png',
+            rating: '/images/stores/rating/stars3.png',
             category: 'Crepes',
             deliveryTime: '35\'',
             minimumOrder: '4,20€',
