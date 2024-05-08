@@ -19,7 +19,6 @@ export const getHomePage = async (req, res) => {
             alt: store.name
         }));
 
-        // Data to pass to the template
         const data = {
             pageTitle: "The best online delivery application!",
             foodCategories,

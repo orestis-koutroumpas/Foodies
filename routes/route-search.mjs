@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     const searchResults = [
         {
             name: 'Burger Park',
-            image: '/images/stores/burger_park.jpg',
+            image: '/images/stores/burgerpark.jpg',
             ratingImage: '/images/stores/stars5.png',
             category: 'Burgers',
             deliveryTime: '40\'',
