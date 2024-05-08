@@ -89,6 +89,84 @@
       "estimated_delivery_time": "00:45:00",
       "delivery_times": "Mon-Fri: 11:00 AM - 9:00 PM",
       "phone_number": "555-4321"
+    },
+    {
+      "id": 8,
+      "name": "Burger Premium",
+      "address": "123 Main Street",
+      "description": "Tasty burgers made fresh!",
+      "category": "Burger",
+      "rating": 4,
+      "min_order": 10,
+      "delivery_fee": 1,
+      "estimated_delivery_time": "00:30:00",
+      "delivery_times": "Mon-Sun: 11:00 AM - 10:00 PM",
+      "phone_number": "555-1234"
+    },
+    {
+      "id": 9,
+      "name": "Fast Pizza",
+      "address": "456 Oak Avenue",
+      "description": "Delicious pizzas served hot!",
+      "category": "Pizza",
+      "rating": 4,
+      "min_order": 25,
+      "delivery_fee": 0.5,
+      "estimated_delivery_time": "00:40:00",
+      "delivery_times": "Mon-Sat: 11:30 AM - 10:00 PM",
+      "phone_number": "555-5678"
+    },
+    {
+      "id": 10,
+      "name": "Pancakes Pantry",
+      "address": "789 Maple Drive",
+      "description": "Hearty breakfasts to start your day right!",
+      "category": "Pancakes",
+      "rating": 3,
+      "min_order": 15,
+      "delivery_fee": 2,
+      "estimated_delivery_time": "00:25:00",
+      "delivery_times": "Mon-Sun: 7:00 AM - 12:00 PM",
+      "phone_number": "555-9012"
+    },
+    {
+      "id": 11,
+      "name": "Pasta Pulse",
+      "address": "1010 Pine Lane",
+      "description": "Satisfying pasta dishes for every palate!",
+      "category": "Pasta",
+      "rating": 4,
+      "min_order": 5,
+      "delivery_fee": 0,
+      "estimated_delivery_time": "00:35:00",
+      "delivery_times": "Mon-Sat: 11:00 AM - 9:00 PM",
+      "phone_number": "555-3456"
+    },
+    {
+      "id": 12,
+      "name": "Sandwich Spot",
+      "address": "1212 Cedar Street",
+      "description": "Fresh wraps bursting with flavor!",
+      "category": "Sandwich",
+      "rating": 2,
+      "min_order": 5,
+      "delivery_fee": 0.5,
+      "estimated_delivery_time": "00:30:00",
+      "delivery_times": "Mon-Fri: 10:30 AM - 8:00 PM",
+      "phone_number": "555-6789"
+    },
+    {
+      "id": 13,
+      "name": "Sushi Sail",
+      "address": "1414 Spruce Avenue",
+      "description": "Exquisite sashimi prepared with care!",
+      "category": "Sushi",
+      "rating": 5,
+      "min_order": 5,
+      "delivery_fee": 0.5,
+      "estimated_delivery_time": "00:50:00",
+      "delivery_times": "Tue-Sun: 12:00 PM - 9:00 PM",
+      "phone_number": "555-7890"
     }
   ]
   
