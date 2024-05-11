@@ -2,7 +2,7 @@
 
 import { getAllStores } from '../model/model.mjs';
 
-export const getHomePage = async (req, res) => {
+export async function homeController(req, res) {
     try {
         // Fetch all store data from the model
         const storesData = await getAllStores();
