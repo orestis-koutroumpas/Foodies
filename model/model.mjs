@@ -11,3 +11,23 @@ export const getAllStores = () => {
         throw error;
     }
 };
+
+export const getStoresByName = (searchName) => {
+    try {
+        const stmt = sql.prepare("SELECT * FROM store WHERE name LIKE ?");
+        const searchTerm = `%${searchName}%`; 
+        return stmt.all(searchTerm);
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getStoresByCategory = (searchCategory) => {
+    try {
+        const stmt = sql.prepare("SELECT * FROM store WHERE category LIKE ?");
+        const searchTerm = `%${searchCategory}%`; 
+        return stmt.all(searchTerm);
+    } catch (error) {
+        throw error;
+    }
+};

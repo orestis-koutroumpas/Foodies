@@ -89,7 +89,7 @@ VALUES
 (4, 'Mr Coffee', 'Papaflessa 52', 'Experience the aroma of freshly brewed coffee!', 'Coffee', 3, 8, 2, '00:45:00', 'Mon-Fri: 11:00 AM - 9:00 PM', '555-6789'),
 (5, 'Crepes Go', 'Astiggos 9', 'Savory and sweet crepes made to order!', 'Crepes', 3, 8, 2, '00:45:00', 'Mon-Fri: 11:00 AM - 9:00 PM', '555-2468'),
 (6, 'Hendersons', 'Zaimi 93', 'Satisfy your hunger with our gourmet sandwiches!', 'Sandwich', 3, 8, 2, '00:45:00', 'Mon-Fri: 11:00 AM - 9:00 PM', '555-8023'),
-(7, 'Sandwich Spot', 'Solwmou 11', 'Fresh wraps bursting with flavor!', 'Sandwich', 2, 5, 0.5, '00:30:00', 'Mon-Fri: 10:30 AM - 8:00 PM', '555-6789'),
+(7, 'Sandwich Spot', 'Solwmou 11', 'Fresh wraps bursting with flavor!', 'Sandwich', 3, 5, 0.5, '00:30:00', 'Mon-Fri: 10:30 AM - 8:00 PM', '555-6789'),
 (8, 'Pizzeria', 'Smyrnis 61', 'Authentic Italian pizzas made with love!', 'Pizza', 3, 8, 2, '00:45:00', 'Mon-Fri: 11:00 AM - 9:00 PM', '555-4321'),
 (9, 'Fast Pizza', 'Danihlidos 17', 'Delicious pizzas served hot!', 'Pizza', 4, 25, 0.5, '00:40:00', 'Mon-Sat: 11:30 AM - 10:00 PM', '555-5678'),
 (10, 'Pasta Pulse', 'Maizwnos 315', 'Satisfying pasta dishes for every palate!', 'Pasta', 4, 5, 0, '00:35:00', 'Mon-Sat: 11:00 AM - 9:00 PM', '555-3456')
