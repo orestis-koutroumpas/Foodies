@@ -1,4 +1,4 @@
-//search-controller.mjs
+// controller/search-controller.mjs
 
 export async function searchController(req, res) {
     try {

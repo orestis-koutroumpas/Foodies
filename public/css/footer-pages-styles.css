@@ -1,7 +1,7 @@
 /* css/about-styles.css */
 
 /* Styles for the .about section */
-.about {
+.page {
     max-width: 800px; 
     margin: 0 auto; 
     padding: 20px; 
@@ -9,23 +9,26 @@
 }
 
 /* Styles for the main heading */
-.about h1 {
+.page h1 {
     font-size: 2.5rem; 
     margin-bottom: 20px; 
+    text-align: center; 
 }
 
 /* Styles for paragraphs within .about */
-.about p {
+.page p {
     font-size: 1.2rem; 
     line-height: 1.6; 
-    margin-bottom: 15px; /
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 /* Styles for secondary headings */
-.about h2 {
+.page h2 {
     font-size: 2rem; 
     margin-top: 40px; 
     margin-bottom: 20px; 
+    text-align: center;
 }
 
 /* Styles for team members section */
@@ -62,13 +65,13 @@
 }
 
 /* Styles for the unordered list */
-.about ul {
+.page ul {
     list-style-type: none; 
     padding: 0; 
 }
 
 /* Styles for list items */
-.about ul li {
+.page ul li {
     font-size: 1.1rem; 
     margin-bottom: 10px;
 }

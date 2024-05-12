@@ -1,4 +1,4 @@
-//home-controller.mjs
+// controller/home-controller.mjs
 
 import { getAllStores } from '../model/model.mjs';
 
