@@ -14,7 +14,7 @@ export const getAllStores = () => {
 
 export const getStoresByName = (searchName) => {
     try {
-        const stmt = sql.prepare("SELECT * FROM store WHERE name LIKE ?");
+        const stmt = sql.prepare("SELECT * FROM store WHERE name LIKE ? ORDER BY rating DESC");
         const searchTerm = `%${searchName}%`; 
         return stmt.all(searchTerm);
     } catch (error) {
@@ -24,7 +24,7 @@ export const getStoresByName = (searchName) => {
 
 export const getStoresByCategory = (searchCategory) => {
     try {
-        const stmt = sql.prepare("SELECT * FROM store WHERE category LIKE ?");
+        const stmt = sql.prepare("SELECT * FROM store WHERE category LIKE ? ORDER BY rating DESC");
         const searchTerm = `%${searchCategory}%`; 
         return stmt.all(searchTerm);
     } catch (error) {
