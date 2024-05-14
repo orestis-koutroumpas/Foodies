@@ -1,5 +1,9 @@
 <!-- views/home.hbs -->
 
+{{#each renderCss}}
+    <link rel="stylesheet" href="{{this}}">
+{{/each}}
+
 <section id="services">
     <div class="container">
         <div id="services">
@@ -38,3 +42,6 @@
         </div>
     </div>
 </section>
+
+<script src="/javascript/category-search.js"></script>
+<script src="/javascript/form-search.js"></script>

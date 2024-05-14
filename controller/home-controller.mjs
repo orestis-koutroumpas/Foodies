@@ -22,7 +22,10 @@ export async function homeController(req, res) {
         const data = {
             pageTitle: "The best online delivery application!",
             foodCategories,
-            partnerStores
+            partnerStores,
+            renderCss: [
+                '/css/home-styles.css'
+            ]
         };
 
         res.render('home', data);

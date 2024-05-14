@@ -1,5 +1,9 @@
 <!-- views/search.hbs -->
 
+{{#each renderCss}}
+    <link rel="stylesheet" href="{{this}}">
+{{/each}}
+
 <!-- Stores Section-->
 <section id="stores">
     <h1>Search results</h1>

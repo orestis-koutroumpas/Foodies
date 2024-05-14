@@ -23,13 +23,19 @@ export async function searchController(req, res) {
                 pageTitle: "Search for the best stores in Patras!", 
                 message: "No stores found. Please try a different search term.",
                 numStores: 0, 
-                stores: [] 
+                stores: [],
+                renderCss: [
+                    '/css/search-styles.css'
+                ]
             });
         } else {
             res.render('search', { 
                 pageTitle: "Search for the best stores in Patras!", 
                 numStores: searchResults.length, 
-                stores: searchResults 
+                stores: searchResults,
+                renderCss: [
+                    '/css/search-styles.css'
+                ]
             });
         }
 
