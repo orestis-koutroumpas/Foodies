@@ -87,6 +87,12 @@ h2 {
     transform: translateY(-5px); /* Move up on hover */
 }
 
+/* Apply styles to search-message class */
+.search-message {
+    margin-top: 1em;
+    color: #888;
+}
+
 @media screen and (max-width: 768px) {
     .store {
         max-width: 100%; /* Set maximum width to full width */

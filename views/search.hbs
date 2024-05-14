@@ -3,6 +3,11 @@
 <!-- Stores Section-->
 <section id="stores">
     <h1>Search results</h1>
+    {{#if message}}
+    <div class="search-message">
+        <p>{{message}}</p>
+    </div>
+    {{else}}
     <h2>We found {{numStores}} stores</h2>
     <!-- Render each store dynamically -->
     {{#each stores}}
@@ -34,4 +39,5 @@
         </div>
     </div>
     {{/each}}
+    {{/if}}
 </section>

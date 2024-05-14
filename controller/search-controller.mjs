@@ -18,17 +18,27 @@ export async function searchController(req, res) {
         // Combine the results from both searches and remove duplicates
         const searchResults = removeDuplicates([...searchResultsByName, ...searchResultsByCategory]);
 
-        res.render('search', { 
-            pageTitle: "Search for the best stores in Patras!", 
-            numStores: searchResults.length, 
-            stores: searchResults 
-        });
+        if (searchResults.length === 0) {
+            res.render('search', { 
+                pageTitle: "Search for the best stores in Patras!", 
+                message: "No stores found. Please try a different search term.",
+                numStores: 0, 
+                stores: [] 
+            });
+        } else {
+            res.render('search', { 
+                pageTitle: "Search for the best stores in Patras!", 
+                numStores: searchResults.length, 
+                stores: searchResults 
+            });
+        }
 
     } catch (error) {
         console.error('Error fetching store data:', error);
         res.status(500).send('Internal Server Error');
     }
 }
+
 
 function modifySearchResult(store) {
     return {
