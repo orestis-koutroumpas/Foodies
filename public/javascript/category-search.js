@@ -1,10 +1,10 @@
 // public/javascript/category-search.js
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all food category elements
+    // Get all food categories
     const foodCategoryItems = document.querySelectorAll('.food-category .service-item');
     foodCategoryItems.forEach(function(item) {
-        // Add click event listener to each food category item
+        // Add click event listener to each category item
         item.addEventListener('click', function() {
             // Get the text content of the clicked food category
             const categoryName = this.querySelector('p').textContent;
@@ -13,17 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Get all partner store elements
+    // Get all partner stores
     const partnerStoreItems = document.querySelectorAll('.partner-stores .service-item');
     partnerStoreItems.forEach(function(item) {
-        // Add click event listener to each partner store item
+        // Add click event listener to each store item
         item.addEventListener('click', function() {
-            // Get the text content of the clicked partner store
+            // Get the store name
             const storeName = this.querySelector('p').textContent;
             // Redirect to the store page
-            var formattedStoreName = storeName.replace(/\s+/g, '-'); // Remove spaces from storeName
-            var url = '/store/' + encodeURIComponent(formattedStoreName); // Encode the store name
-            window.location.href = url; // Redirect to the URL
-            });
+            const formattedStoreName = storeName.replace(/\s+/g, '-'); 
+            const url = '/store/' + encodeURIComponent(formattedStoreName);
+            window.location.href = url;
+        });
     });
 });

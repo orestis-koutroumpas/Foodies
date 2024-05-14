@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get the search form element
-    var searchForm = document.getElementById('search-form');
+    var searchForm = document.getElementById('search');
 
     // Add submit event listener to the search form
     searchForm.addEventListener('submit', function(event) {
