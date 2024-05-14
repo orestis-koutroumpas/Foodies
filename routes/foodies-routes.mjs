@@ -17,7 +17,7 @@ router.get('/search', async (req, res) => {
     searchController(req, res);
 });
 
-router.get('/store', async (req, res) => {
+router.get('/store/:storeName', async (req, res) => {
     const { storeController } = await import(`../controller/store-controller.mjs`);
     storeController(req, res);
 });

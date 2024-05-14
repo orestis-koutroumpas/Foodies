@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get the text content of the clicked partner store
             const storeName = this.querySelector('p').textContent;
             // Redirect to the store page
-            window.location.href = '/store?q=' + encodeURIComponent(storeName);
-        });
+            var formattedStoreName = storeName.replace(/\s+/g, '-'); // Remove spaces from storeName
+            var url = '/store/' + encodeURIComponent(formattedStoreName); // Encode the store name
+            window.location.href = url; // Redirect to the URL
+            });
     });
 });
