@@ -1,10 +1,16 @@
 // start.mjs
 
-import { app } from './app.mjs';
+import { foodies } from './app.mjs';
+import dotenv from 'dotenv';
+
+if (process.env.NODE_ENV !== 'production') {
+   console.log('loading .env');
+   dotenv.config();
+}
 
 const port = process.env.PORT || '3000';
 
-const server = app.listen(port, () => {
+const server = foodies.listen(port, () => {
    console.log(`http://127.0.0.1:${port}`);
 });
 

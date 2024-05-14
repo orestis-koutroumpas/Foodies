@@ -2,9 +2,9 @@
 
 /* Styles for the container */
 .container {
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 0 auto; /* Center the content within the container */
-    overflow: auto; /* Enable overflow scrolling if needed */
+    margin: 0 auto; 
+    padding: 0 auto; 
+    overflow: auto; 
 }
 
 /* Styles for the services section */
@@ -16,7 +16,7 @@
 .services-wrapper {
     overflow-x: auto; /* Enable horizontal overflow scrolling */
     overflow-y: hidden; /* Hide vertical overflow */
-    white-space: nowrap; /* Prevent wrapping of service items */
+    white-space: nowrap;
     padding: 1em; 
     margin: 1em; 
 }
@@ -65,24 +65,24 @@
     overflow: hidden; 
     position: relative;
     transition: transform 0.3s ease; 
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
 /* Styles for service item images */
 .service-item img {
     width: 100%; 
-    height: 80%; 
+    height: 90%; 
     object-fit: cover; 
 }
 
 /* Styles for service item paragraphs */
 .service-item p {
     font-weight: bold; 
-    font-size: 1.2em; 
+    font-size: 1em; 
     font-style: normal; 
     transition: font-size 0.3s ease; 
     position: absolute;
-    top: 85%; 
+    top: 88%; 
     left: 0%; 
     width: 100%; 
     padding: 0 0; 

@@ -22,6 +22,7 @@ export async function searchController(req, res) {
             res.render('search', { 
                 pageTitle: "Search for the best stores in Patras!", 
                 message: "No stores found. Please try a different search term.",
+                search: search,
                 numStores: 0, 
                 stores: [],
                 renderCss: [
@@ -31,6 +32,7 @@ export async function searchController(req, res) {
         } else {
             res.render('search', { 
                 pageTitle: "Search for the best stores in Patras!", 
+                search: search,
                 numStores: searchResults.length, 
                 stores: searchResults,
                 renderCss: [

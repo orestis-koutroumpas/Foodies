@@ -2,7 +2,7 @@
   "name": "foodies",
   "version": "1.0.0",
   "description": "A food delivery app",
-  "main": "app.mjs",
+  "main": "start.mjs",
   "scripts": {
     "clean": "rm -rf node_modules",
     "reinstall": "npm run clean && npm install",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "better-sqlite3": "^10.0.0",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "handlebars": "^4.7.8",

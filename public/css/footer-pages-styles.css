@@ -1,6 +1,6 @@
 /* css/about-styles.css */
 
-/* Styles for the .about section */
+/* Styles for the .page section */
 .page {
     max-width: 800px; 
     margin: 0 auto; 
@@ -15,7 +15,7 @@
     text-align: center; 
 }
 
-/* Styles for paragraphs within .about */
+/* Styles for paragraphs within .page */
 .page p {
     font-size: 1.2rem; 
     line-height: 1.6; 
@@ -68,6 +68,7 @@
 .page ul {
     list-style-type: none; 
     padding: 0; 
+    text-align: center;
 }
 
 /* Styles for list items */

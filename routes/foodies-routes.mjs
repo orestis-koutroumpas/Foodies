@@ -5,7 +5,9 @@ import { footerPagesController } from '../controller/footer-pages-controller.mjs
 
 const router = express.Router();
 
-router.route('/').get((req, res) => { res.redirect('/home') });
+router.route('/').get((req, res) => { 
+    res.redirect('/home') 
+});
 
 router.get('/home', async (req, res) => {
     const { homeController } = await import(`../controller/home-controller.mjs`);
