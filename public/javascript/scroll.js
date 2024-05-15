@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     header.style.backgroundColor = 'transparent';
     headerDivider.style.backgroundColor = 'transparent';
-    
+
     window.addEventListener('scroll', function() {
         if (window.scrollY > 0) {
             // When scrolled, set background color to white
