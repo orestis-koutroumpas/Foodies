@@ -9,18 +9,6 @@ header {
     transition: background-color 0.3s ease;
 }
 
-header::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px; 
-    background-color: var(--lightgrey); 
-}
-
-header.scrolled {
-    background-color: var(--black-color);
-}
-
 /* Header container style */
 .header-container {
     display: flex;
@@ -129,6 +117,22 @@ header.scrolled {
 /* Rotate chevron down icon */
 .fa-chevron-down.flipped {
     transform: rotate(180deg);
+}
+
+.header-divider {
+    width: 100%;
+    height: 2px;
+    background-color: var(--lightgrey); /* Light grey color */
+}
+
+@media screen and (max-width: 1850px) {
+    .logo-location-group .logo {
+        margin-left: 10px;
+    }
+
+    .user-cart-group .cart-icon {
+        margin-right: 20px;
+    }
 }
 
 @media screen and (max-width: 768px) {

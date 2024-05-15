@@ -2,6 +2,7 @@
 
 import express from 'express';
 import { footerPagesController } from '../controller/footer-pages-controller.mjs';
+import { getProductsData } from './data.mjs';
 
 const router = express.Router();
 
@@ -22,6 +23,10 @@ router.get('/search', async (req, res) => {
 router.get('/store/:storeName', async (req, res) => {
     const { storeController } = await import(`../controller/store-controller.mjs`);
     storeController(req, res);
+});
+
+router.get('/products', async (req, res) => {
+    res.json(getProductsData());
 });
 
 router.get('/user-profile', async (req, res) => {
