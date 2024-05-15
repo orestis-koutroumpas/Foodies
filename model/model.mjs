@@ -6,7 +6,8 @@ const sql = new db('model/db/foodies.sqlite', { fileMustExist: true });
 export const getAllStores = () => {
     try {
         const stmt = sql.prepare("SELECT * FROM store");
-        return stmt.all();
+        const stores = stmt.all();
+        return stores;
     } catch (error) {
         throw error;
     }
@@ -16,7 +17,8 @@ export const getStoresByName = (searchName) => {
     try {
         const stmt = sql.prepare("SELECT * FROM store WHERE name LIKE ? ORDER BY rating DESC");
         const searchTerm = `%${searchName}%`; 
-        return stmt.all(searchTerm);
+        const stores =  stmt.all(searchTerm);
+        return stores;
     } catch (error) {
         throw error;
     }
@@ -26,7 +28,8 @@ export const getStoresByCategory = (searchCategory) => {
     try {
         const stmt = sql.prepare("SELECT * FROM store WHERE category LIKE ? ORDER BY rating DESC");
         const searchTerm = `%${searchCategory}%`; 
-        return stmt.all(searchTerm);
+        const stores = stmt.all(searchTerm);
+        return stores;
     } catch (error) {
         throw error;
     }

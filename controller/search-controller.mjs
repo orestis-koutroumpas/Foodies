@@ -10,7 +10,6 @@ export async function searchController(req, res) {
         // First search by name
         const storeName = search;
         const searchResultsByName = await getStoresByName(storeName).map(modifySearchResult);
-        
         // Then search by category
         const category = search;
         const searchResultsByCategory = await getStoresByCategory(category).map(modifySearchResult);
