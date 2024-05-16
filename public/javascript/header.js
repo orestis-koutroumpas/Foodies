@@ -1,3 +1,5 @@
+// public/javascript/header.js
+
 // Check if the user's address visibility state is stored in localStorage
 let userAddressVisible = localStorage.getItem('userAddressVisible') === 'true';
 

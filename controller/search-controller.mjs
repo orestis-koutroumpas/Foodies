@@ -2,8 +2,10 @@
 
 import { getStoresByCategory, getStoresByName } from '../model/model.mjs';
 
+// Controller function for handling search requests
 export async function searchController(req, res) {
     try {
+        // Extracting the search query from the request
         let search = req.query.q.trim();
         search = search.charAt(0).toUpperCase() + search.slice(1);
 
@@ -16,10 +18,13 @@ export async function searchController(req, res) {
 
         // Combine the results from both searches and remove duplicates
         const searchResults = removeDuplicates([...searchResultsByName, ...searchResultsByCategory]);
+        
+        const pageTitle =  "Search for the best stores in Patras!";
 
+        // Rendering the search results page with appropriate data
         if (searchResults.length === 0) {
             res.render('search', { 
-                pageTitle: "Search for the best stores in Patras!", 
+                pageTitle: pageTitle, 
                 message: "No stores found. Please try a different search term.",
                 search: req.query.q.trim(),
                 numStores: 0, 
@@ -30,7 +35,7 @@ export async function searchController(req, res) {
             });
         } else {
             res.render('search', { 
-                pageTitle: "Search for the best stores in Patras!", 
+                pageTitle: pageTitle, 
                 search: req.query.q.trim(),
                 numStores: searchResults.length, 
                 stores: searchResults,
@@ -46,7 +51,7 @@ export async function searchController(req, res) {
     }
 }
 
-
+// Function to modify the search results by adding image paths and rating images
 function modifySearchResult(store) {
     return {
         ...store,
@@ -55,6 +60,7 @@ function modifySearchResult(store) {
     };
 }
 
+// Function to remove duplicate entries from an array of objects based on name and image
 function removeDuplicates(array) {
     return array.filter((value, index, self) =>
         index === self.findIndex((t) => (
