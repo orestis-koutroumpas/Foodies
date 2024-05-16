@@ -17,8 +17,12 @@
                     <div class="service-container">
                         {{#each foodCategories}}
                             <div class="service-item">
-                                <img src="{{image}}" alt="{{alt}}">
-                                <p>{{name}}</p>
+                                <div class="service-image">
+                                    <img src="{{image}}" alt="{{alt}}">
+                                </div>
+                                <div class="service-name">
+                                    <p>{{name}}</p>
+                                </div>
                             </div>
                         {{/each}}
                     </div>
@@ -33,8 +37,12 @@
                     <div class="service-container">
                         {{#each partnerStores}}
                             <div class="service-item">
-                                <img src="{{image}}" alt="{{alt}}">
-                                <p>{{name}}</p>
+                                <div class="service-image">
+                                    <img src="{{image}}" alt="{{alt}}">
+                                </div>
+                                <div class="service-name">
+                                    <p>{{name}}</p>
+                                </div>
                             </div>
                         {{/each}}
                     </div>

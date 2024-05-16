@@ -53,9 +53,9 @@
 
 /* Styles for individual service items */
 .service-item {
-    cursor: pointer; /* Set cursor to pointer */
+    cursor: pointer; 
     flex: 0 0 300px; 
-    height: 200px; 
+    height: 225px; 
     margin: 0.75em; 
     text-align: center;
     flex-direction: column; 
@@ -68,37 +68,28 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
+.service-item:hover {
+    transform: scale(1.05); 
+}
+
 /* Styles for service item images */
-.service-item img {
+.service-image img {
     width: 100%; 
-    height: 90%; 
+    height: 200px; 
     object-fit: cover; 
 }
 
 /* Styles for service item paragraphs */
-.service-item p {
+.service-name p {
     font-weight: bold; 
     font-size: 1em; 
     font-style: normal; 
     transition: font-size 0.3s ease; 
     position: absolute;
-    top: 88%; 
+    top: 90%; 
     left: 0%; 
     width: 100%; 
     padding: 0 0; 
-}
-
-/* Additional styles for secondary paragraphs within service items */
-.service-item p + p {
-    font-weight: lighter; 
-    font-size: 0.9em; 
-    top: 95%; 
-    left: 0; 
-}
-
-/* Hover styles for service items */
-.service-item:hover {
-    transform: scale(1.05); 
 }
 
 /* Media query for smaller screens */
