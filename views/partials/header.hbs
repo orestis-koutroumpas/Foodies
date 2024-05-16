@@ -9,10 +9,11 @@
                     <img src="/images/logo/foodies-dark.png" alt="Foodies Logo"> <!-- Image logo -->
                 </a>
             </div>
-            <div id="location" class="location-icon"> <!-- Location icon -->
+            <div id="location" class="location-icon" onclick="toggleUserAddress()">
                 <i class="fa-solid fa-location-arrow fa-2x"></i> 
-                <span id="location-text">Location <i class="fa-solid fa-chevron-down"></i></span> 
+                <span id="location-text">Location</span> 
             </div>
+            <div id="user-address" class="location-text" style="display: none;">123 Main St</div>
         </div>
         <div class="search-form"> <!-- Search form -->
             <form action="/search" method="get"> <!-- Form for search -->
@@ -20,6 +21,7 @@
             </form>
         </div>
         <div class="user-cart-group">
+            {{#if loggedIn}}
             <div id="user-profile" class="user-icon"> <!-- User profile icon -->
                 <a href="/user_profile">
                     <span class="icon-group"> 
@@ -28,6 +30,11 @@
                     </span>
                 </a>
             </div>
+            {{else}}
+            <div class="login-button-container">
+                <button id="loginButton" onclick="toggleLoginForm()">Log In</button>
+            </div>
+            {{/if}}
             <div id="cart" class="cart-icon"> <!-- Cart icon -->
                 <a href="cart_link">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
@@ -37,3 +44,5 @@
     </div>
     <div class="header-divider"></div>
 </header>
+
+<script src="/javascript/header.js"></script>

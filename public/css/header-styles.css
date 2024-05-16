@@ -39,6 +39,10 @@ header {
     transform: scale(1.1);
 }
 
+#user-address {
+    font-size: 1.2em;
+}
+
 /* Search form style */
 .search-form {
     flex: 1;
@@ -77,6 +81,29 @@ header {
 
 .user-icon a {
     color: var(--black-color);
+}
+
+/* Log in button */
+.login-button-container {
+    margin-right: 3em;
+}
+
+.login-button-container button {
+    background-color: transparent; 
+    border: none;
+    color: var(--black-color);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.login-button-container button:hover {
+    transform: scale(1.1);
 }
 
 /* Cart icon */
