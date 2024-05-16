@@ -1,0 +1,95 @@
+<!-- views/checkout.hbs -->
+<!-- Checkout page -->
+
+{{#each renderCss}}
+    <link rel="stylesheet" href="{{this}}">
+{{/each}}
+
+<section id="checkout">
+
+    <div class="page-title">
+        <h1>{{storeName}} Checkout</h1>
+    </div>
+
+    <div class="checkout-container">
+
+        <div class="order-details">
+            <h2>Order</h2>
+            <div class="details">
+                <p>Delivery in <em>{{deliveryTime}}'</em>.</p>
+                <p>Address: <em>{{address}}</em>.</p>
+            </div>
+            <div class="payment-form">
+                <form action="/">
+                    <label for="payment_method">Payment Method</label>
+                    <select id="payment_method" name="method">
+                        <option value="cash" selected>Cash</option>
+                    </select>
+                </form>
+            </div>
+            <div class="tip-form">
+                <legend>Tip</legend>
+                <form action="/" method="POST">
+                    <p>After the delivery, the entirety of your tip will go directly to them.</p>
+                    <div class="radio-group">
+                        <div class="radio-tip">
+                            <label for="tipNone">€0</label>
+                            <input type="radio" id="tipNone" name="tipAmount" value="0" checked>
+                        </div>
+                        <div class="radio-tip">
+                            <label for="tipSmall">€0.50</label>
+                            <input type="radio" id="tipSmall" name="tipAmount" value="0.5">
+                        </div>
+                        <div class="radio-tip">
+                            <label for="tipMedium">€1</label>
+                            <input type="radio" id="tipMedium" name="tipAmount" value="1">
+                        </div>
+                        <div class="radio-tip">
+                            <label for="tipLarge">€2</label>
+                            <input type="radio" id="tipLarge" name="tipAmount" value="2">
+                        </div>
+                    </div>
+                </form>
+            </div> 
+            <div class="promo"> 
+                <label for="promo-code">Promo Code</label> 
+                <p>If you have a Foodies promo code, enter it below to claim your benefits.</p>
+                <input type="text" id="promo-code" name="code" placeholder="Enter promo code..."> 
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+
+        {{#if cartItems}}
+        <div class="cart-items">
+            <h2>Cart</h2>
+            {{#each cartItems}}
+            <div class="cart-item">
+                <div class="item-image">
+                    <img src="{{this.image}}" alt="{{this.name}}">
+                </div>
+                <div class="item-details">
+                    <p>{{this.name}} {{this.price}}€</p> 
+               </div>
+               <div class="quantity-controls">
+                    <button class="quantity-button minus"></button>
+                    <p>{{this.quantity}}</p>
+                    <button class="quantity-button plus"></button>
+                </div>
+            </div>
+            {{/each}}
+            <div class="order-summary">
+                <p>Total: {{totalPrice}}€</p>
+            </div>
+
+            <div class="place-order">
+                <form action="/place-order" method="POST">
+                    <button type="submit">Place Order</button>
+                </form>
+            </div>
+        </div>
+        {{/if}}
+
+    </div>
+</section>
+
+<script src="/javascript/checkout.js"></script>

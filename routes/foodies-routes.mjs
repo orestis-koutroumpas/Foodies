@@ -25,6 +25,11 @@ router.get('/store/:storeName', async (req, res) => {
     storeController(req, res);
 });
 
+router.get('/store/:storeName/checkout', async (req, res) => {
+    const { checkoutController } = await import(`../controller/checkout-controller.mjs`);
+    checkoutController(req, res);
+});
+
 router.get('/products', async (req, res) => {
     res.json(getProductsData());
 });
