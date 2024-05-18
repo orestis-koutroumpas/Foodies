@@ -5,26 +5,26 @@ export async function checkoutController(req, res) {
         // Sample data for cart items
         const cartItems = [
             {
-                name: 'Freddo Espresso',
-                image: '/images/food/coffee.jpg',
+                name: 'Bbq Burger',
+                image: '/images/store-items/menu-items/burgers/bbq_burger.avif',
                 price: 10,
                 quantity: 1
             },
             {
-                name: 'Classic Burger',
-                image: '/images/food/burger.jpg',
+                name: 'Chicken Burger',
+                image: '/images/store-items/menu-items/burgers/chicken_burger.avif',
                 price: 15,
                 quantity: 1
             },
             {
-                name: 'Crepe',
-                image: '/images/food/crepes.jpg',
+                name: 'Amita Motion',
+                image: '/images/store-items/menu-items/drinks/amita_motion.avif',
                 price: 5.80,
                 quantity: 1
             },
             {
-                name: 'Pizza Margarita',
-                image: '/images/food/pizza.jpg',
+                name: 'Coca Cola Light',
+                image: '/images/store-items/menu-items/drinks/coca_cola_light.avif',
                 price: 10.50,
                 quantity: 1
             }
@@ -36,7 +36,8 @@ export async function checkoutController(req, res) {
         res.render('checkout', { 
             pageTitle: "Checkout",
             storeName: "Burger Place",
-            deliveryTime: 15,
+            minDeliveryTime: 15,
+            maxDeliveryTime: 25,
             address: "Karolou 14",
             renderCss: [
                 '/css/checkout-styles.css'

@@ -1,6 +1,5 @@
 // public/javascript/search.js
 
-// Adds events listener to search-form 
 document.addEventListener('DOMContentLoaded', function() {
     // Get the search form element
     var searchForm = document.getElementById('search');

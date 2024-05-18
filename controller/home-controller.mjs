@@ -10,7 +10,7 @@ export async function homeController(req, res) {
         // Food categories
         const foodCategories = [...new Set(storesData.map(store => store.category))].map(category => ({
             name: category,
-            image: `images/food/${category.toLowerCase()}.jpg`,
+            image: `images/food-categories/${category.toLowerCase()}.jpg`,
             alt: category
         }));
 

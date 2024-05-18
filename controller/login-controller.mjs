@@ -4,7 +4,11 @@ import bcrypt from 'bcrypt';
 export const loginController = async (req, res) => {
     try {
         res.render('login', {
-            pageTitle: "Log in"
+            pageTitle: "Log in",
+            layout: false,
+            renderCss: [
+                '/css/login-styles.css'
+            ]
         });
     } catch (error) {
         console.error('Error fetching store data:', error);

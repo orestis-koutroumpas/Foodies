@@ -10,9 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.14.0/maps/maps.css">
     <!-- Link to CSS files -->
+    {{#each renderCss}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/header-styles.css">
     <link rel="stylesheet" href="/css/footer-styles.css">
+    <link rel="stylesheet" href="/css/cart-modal-styles.css">
     <!-- Icon -->
     <link rel="icon" href="/images/logo/foodies-white.png">
     <!-- Additional styling -->
