@@ -39,3 +39,27 @@ export const getStoresByCategory = (searchCategory) => {
         throw error;
     }
 };
+
+export const getProductCategoriesByStoreCategory = (storeCategory) => {
+    try {
+        const stmt = sql.prepare("SELECT name FROM product_category WHERE category = ?");
+        return stmt.all(storeCategory);
+    } catch (error) {
+        throw error;
+    }
+};
+
+// Function to get menu items with prices for a specific store by store ID
+export const getMenuItemsWithPricesByStoreId = (storeId) => {
+    try {
+        const stmt = sql.prepare(`
+            SELECT mi.id, mi.name, mi.category, mi.description, mi.image, sm.price
+            FROM menu_item mi
+            JOIN store_menu sm ON mi.id = sm.menu_item_id
+            WHERE sm.store_id = ?
+        `);
+        return stmt.all(storeId);
+    } catch (error) {
+        throw error;
+    }
+};

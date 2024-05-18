@@ -10,6 +10,7 @@
 /* Styles for the services section */
 #services {
     background-color: var(--white-color); 
+    margin: 1em;
 }
 
 /* Styles for the services wrapper */

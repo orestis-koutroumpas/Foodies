@@ -29,8 +29,13 @@
     </svg>  
 </head>
 <body>
-    {{> header}}  
+    {{> header}}
+    <div id="cartModal" class="cart-modal"></div>
+    <div id="cartOverlay" class="cart-overlay"></div>
     {{{body}}}
     {{> footer}}
 </body>
+<!-- JS -->
+<script src="/javascript/scroll.js"></script>
+<script src="/javascript/cart-modal.js"></script>
 </html>

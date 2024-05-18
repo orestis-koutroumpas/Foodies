@@ -12,7 +12,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/store-items/Banners/Coffee_Banner.jpg');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -99,7 +98,7 @@
 }
 
 .Store-Info .right-group .right-group-container .info-icon-container {
-    color: var(--black-color);
+    color: var(--white-color);
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -125,7 +124,7 @@
 }
 
 .Store-Info .right-group .right-group-container .rating-container .rating {
-    color: var(--black-color);
+    color: var(--white-color);
 }
 
 .Store-Info .right-group .right-group-container .rating-container:hover .fa-star,
@@ -261,6 +260,7 @@
 }
 
 .tabs-box.dragging .tab {
+    -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
 }
@@ -582,7 +582,7 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    height: 90%;
+    height: 80%;
     max-width: 500px;
     background-color: var(--white-color);
     padding: 0;
@@ -634,7 +634,9 @@ h2 {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 15;
     display: none;
 }
@@ -767,6 +769,7 @@ input[type="checkbox"]:checked:before {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     padding: 10px;
+    margin-top: 80px;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 5px;
@@ -814,7 +817,7 @@ input[type="checkbox"]:checked:before {
     height: 5em;
     background-color: #007BFF;
     color: var(--white-color);
-    padding: 10px 30px;
+    padding: 10px 10px;
     margin-left: 15px;
     border: none;
     border-radius: 1.2em;
@@ -1090,6 +1093,7 @@ input[type="checkbox"]:checked:before {
     margin-right: auto;
     grid-column: span 3;
     text-align: center;
+    width: -moz-fit-content;
     width: fit-content;
 }
 

@@ -25,8 +25,8 @@ function handleModalScroll(modalImage, modalContent, modalHeader, modalHeaderH1,
 
 // Function to update total price
 function updateTotalPrice(modalPrice, quantitySpan, totalPrice) {
-    const price = parseFloat(modalPrice.textContent.slice(1)) * parseInt(quantitySpan.textContent);
-    totalPrice.textContent = `$${price.toFixed(2)}`;
+    const price = parseFloat(modalPrice.textContent.replace('€', '')) * parseInt(quantitySpan.textContent);
+    totalPrice.textContent = `${price.toFixed(2)} €`;
 }
 
 // Function to open the modal
@@ -39,7 +39,7 @@ export function openModal(product) {
     const modalName = document.getElementById('product-name');
     const modalDescription = document.getElementById('product-description');
     const modalPrice = document.getElementById('product-price');
-    const modalIngredients = document.getElementById('ingredients-list');
+    // const modalIngredients = document.getElementById('ingredients-list');
     const modalComment = document.getElementById('comment');
     const quantitySpan = document.getElementById('quantity');
     const totalPrice = document.getElementById('total-price');
@@ -67,17 +67,17 @@ export function openModal(product) {
     modalImage.alt = product.name;
     modalName.textContent = product.name;
     modalDescription.textContent = product.description;
-    modalPrice.textContent = `$${product.price.toFixed(2)}`;
+    modalPrice.textContent = `${product.price.toFixed(2)} €`;
     quantitySpan.value = 1;
-    totalPrice.textContent = `$${product.price.toFixed(2)}`;
+    totalPrice.textContent = `${product.price.toFixed(2)} €`;
 
-    updateIngredientsList(product, modalIngredients);
+    // updateIngredientsList(product, modalIngredients);
     modalComment.value = '';
 
     quantitySpan.addEventListener('input', function () {
         const quantity = parseInt(this.value);
         const price = product.price * quantity;
-        totalPrice.textContent = `$${price.toFixed(2)}`;
+        totalPrice.textContent = `${price.toFixed(2)} €`;
     });
 }
 
@@ -109,67 +109,67 @@ function closeModal() {
 }
 
 // Function to update ingredients list
-export function updateIngredientsList(product, modalIngredients) {
-    modalIngredients.innerHTML = '';
-    for (const key in product) {
-        if (key === 'name' || key === 'price' || key === 'image' || key === 'description') {
-            continue;
-        }
+// export function updateIngredientsList(product, modalIngredients) {
+//     modalIngredients.innerHTML = '';
+//     for (const key in product) {
+//         if (key === 'name' || key === 'price' || key === 'image' || key === 'description') {
+//             continue;
+//         }
 
-        const li = document.createElement('li');
-        const header = document.createElement('h3');
-        header.textContent = key;
-        li.appendChild(header);
+//         const li = document.createElement('li');
+//         const header = document.createElement('h3');
+//         header.textContent = key;
+//         li.appendChild(header);
 
-        if (typeof product[key] === 'object') {
-            const ul = document.createElement('ul');
-            for (const subKey in product[key]) {
-                const subLi = document.createElement('li');
-                subLi.className = 'flex-container';
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `${key}-${subKey}`;
-                checkbox.name = `${key}-${subKey}`;
-                checkbox.className = 'checkbox-margin';
-                const label = document.createElement('label');
-                label.htmlFor = `${key}-${subKey}`;
-                label.textContent = subKey;
+//         if (typeof product[key] === 'object') {
+//             const ul = document.createElement('ul');
+//             for (const subKey in product[key]) {
+//                 const subLi = document.createElement('li');
+//                 subLi.className = 'flex-container';
+//                 const checkbox = document.createElement('input');
+//                 checkbox.type = 'checkbox';
+//                 checkbox.id = `${key}-${subKey}`;
+//                 checkbox.name = `${key}-${subKey}`;
+//                 checkbox.className = 'checkbox-margin';
+//                 const label = document.createElement('label');
+//                 label.htmlFor = `${key}-${subKey}`;
+//                 label.textContent = subKey;
 
-                const divLeft = document.createElement('div');
-                divLeft.className = 'flex-container-left';
-                divLeft.appendChild(checkbox);
-                divLeft.appendChild(label);
+//                 const divLeft = document.createElement('div');
+//                 divLeft.className = 'flex-container-left';
+//                 divLeft.appendChild(checkbox);
+//                 divLeft.appendChild(label);
 
-                const divRight = document.createElement('div');
-                divRight.className = 'flex-container-right';
-                divRight.textContent = `$${product[key][subKey].toFixed(2)}`;
+//                 const divRight = document.createElement('div');
+//                 divRight.className = 'flex-container-right';
+//                 divRight.textContent = `${product[key][subKey].toFixed(2)} €`;
 
-                subLi.appendChild(divLeft);
-                subLi.appendChild(divRight);
-                ul.appendChild(subLi);
-            }
-            li.appendChild(ul);
-        } else {
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = key;
-            checkbox.name = key;
-            checkbox.className = 'checkbox-margin';
-            const label = document.createElement('label');
-            label.htmlFor = key;
-            label.textContent = key;
+//                 subLi.appendChild(divLeft);
+//                 subLi.appendChild(divRight);
+//                 ul.appendChild(subLi);
+//             }
+//             li.appendChild(ul);
+//         } else {
+//             const checkbox = document.createElement('input');
+//             checkbox.type = 'checkbox';
+//             checkbox.id = key;
+//             checkbox.name = key;
+//             checkbox.className = 'checkbox-margin';
+//             const label = document.createElement('label');
+//             label.htmlFor = key;
+//             label.textContent = key;
 
-            const divLeft = document.createElement('div');
-            divLeft.className = 'flex-container-left';
-            divLeft.appendChild(checkbox);
-            divLeft.appendChild(label);
+//             const divLeft = document.createElement('div');
+//             divLeft.className = 'flex-container-left';
+//             divLeft.appendChild(checkbox);
+//             divLeft.appendChild(label);
 
-            li.appendChild(divLeft);
-        }
+//             li.appendChild(divLeft);
+//         }
 
-        modalIngredients.appendChild(li);
-    }
-}
+//         modalIngredients.appendChild(li);
+//     }
+// }
 
 export function setupModal() {
     const modal = document.querySelector('.menu-item-modal');

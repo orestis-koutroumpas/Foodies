@@ -4,55 +4,121 @@ export const tabsBox = document.querySelector(".tabs-box");
 export const allTabs = tabsBox ? tabsBox.querySelectorAll(".tab") : null;
 export let isDragging = false;
 
-export const tabsData = [
-    "ΚΑΦΕΔΕΣ",
-    "ΡΟΦΗΜΑΤΑ",
-    "VEGAN / ΝΗΣΤΙΣΙΜΟΙ ΛΟΥΚΟΥΜΑΔΕΣ",
-    "MY LOUKOUMADES",
-    "ΑΛΜΥΡΟΙ ΛΟΥΚΟΥΜΑΔΕΣ",
-    "ΓΛΥΚΟΙ ΛΟΥΚΟΥΜΑΔΕΣ",
-    "SWEET BURGER",
-    "MY PANCAKES",
-    "PANCAKES ΑΛΜΥΡΑ",
-    "PANCAKES ΓΛΥΚΑ",
-    "MY WAFFLE",
-    "ΒΑΦΛΑΚΙΑ ΓΛΥΚΑ",
-    "ΒΑΦΛΑΚΙΑ ΑΛΜΥΡΑ",
-    "ΓΛΥΚΑ",
-    "ΠΑΓΩΤΟ",
-    "ΑΝΑΨΥΚΤΙΚΑ"
+
+export let tabsData = [];
+
+const categoryPriority = [
+    'Coffees',
+    'Teas',
+    'Starters',
+    'Salads',
+    'Fries',
+    'Pizza',
+    'Vegan Pizza',
+    'Pasta',
+    'Burger',
+    'Vegan Burger',
+    'Sandwiches',
+    'Vegan Sandwiches',
+    'Sweet Loukoumades',
+    'Savory Loukoumades',
+    'Sweet Pancakes',
+    'Savory Pancakes',
+    'Sweet Waffles',
+    'Savory Waffles',
+    'Sweet Crepes',
+    'Savory Crepes',
+    'Vegan Crepes',
+    'Desserts',
+    'Ice Cream',
+    'Sodas',
+    'Drinks',
+    'Beverages'
 ];
+
+
+export async function fetchTabsData(category) {
+    try {
+        const response = await fetch(`/api/tabs/${category}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setTabsData(data);
+    } catch (error) {
+        console.error('Error fetching tabs data:', error);
+    }
+}
+
+export const setTabsData = (data) => {
+    tabsData = data.sort((a, b) => {
+        const aIndex = categoryPriority.indexOf(a);
+        const bIndex = categoryPriority.indexOf(b);
+        return aIndex - bIndex;
+    });
+};
+
+export function getTabsData() {
+    return tabsData;
+}
+
 
 export let productsData = [];
 
-export function fetchProducts(callback) {
-    fetch('/products')
-        .then(response => response.json())
-        .then(data => {
-            productsData = data;
-            callback();
-        })
-        .catch(error => console.error('Error:', error));
+export async function fetchProducts(storeId) {
+    try {
+        const response = await fetch(`/api/menu-items/${storeId}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProductsData(data);
+    } catch (error) {
+        console.error('Error fetching products data:', error);
+    }
 }
 
-export const locationCoordinates = {
-    lat: 38.246719,
-    lng: 21.743356
+export const setProductsData = (data) => {
+    productsData = data;
 };
 
-export const storeInfo = {
-    deliveryHours: {
-        'Δευτέρα': '9:00  - 22:00 ',
-        'Τρίτη': '9:00  - 22:00 ',
-        'Τετάρτη': '9:00  - 22:00 ',
-        'Πέμπτη': '9:00  - 22:00 ',
-        'Παρασκευή': '9:00  - 22:00 ',
-        'Σάββατο': '9:00  - 00:00 ',
-        'Κυριακή': '9:00  - 23:00 '
-    },
-    address: 'Αγίου Ανδρέου 12, Πάτρα',
-    phone: '+30 - 6948756392'
+export function getProductsData() {
+    return productsData;
+}
+
+
+export let storeInfo = {
+    id: null,
+    deliveryHours: {},
+    address: '',
+    phone: ''
 };
+
+export async function fetchStoreInfo(storeName) {
+    try {
+        const response = await fetch(`/api/store-info/${storeName}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const info = await response.json();
+        setStoreInfo(info);
+    } catch (error) {
+        console.error('Error fetching store info:', error);
+    }
+}
+
+function setStoreInfo(info) {
+    storeInfo = {
+        id: info.id, // Set the id
+        deliveryHours: info.deliveryHours,
+        address: info.address,
+        phone: info.phone
+    };
+}
+
+export function getStoreInfo() {
+    return storeInfo;
+}
 
 export function getIsDragging() {
     return isDragging;

@@ -1,6 +1,30 @@
-import { tabsData, getIsDragging, setIsDragging } from './data.js';
+import { fetchTabsData, getTabsData, getIsDragging, setIsDragging } from './data.js';
 
-export function generateTabs(tabsBoxSelector) {
+
+export async function initializeTabsManagement(storeName, tabsBoxSelector) {
+    // Fetch store details to get the category
+    try {
+        const storeDetailsResponse = await fetch(`/api/store-info/${storeName}`);
+        if (!storeDetailsResponse.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const storeDetails = await storeDetailsResponse.json();
+        const storeCategory = storeDetails.category;
+
+        // Fetch tabs data based on store category
+        await fetchTabsData(storeCategory);
+
+        const tabsData = getTabsData();
+
+        generateTabs(tabsBoxSelector, tabsData);
+
+    } catch (error) {
+        console.error('Error fetching store details or tabs data:', error);
+    }
+}
+
+
+export function generateTabs(tabsBoxSelector, tabsData) {
     const tabsBox = document.querySelector(tabsBoxSelector);
 
     while (tabsBox.firstChild) {

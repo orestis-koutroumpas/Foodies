@@ -5,18 +5,18 @@
 {{/each}}
 
 <section class="Store-Info">
-    <div class="background-image"></div>
+    <div class="background-image" style="background-image: url('{{bannerImageUrl}}');"></div>
     <div class="left-group">
         <div class="store-info-container">
             <h1>{{storeName}}</h1>
             <div class="info-container">
-                <div class="info-box">Διανομή: {{deliveryCost}}</div>
-                <div class="info-box">Ελάχιστη παραγγελία: {{minimumOrder}}</div>
-                <div class="info-box">Διανομή σε {{deliveryTime}} λεπτά</div>
+                <div class="info-box">Delivery Fee: {{deliveryCost}}</div>
+                <div class="info-box">Minimum order: {{minimumOrder}}</div>
+                <div class="info-box">Delivered in {{deliveryTime}} λεπτά</div>
             </div>
             <span>
                 <i class="fa-solid fa-clock"></i>
-                <span>Ανοιχτό μέχρι {{openUntil}}</span>
+                <span>Open Until {{openUntil}}</span>
             </span>
         </div>
     </div>
@@ -25,12 +25,12 @@
             <div class="info-icon-container">
                 <span>
                     <i class="fa-solid fa-circle-info"></i>
-                    <span>Περισσότερα</span>
+                    <span>More Informations</span>
                 </span>
             </div>
             <div class="rating-container">
                 <i class="fa-solid fa-star"></i>
-                <span class="rating">{{rating}}</span>
+                <span class="rating">{{Rating}}</span>
             </div>
             <div class="Liked-Store">
                 <i class="fa-solid fa-heart fa-lg"></i>
@@ -131,7 +131,7 @@
 
 <section>
     <div class="Store-Location">
-        <h1>Που θα μας βρείτε....</h1>
+        <h1>Where to find us....</h1>
         <div id="map" class="map-container"></div>
         <footer class="Footer-Map">&copy;
             2024 Google Maps & Tom-Tom Maps on FOODIES - All Rights Reserved.

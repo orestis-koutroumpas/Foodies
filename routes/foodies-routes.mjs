@@ -2,7 +2,9 @@
 
 import express from 'express';
 import { footerPagesController } from '../controller/footer-pages-controller.mjs';
-import { getProductsData } from './data.mjs';
+import { getStoreInfo, getTabsByCategory } from '../controller/store-controller.mjs';
+import { getMenuItemsWithPricesByStoreId } from '../model/model.mjs';
+import { cartController } from '../controller/cart-controller.mjs';
 
 const router = express.Router();
 
@@ -30,18 +32,31 @@ router.get('/store/:storeName', async (req, res) => {
     storeController(req, res);
 });
 
-router.get('/store/:storeName/checkout', async (req, res) => {
-    const { checkoutController } = await import(`../controller/checkout-controller.mjs`);
-    checkoutController(req, res);
+router.get('/api/menu-items/:storeId', async (req, res) => {
+    try {
+        const { storeId } = req.params;
+        const menuItemsWithPrices = await getMenuItemsWithPricesByStoreId(storeId);
+        res.json(menuItemsWithPrices);
+    } catch (error) {
+        console.error('Error fetching menu items:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-router.get('/products', async (req, res) => {
-    res.json(getProductsData());
-});
+router.get('/api/store-info/:storeName', getStoreInfo);
+
+router.get('/api/tabs/:category', getTabsByCategory);
 
 router.get('/user-profile', async (req, res) => {
     const { userProfileController } = await import(`../controller/user-profile-controller.mjs`);
     userProfileController(req, res);
+});
+
+router.get('/store/:storeName/cart-modal', cartController);
+
+router.get('/store/:storeName/checkout', async (req, res) => {
+    const { checkoutController } = await import(`../controller/checkout-controller.mjs`);
+    checkoutController(req, res);
 });
 
 router.get('/about', footerPagesController);

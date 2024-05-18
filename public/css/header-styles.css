@@ -1,12 +1,16 @@
 /* css/header-styles.css */
 
 header {
-    background-color: var(--header-color);
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 5;
     transition: background-color 0.3s ease;
+}
+
+
+header.scrolled {
+    background-color: var(--white-color);
 }
 
 /* Header container style */
@@ -20,11 +24,13 @@ header {
 .logo-location-group {
     display: flex;
     align-items: center;
+    order: 1;
 }
 
 /* Logo style */
 .logo img {
-    margin: 0 1em;
+    padding: 10px;
+    margin-left: 150px;
 }
 
 /* Location icon style */
@@ -32,19 +38,15 @@ header {
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
     color: var(--black-color);
-    margin: 0 1em;
 }
 
 .location-icon:hover {
     transform: scale(1.1);
 }
 
-#user-address {
-    font-size: 1.2em;
-}
-
 /* Search form style */
 .search-form {
+    order: 2;
     flex: 1;
     min-width: 10em;
     max-width: 40%;
@@ -61,46 +63,26 @@ header {
 
 /* User and cart icons container */
 .user-cart-group {
-    display: flex; 
+    order: 3;
+    display: flex;
     align-items: center;
     margin-right: 1em;
 }
 
 /* User icon */
-.user-icon{
-    order: 3;
-    background: rgba(0, 0, 0, 0.1); 
+.user-icon {
+    background: rgba(0, 0, 0, 0.1);
     padding: 0.25em;
     border-radius: 2em;
     cursor: pointer;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: background 0.3s ease;
 }
 
 .user-icon a {
     color: var(--black-color);
-}
-
-/* Log in button */
-.login-container {
-    margin-right: 3em;
-}
-
-.login-container a {
-    color: var(--black-color);
-    padding: 10px 20px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.login-container a:hover {
-    transform: scale(1.1);
 }
 
 /* Cart icon */
@@ -109,8 +91,9 @@ header {
     cursor: pointer;
     border-radius: 2em;
     transition: color 0.3s ease, transform 0.3s ease;
-    color: var(--black-color); 
-    margin-left: 1em;
+    color: var(--black-color);
+    padding: 14px;
+    margin-right: 150px;
 }
 
 .cart-icon a {
@@ -150,17 +133,25 @@ header {
 }
 
 @media screen and (max-width: 1850px) {
-    .logo-location-group .logo {
+    .logo img {
         margin-left: 10px;
     }
 
-    .user-cart-group .cart-icon {
-        margin-right: 20px;
+    .cart-icon {
+        margin-right: 10px;
+    }
+
+    .logo-location-group {
+        left: 30px;
+    }
+
+    .user-cart-group {
+        right: 20px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    header {
+@media screen and (max-width: 850px) {
+    .search-form {
         display: none;
     }
 }

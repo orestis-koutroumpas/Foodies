@@ -1,29 +1,44 @@
-import { generateTabs } from './tabsManagement.js';
+import { initializeTabsManagement } from './tabsManagement.js';
 import { initialize } from './eventListeners.js';
-import { generateSections, renderAllProducts } from './productRendering.js';
+import { renderAllProducts } from './productRendering.js';
 import { initializeMap, initializeButton, addStoreInfo } from './storeInfo.js';
 import { toggleSidebar, handleResize } from './utilities.js';
-import { storeInfo, fetchProducts } from './data.js';
+import { fetchStoreInfo, storeInfo } from './data.js';
 
-export function initializePage() {
-    generateTabs('.tabs-box');
-    initialize();
-    generateSections();
-    fetchProducts(renderAllProducts);
-    initializeMap();
-    initializeButton();
-    addStoreInfo(storeInfo);
-    toggleSidebar();
-    handleResize();
+const pathSegments = window.location.pathname.split('/');
+const storeName = pathSegments[pathSegments.length - 1].replace(/-/g, ' ');
 
-    // Check if the current page is 'store'
-    if (window.location.pathname.indexOf('store') > -1) {
-        var searchBar = document.querySelector('.search-form'); 
+export async function initializePage() {
+    try {
+        // Fetch store info to get the storeId
+        await fetchStoreInfo(storeName);
 
-        if (searchBar) {
-            searchBar.style.display = 'none'; // Hide the search bar
+        // Assuming storeInfo now contains the store details
+        const storeId = storeInfo.id;
+
+        // Initialize tabs management and products rendering
+        await initializeTabsManagement(storeName, '.tabs-box');
+        await renderAllProducts(storeId);
+
+        // Other initializations
+        initialize();
+        initializeMap();
+        initializeButton();
+        addStoreInfo(storeInfo);
+        toggleSidebar();
+        handleResize();
+
+        // Check if the current page is 'store'
+        if (window.location.pathname.indexOf('store') > -1) {
+            var searchBar = document.querySelector('.search-form');
+
+            if (searchBar) {
+                searchBar.style.display = 'none'; // Hide the search bar
+            }
         }
-    }
 
-    window.onresize = handleResize;
+        window.onresize = handleResize;
+    } catch (error) {
+        console.error('Error initializing page:', error);
+    }
 }

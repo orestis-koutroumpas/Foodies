@@ -16,6 +16,7 @@
     --font-family: 'Poppins', sans-serif; /* Font family */
     --card-primary-color: hsl(0, 20%, 93%); /* Primary color for cards */
     --card-secondary-color: #966c3967; /* Secondary color for cards */
+    --scrollbar-color: #888;
 }
 
 /* Reset default margin, padding, and box-sizing */
@@ -40,4 +41,28 @@ body {
 body, html {
     width: 100%; 
     max-width: 100%; 
+}
+
+/*-------------------------------- Scrollbar Customization --------------------------------*/
+/* This applies to the whole page */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
