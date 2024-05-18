@@ -18,7 +18,7 @@ export async function homeController(req, res) {
         const partnerStores = storesData.map(store => ({
             name: store.name,
             image: `images/stores/${store.name.toLowerCase().replace(/\s+/g, '')}.jpg`,
-            alt: store.name
+            alt: store.name,
         }));
 
         const data = {

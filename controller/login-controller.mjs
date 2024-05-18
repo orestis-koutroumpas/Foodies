@@ -1,8 +1,7 @@
 // controller/auth-controller.mjs
 import bcrypt from 'bcrypt';
 
-export const loginController = async (req, res) => {
-    try {
+export async function loginController(req, res) {    try {
         res.render('login', {
             pageTitle: "Log in",
             layout: false,

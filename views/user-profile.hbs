@@ -1,3 +1,17 @@
 <!-- views/user-profile.hbs -->
 
-<p>User</p>
+{{#each renderCss}}
+    <link rel="stylesheet" href="{{this}}">
+{{/each}}
+
+<div class="user-profile">
+    <h1>User Profile</h1>
+    <div class="user-details">
+        <h2>Personal Information</h2>
+        <p><strong>First Name:</strong> {{user.fname}}</p>
+        <p><strong>Last Name:</strong> {{user.lname}}</p>
+        <p><strong>Email:</strong> {{user.email}}</p>
+        <p><strong>Address:</strong> {{user.address}}</p>
+        <p><strong>Phone Number:</strong> {{user.phone_number}}</p>
+    </div>
+</div>
