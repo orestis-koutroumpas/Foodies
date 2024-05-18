@@ -30,19 +30,17 @@
                     </span>
                 </a>
             </div>
-            {{else}}
-            <div class="login-button-container">
-                <button id="loginButton" onclick="toggleLoginForm()">Log In</button>
-            </div>
-            {{/if}}
             <div id="cart" class="cart-icon"> <!-- Cart icon -->
                 <a href="cart_link">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
                 </a>
             </div>
+            {{else}}
+            <div class="login-container">
+                <a href="/login">Log in</a>
+            </div>
+            {{/if}}
         </div>
     </div>
     <div class="header-divider"></div>
 </header>
-
-<script src="/javascript/header.js"></script>

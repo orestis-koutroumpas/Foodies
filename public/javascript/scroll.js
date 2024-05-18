@@ -1,3 +1,6 @@
+// public/javascript/scroll.js
+
+// Makes header transparent in store page then if scrolled makes it white
 window.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     const headerDivider = document.querySelector('.header-divider');

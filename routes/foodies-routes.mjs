@@ -15,6 +15,11 @@ router.get('/home', async (req, res) => {
     homeController(req, res);
 });
 
+router.get('/login', async (req, res) => {
+    const { loginController } = await import(`../controller/login-controller.mjs`);
+    loginController(req, res);
+});
+
 router.get('/search', async (req, res) => {
     const { searchController } = await import(`../controller/search-controller.mjs`);
     searchController(req, res);

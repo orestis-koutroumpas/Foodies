@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('container');
-    const loginButton = document.getElementById('loginButton'); // Updated ID
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
 
-    loginButton.addEventListener('click', () => {
+    registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+    });
+
+    loginBtn.addEventListener('click', () => {
         container.classList.remove("active");
     });
 
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return isValid;
     }
 
-    function validateField(input, condition, errorMessage) {
+       function validateField(input, condition, errorMessage) {
         if (condition) {
             setSuccess(input);
         } else {
@@ -64,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
     }
 
+    function isPhone(phone) {
+        return /^\+?(\d.*){3,}$/.test(phone);
+    }
+
     function showModal() {
         const modal = document.getElementById('successModal');
         modal.style.display = 'block';
@@ -79,4 +88,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
     }
+
 });

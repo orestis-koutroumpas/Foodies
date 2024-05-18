@@ -1,5 +1,6 @@
 // public/javascript/checkout.js
 
+// Adds event listeners to + and - buttons in checkout page
 document.addEventListener('DOMContentLoaded', function() {
     // Select all buttons with class 'minus' and add event listener for decreasing quantity
     let minusButtons = document.querySelectorAll('.quantity-button.minus');

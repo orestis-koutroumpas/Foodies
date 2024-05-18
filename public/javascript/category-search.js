@@ -1,6 +1,7 @@
 // public/javascript/category-search.js
 
-// Execute the script when the DOM content is loaded in home page
+// In home page adds event listeners to each food category and partner store
+// for redirecting into search oage and store page
 document.addEventListener('DOMContentLoaded', function() {
     // Get all food categories
     const foodCategoryItems = document.querySelectorAll('.food-category .service-item');
