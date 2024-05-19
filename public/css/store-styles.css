@@ -582,7 +582,7 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    height: 80%;
+    height: auto;
     max-width: 500px;
     background-color: var(--white-color);
     padding: 0;
@@ -728,7 +728,6 @@ input[type="checkbox"] {
     appearance: none;
     border: 1px solid var(--lightgrey);
     border-radius: 20%;
-    /* Make it circular */
     width: 20px;
     height: 20px;
     position: relative;

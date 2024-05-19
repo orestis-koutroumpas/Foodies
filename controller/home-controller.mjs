@@ -23,7 +23,6 @@ export async function homeController(req, res) {
 
         const data = {
             pageTitle: "The best online delivery application!",
-            loggedIn: false,
             foodCategories,
             partnerStores,
             renderCss: [

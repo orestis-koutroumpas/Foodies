@@ -1,5 +1,10 @@
 /* css/home-styles.css */
 
+/* Styles for the services section */
+#services {
+    background-color: var(--white-color); 
+}
+
 /* Styles for the container */
 .container {
     margin: 0 auto; 
@@ -7,9 +12,13 @@
     overflow: auto; 
 }
 
-/* Styles for the services section */
-#services {
-    background-color: var(--white-color); 
+/* Styles for individual services */
+.service {
+    margin-bottom: 1.875em; 
+    padding: 1.25em; 
+    margin: 1em;
+    border-radius: 0.3125em; 
+    min-height: 3em; 
 }
 
 /* Styles for the services wrapper */
@@ -17,16 +26,8 @@
     overflow-x: auto; /* Enable horizontal overflow scrolling */
     overflow-y: hidden; /* Hide vertical overflow */
     white-space: nowrap;
-    padding: 1em; 
-    margin: 1em; 
-}
-
-/* Styles for individual services */
-.service {
-    margin-bottom: 1.875em; 
-    padding: 1.25em; 
-    border-radius: 0.3125em; 
-    min-height: 3em; 
+    padding-top: 1em; 
+    margin-top: 1em; 
 }
 
 /* Styles for service headings */

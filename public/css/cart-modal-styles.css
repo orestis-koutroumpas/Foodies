@@ -1,16 +1,17 @@
 /* css/cart-modal-styles.css */
 
-
 .cart-modal {
     position: fixed;
     top: 0;
     right: -100%;
     width: 300px;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--white-color);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
     z-index: 22;
+    display: flex;
+    flex-direction: column;
 }
 
 .cart-modal.open {
@@ -19,6 +20,10 @@
 
 .cart-content {
     padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    position: relative;
+    z-index: 22;
 }
 
 .cart-content h4 {
@@ -63,4 +68,110 @@
 
 .cart-empty h3 {
     margin-top: 30px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    z-index: 22;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cart-item-price {
+    margin-top: 5px;
+}
+
+.cart-item-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    z-index: 23;
+}
+
+.cart-item-controls .edit-quantity-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 23;
+}
+
+.cart-item-controls .edit-quantity-btn:hover {
+    font-size: 1.2em;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.edit-quantity-btn.expanded {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 24;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 5px;
+}
+
+.quantity-btn.minus,
+.quantity-btn.plus {
+    font-size: 1.2em;
+    margin: 0 5px;
+}
+
+.delete-btn {
+    color: red;
+    font-size: 1.2em;
+}
+
+.cart-total-button {
+    width: calc(100% - 40px);
+    padding: 20px 20px;
+    background-color: #007BFF;
+    color: var(--white-color);
+    font-size: 1.2em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 23;
+    transition: all 0.3s ease;
+}
+
+.cart-total-button:hover {
+    transform: scale(1.05);
 }

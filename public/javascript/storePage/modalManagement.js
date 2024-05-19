@@ -82,94 +82,44 @@ export function openModal(product) {
 }
 
 // Function to close the modal
-function closeModal() {
+export function closeModal() {
     const modal = document.querySelector('.menu-item-modal');
     const modalBackdrop = document.querySelector('.modal-backdrop');
-    const modalContent = document.querySelector('.modal-content');
 
     if (modal) {
         modal.style.opacity = 0;
-
-        var overlay = document.getElementById('overlay');
-        overlay.parentNode.removeChild(overlay);
-
         setTimeout(() => {
             modal.classList.remove('open');
+            const overlay = document.getElementById('overlay');
+            if (overlay && overlay.parentNode) {
+                overlay.parentNode.removeChild(overlay);
+            }
         }, 500);
-
-        if (modalContent) {
-            modalContent.scrollTop = 0;
-        }
     }
 
     if (modalBackdrop) {
         modalBackdrop.classList.remove('open');
     }
+
     document.body.style.overflow = '';
 }
 
-// Function to update ingredients list
-// export function updateIngredientsList(product, modalIngredients) {
-//     modalIngredients.innerHTML = '';
-//     for (const key in product) {
-//         if (key === 'name' || key === 'price' || key === 'image' || key === 'description') {
-//             continue;
-//         }
 
-//         const li = document.createElement('li');
-//         const header = document.createElement('h3');
-//         header.textContent = key;
-//         li.appendChild(header);
+// Function to get product details from the modal
+export function getProductDetails() {
+    const modalHeaderH1 = document.querySelector('#product-name-header');
+    const totalPrice = document.getElementById('total-price');
+    const modalComment = document.getElementById('comment');
+    const quantitySpan = document.getElementById('quantity');
 
-//         if (typeof product[key] === 'object') {
-//             const ul = document.createElement('ul');
-//             for (const subKey in product[key]) {
-//                 const subLi = document.createElement('li');
-//                 subLi.className = 'flex-container';
-//                 const checkbox = document.createElement('input');
-//                 checkbox.type = 'checkbox';
-//                 checkbox.id = `${key}-${subKey}`;
-//                 checkbox.name = `${key}-${subKey}`;
-//                 checkbox.className = 'checkbox-margin';
-//                 const label = document.createElement('label');
-//                 label.htmlFor = `${key}-${subKey}`;
-//                 label.textContent = subKey;
 
-//                 const divLeft = document.createElement('div');
-//                 divLeft.className = 'flex-container-left';
-//                 divLeft.appendChild(checkbox);
-//                 divLeft.appendChild(label);
-
-//                 const divRight = document.createElement('div');
-//                 divRight.className = 'flex-container-right';
-//                 divRight.textContent = `${product[key][subKey].toFixed(2)} €`;
-
-//                 subLi.appendChild(divLeft);
-//                 subLi.appendChild(divRight);
-//                 ul.appendChild(subLi);
-//             }
-//             li.appendChild(ul);
-//         } else {
-//             const checkbox = document.createElement('input');
-//             checkbox.type = 'checkbox';
-//             checkbox.id = key;
-//             checkbox.name = key;
-//             checkbox.className = 'checkbox-margin';
-//             const label = document.createElement('label');
-//             label.htmlFor = key;
-//             label.textContent = key;
-
-//             const divLeft = document.createElement('div');
-//             divLeft.className = 'flex-container-left';
-//             divLeft.appendChild(checkbox);
-//             divLeft.appendChild(label);
-
-//             li.appendChild(divLeft);
-//         }
-
-//         modalIngredients.appendChild(li);
-//     }
-// }
+    return {
+        productName: modalHeaderH1.textContent,
+        quantity: quantitySpan.textContent,
+        finalPrice: totalPrice.textContent,
+        comment: modalComment.value
+    };
+}
 
 export function setupModal() {
     const modal = document.querySelector('.menu-item-modal');
@@ -237,3 +187,67 @@ export function setupModal() {
 
     return openModal;
 }
+
+
+// Function to update ingredients list
+// export function updateIngredientsList(product, modalIngredients) {
+//     modalIngredients.innerHTML = '';
+//     for (const key in product) {
+//         if (key === 'name' || key === 'price' || key === 'image' || key === 'description') {
+//             continue;
+//         }
+
+//         const li = document.createElement('li');
+//         const header = document.createElement('h3');
+//         header.textContent = key;
+//         li.appendChild(header);
+
+//         if (typeof product[key] === 'object') {
+//             const ul = document.createElement('ul');
+//             for (const subKey in product[key]) {
+//                 const subLi = document.createElement('li');
+//                 subLi.className = 'flex-container';
+//                 const checkbox = document.createElement('input');
+//                 checkbox.type = 'checkbox';
+//                 checkbox.id = `${key}-${subKey}`;
+//                 checkbox.name = `${key}-${subKey}`;
+//                 checkbox.className = 'checkbox-margin';
+//                 const label = document.createElement('label');
+//                 label.htmlFor = `${key}-${subKey}`;
+//                 label.textContent = subKey;
+
+//                 const divLeft = document.createElement('div');
+//                 divLeft.className = 'flex-container-left';
+//                 divLeft.appendChild(checkbox);
+//                 divLeft.appendChild(label);
+
+//                 const divRight = document.createElement('div');
+//                 divRight.className = 'flex-container-right';
+//                 divRight.textContent = `${product[key][subKey].toFixed(2)} €`;
+
+//                 subLi.appendChild(divLeft);
+//                 subLi.appendChild(divRight);
+//                 ul.appendChild(subLi);
+//             }
+//             li.appendChild(ul);
+//         } else {
+//             const checkbox = document.createElement('input');
+//             checkbox.type = 'checkbox';
+//             checkbox.id = key;
+//             checkbox.name = key;
+//             checkbox.className = 'checkbox-margin';
+//             const label = document.createElement('label');
+//             label.htmlFor = key;
+//             label.textContent = key;
+
+//             const divLeft = document.createElement('div');
+//             divLeft.className = 'flex-container-left';
+//             divLeft.appendChild(checkbox);
+//             divLeft.appendChild(label);
+
+//             li.appendChild(divLeft);
+//         }
+
+//         modalIngredients.appendChild(li);
+//     }
+// }

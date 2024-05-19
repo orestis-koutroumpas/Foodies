@@ -1,3 +1,5 @@
+// storePage/productRendering.js
+
 import { openModal } from './modalManagement.js';
 import { fetchProducts, productsData, tabsData } from './data.js';
 
