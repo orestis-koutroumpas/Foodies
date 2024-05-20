@@ -57,6 +57,10 @@
     font-size: 1.5rem; 
     margin-bottom: 5px; 
 }
+ .team-member a {
+    text-decoration: none;
+    color: black;
+ }
 
 /* Styles for team member roles */
 .team-member p {

@@ -13,7 +13,11 @@ export async function userProfileController(req, res) {
 
         res.render('user-profile', {
             pageTitle: "User Profile",
-            user,
+            userEmail: user.email,
+            userFname: user.fname,
+            userLname: user.lname,
+            userAddress: user.address,
+            userPhoneNumber: user.phone_number,
             renderCss: [
                 '/css/user-profile-styles.css'
             ]

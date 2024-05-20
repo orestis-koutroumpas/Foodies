@@ -29,6 +29,7 @@
 /* Set body font-family and basic styles */
 body {
     font-family: var(--font-family);
+    font-size: 16px;
     background-color: var(--white-color);
     color: var(--black-color); 
     display: flex; 

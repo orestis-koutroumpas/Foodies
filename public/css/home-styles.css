@@ -1,19 +1,19 @@
 /* css/home-styles.css */
 
 /* Styles for the services section */
-#services {
+#food-services {
     background-color: var(--white-color); 
 }
 
 /* Styles for the container */
-.container {
+.food-container {
     margin: 0 auto; 
     padding: 0 auto; 
     overflow: auto; 
 }
 
 /* Styles for individual services */
-.service {
+.food-service {
     margin-bottom: 1.875em; 
     padding: 1.25em; 
     margin: 1em;
@@ -87,7 +87,7 @@
     font-style: normal; 
     transition: font-size 0.3s ease; 
     position: absolute;
-    top: 90%; 
+    top: 88%; 
     left: 0%; 
     width: 100%; 
     padding: 0 0; 

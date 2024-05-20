@@ -21,12 +21,27 @@
         </div>
         <div class="user-cart-group">
             <div id="user-profile" class="user-icon"> <!-- User profile icon -->
-                <a href="/user-profile">
-                    <span class="icon-group"> 
-                        <i class="fa-solid fa-circle-user fa-2x"></i> 
-                        <i id="arrow" class="fa-solid fa-chevron-down"></i> 
-                    </span>
-                </a>
+                <img src="/images/user/profile.png" class="user-pic" onclick="toggleMenu()">
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="sub-menu">
+                            <div class="user-info">
+                                <img src="/images/user/user.png">
+                                <h3>FName Lname</h3>
+                            </div>
+                            <hr>
+                            <a href="/user-profile" class="sub-menu-link">
+                                <img src="/images/user/edit.png">
+                                <p>Edit Profile</p>
+                                <span></span>
+                            </a>
+                            <a href="#" class="sub-menu-link">
+                                <img src="/images/user/logout.png">
+                                <p>Logout</p>
+                                <span></span>
+                            </a>
+                        </div>
+                    </div>
+                </img>
             </div>
             <div id="cart" class="cart-icon"> <!-- Cart icon -->
                 <a href="/cart-modal">
@@ -37,3 +52,13 @@
     </div>
     <div class="header-divider"></div>
 </header>
+
+<script>
+        let subMenu = document.getElementById("subMenu");
+        let userPic = document.getElementById("userPic");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open-menu");
+        }
+
+</script>
