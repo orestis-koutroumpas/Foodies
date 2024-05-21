@@ -80,7 +80,7 @@ function createProductElement(product) {
     const buttonElement = document.createElement('div');
     buttonElement.classList.add('add-to-cart');
     buttonElement.innerHTML = '<i class="fa-regular fa-square-plus fa-xl"></i>';
-    buttonElement.addEventListener('click', function() {
+    buttonElement.addEventListener('click', function(event) {
         event.stopPropagation();
         openModal(product);
     });
@@ -93,4 +93,3 @@ function createProductElement(product) {
 
     return productElement;
 }
-

@@ -12,6 +12,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const app = express();
 
+app.get('*', (req, res, next) => {
+    res.locals.currentPath = req.path;
+    next();
+});
+
 // Set up Handlebars view engine
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');

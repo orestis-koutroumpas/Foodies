@@ -2,7 +2,7 @@
 <!-- Checkout page -->
 
 {{#each renderCss}}
-    <link rel="stylesheet" href="{{this}}">
+<link rel="stylesheet" href="{{this}}">
 {{/each}}
 
 <section id="checkout">
@@ -25,6 +25,7 @@
                     <label for="payment_method">Payment Method</label>
                     <select id="payment_method" name="method">
                         <option value="cash" selected>Cash</option>
+                        <option value="card" selected>Card</option>
                     </select>
                 </form>
             </div>
@@ -51,44 +52,28 @@
                         </div>
                     </div>
                 </form>
-            </div> 
-            <div class="promo"> 
-                <label for="promo-code">Promo Code</label> 
+            </div>
+            <div class="promo">
+                <label for="promo-code">Promo Code</label>
                 <p>If you have a Foodies promo code, enter it below to claim your benefits.</p>
-                <input type="text" id="promo-code" name="code" placeholder="Enter promo code..."> 
+                <input type="text" id="promo-code" name="code" placeholder="Enter promo code...">
                 <button type="submit">Submit</button>
             </div>
         </div>
+
         <!-- Cart items -->
-        {{#if cartItems}}
         <div class="cart-items">
             <h2>Cart</h2>
-            {{#each cartItems}}
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="{{this.image}}" alt="{{this.name}}">
-                </div>
-                <div class="item-details">
-                    <p>{{this.name}} {{this.price}}€</p> 
-               </div>
-               <div class="quantity-controls">
-                    <button class="quantity-button minus"></button>
-                    <p>{{this.quantity}}</p>
-                    <button class="quantity-button plus"></button>
-                </div>
-            </div>
-            {{/each}}
+            <div id="cartItemsContainer" class="cart-items-container"></div>
             <div class="order-summary">
-                <p>Total: {{totalPrice}}€</p>
+                <p>Total: {{totalPrice}} €</p>
             </div>
-
             <div class="place-order">
                 <form action="/place-order" method="POST">
                     <button type="submit">Place Order</button>
                 </form>
             </div>
         </div>
-        {{/if}}
 
     </div>
 </section>

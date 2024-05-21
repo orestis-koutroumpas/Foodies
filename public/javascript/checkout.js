@@ -1,48 +1,185 @@
 // public/javascript/checkout.js
 
-// Adds event listeners to + and - buttons in checkout page
-document.addEventListener('DOMContentLoaded', function() {
-    // Select all buttons with class 'minus' and add event listener for decreasing quantity
-    let minusButtons = document.querySelectorAll('.quantity-button.minus');
-    minusButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            decreaseQuantity(this);
+document.addEventListener('DOMContentLoaded', () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    console.log('Loaded cart items from localStorage:', cartItems);
+    if (cartItems.length > 0) {
+        const cartItemsContainer = document.querySelector('.cart-items-container');
+        cartItemsContainer.innerHTML = ''; // Clear the container before appending items
+
+        cartItems.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+
+            cartItem.innerHTML = `
+                <div class="item-image">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div class="item-details">
+                    <p>${item.name}</p>
+                    <p class="item-price" data-price-per-unit="${(item.price / item.quantity).toFixed(2)}">${item.price.toFixed(2)}€</p>
+                </div>
+                <div class="quantity-display">
+                    <button class="quantity-toggle">
+                        ${item.quantity} <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            `;
+
+            cartItemsContainer.appendChild(cartItem);
         });
-    });
 
-    // Select all buttons with class 'plus' and add event listener for increasing quantity
-    let plusButtons = document.querySelectorAll('.quantity-button.plus');
-    plusButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            increaseQuantity(this);
-        });
-    });
-
-    // Function to decrease the quantity when the minus button is clicked
-    function decreaseQuantity(button) {
-        // Get the element displaying the quantity
-        let quantityElement = button.nextElementSibling;
-        // Parse the current quantity as an integer
-        let currentQuantity = parseInt(quantityElement.textContent);
-        
-        // Ensure the quantity doesn't go below 0
-        if (currentQuantity > 0) {
-            let newQuantity = currentQuantity - 1;
-            // Update the quantity display
-            quantityElement.textContent = newQuantity;
-        }
-    }
-
-    // Function to increase the quantity when the plus button is clicked
-    function increaseQuantity(button) {
-        // Get the element displaying the quantity
-        let quantityElement = button.previousElementSibling;
-        // Parse the current quantity as an integer
-        let currentQuantity = parseInt(quantityElement.textContent);
-        
-        // Increment the quantity
-        let newQuantity = currentQuantity + 1;
-        // Update the quantity display
-        quantityElement.textContent = newQuantity;
+        updateCartData();
+        attachEventListeners();
+    } else {
+        console.error('No cart items found.');
     }
 });
+
+function attachEventListeners() {
+    const quantityToggles = document.querySelectorAll('.quantity-toggle');
+
+    quantityToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent immediate reversion
+            toggleQuantityControls(this);
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        const expandedControls = document.querySelectorAll('.quantity-controls');
+        expandedControls.forEach(control => {
+            if (!control.contains(event.target)) {
+                revertQuantityDisplay(control);
+            }
+        });
+    });
+}
+
+function toggleQuantityControls(toggle) {
+    const cartItem = toggle.closest('.cart-item');
+    const quantity = parseInt(toggle.textContent);
+
+    toggle.parentNode.innerHTML = `
+        <div class="quantity-controls">
+            <div class="quantity-control-container">
+                <button class="quantity-button minus"><i class="fas fa-minus"></i></button>
+                <p class="quantity">${quantity}</p>
+                <button class="quantity-button plus"><i class="fas fa-plus"></i></button>
+            </div>
+            <button class="quantity-button trash"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    `;
+
+    attachQuantityButtonListeners(cartItem);
+}
+
+function attachQuantityButtonListeners(cartItem) {
+    const minusButton = cartItem.querySelector('.quantity-button.minus');
+    const plusButton = cartItem.querySelector('.quantity-button.plus');
+    const trashButton = cartItem.querySelector('.quantity-button.trash');
+
+    minusButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        decreaseQuantity(this);
+    });
+
+    minusButton.addEventListener('mouseover', function() {
+        if (parseInt(this.nextElementSibling.textContent) === 1) {
+            this.style.cursor = 'not-allowed';
+        } else {
+            this.style.cursor = 'pointer';
+        }
+    });
+
+    plusButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        increaseQuantity(this);
+    });
+
+    trashButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        removeCartItem(this);
+    });
+}
+
+function decreaseQuantity(button) {
+    let quantityElement = button.nextElementSibling;
+    let currentQuantity = parseInt(quantityElement.textContent);
+
+    if (currentQuantity > 1) {
+        let newQuantity = currentQuantity - 1;
+        quantityElement.textContent = newQuantity;
+        updateItemPrice(button, newQuantity);
+        updateCartData();
+    }
+}
+
+function increaseQuantity(button) {
+    let quantityElement = button.previousElementSibling;
+    let currentQuantity = parseInt(quantityElement.textContent);
+
+    let newQuantity = currentQuantity + 1;
+    quantityElement.textContent = newQuantity;
+    updateItemPrice(button, newQuantity);
+    updateCartData();
+}
+
+function updateItemPrice(button, newQuantity) {
+    let cartItem = button.closest('.cart-item');
+    let priceElement = cartItem.querySelector('.item-price');
+    let pricePerUnit = parseFloat(priceElement.dataset.pricePerUnit);
+    let newPrice = pricePerUnit * newQuantity;
+    priceElement.textContent = newPrice.toFixed(2) + '€';
+    updateCartData();
+}
+
+function revertQuantityDisplay(display) {
+    let quantityElement = display.querySelector('.quantity');
+    let quantity = quantityElement.textContent;
+
+    display.parentNode.innerHTML = `
+        <div class="quantity-display">
+            <button class="quantity-toggle">
+                ${quantity} <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    `;
+    attachEventListeners();
+    updateCartData();
+}
+
+function removeCartItem(button) {
+    let cartItem = button.closest('.cart-item');
+    cartItem.remove();
+    updateCartData();
+}
+
+function updateCartData() {
+    let cartItems = [];
+    let total = 0;
+
+    document.querySelectorAll('.cart-item').forEach(cartItem => {
+        const name = cartItem.querySelector('.item-details p').textContent;
+        const quantity = parseInt(cartItem.querySelector('.quantity-toggle').textContent.trim());
+        const pricePerUnit = parseFloat(cartItem.querySelector('.item-price').dataset.pricePerUnit);
+        const image = cartItem.querySelector('.item-image img').src;
+
+        const itemTotalPrice = pricePerUnit * quantity;
+        total += itemTotalPrice;
+        cartItems.push({
+            name: name,
+            price: itemTotalPrice,
+            quantity: quantity,
+            image: image
+        });
+    });
+
+    console.log('Cart Items:', cartItems);
+    console.log('Total Price:', total);
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem('totalPrice', total.toFixed(2));
+
+    document.querySelector('.order-summary p').textContent = `Total: ${total.toFixed(2)} €`;
+}

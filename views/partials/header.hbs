@@ -43,11 +43,12 @@
                     </div>
                 </img>
             </div>
-            <div id="cart" class="cart-icon"> <!-- Cart icon -->
+            <div id="cart" class="cart-icon" style="{{#if isHidden}}display:none;{{/if}}"> <!-- Cart icon -->
                 <a href="/cart-modal">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
                 </a>
             </div>
+            <div id="cart-placeholder" class="cart-placeholder" style="{{#unless isHidden}}display:none;{{/unless}}"></div>
         </div>
     </div>
     <div class="header-divider"></div>

@@ -1,5 +1,9 @@
 <!-- views/partials/cart-modal.hbs -->
 
+{{#each renderCss}}
+<link rel="stylesheet" href="{{this}}">
+{{/each}}
+
 <!-- Cart Modal -->
 <div id="cartModal" class="cart-modal">
 
@@ -7,8 +11,8 @@
         <span class="close-cart">&times;</span>
         <h4>Cart</h4>
         <p>Delivery: {{deliveryTime}}</p>
-        <div id="cartItemsContainer"></div>
-        <div class="cart-empty">
+        <div id="cartItemsContainerModal"></div>
+        <div class="cart-empty-modal">
             <i class="fa-solid fa-shop fa-shake fa-2xl"></i>
             <h3>Empty Cart</h3>
             <p>Fill your basket with the products on the left</p>

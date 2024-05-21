@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');
     const loginBtn = document.getElementById('login');
+    const btn = document.getElementById('loginBtn');
+
+    if (btn) {
+        btn.onclick = function () {
+            modal.style.display = 'block';
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    }
 
     registerBtn.addEventListener('click', () => {
         container.classList.add("active");

@@ -15,10 +15,10 @@ async function openCartModal(storeName) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
         const cartContent = tempDiv.querySelector('.cart-content');
-        const currentCartItems = document.getElementById('cartItemsContainer').innerHTML;
+        const currentCartItems = document.getElementById('cartItemsContainerModal').innerHTML;
         cartModal.innerHTML = '';
         cartModal.appendChild(cartContent);
-        document.getElementById('cartItemsContainer').innerHTML = currentCartItems; // Retain existing cart items
+        document.getElementById('cartItemsContainerModal').innerHTML = currentCartItems; // Retain existing cart items
 
         cartModal.classList.add('open');
         cartOverlay.classList.add('open');

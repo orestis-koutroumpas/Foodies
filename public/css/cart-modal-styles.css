@@ -56,21 +56,21 @@
     display: block;
 }
 
-.cart-empty {
+.cart-empty-modal {
     text-align: center;
     margin-top: 80px;
 }
 
-.cart-empty i {
+.cart-empty-modal i {
     width: 100px;
     height: auto;
 }
 
-.cart-empty h3 {
+.cart-empty-modal h3 {
     margin-top: 30px;
 }
 
-.cart-item {
+.cart-item-modal {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,25 +80,22 @@
     z-index: 22;
 }
 
-.cart-item-details {
+.cart-item-details-modal {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.cart-item-price {
+.cart-item-price-modal {
     margin-top: 5px;
 }
 
-.cart-item-controls {
+.quantity-display-modal {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: relative;
-    z-index: 23;
+    align-items: center;
 }
 
-.cart-item-controls .edit-quantity-btn {
+.quantity-toggle-modal {
     background: none;
     border: none;
     cursor: pointer;
@@ -107,36 +104,28 @@
     align-items: center;
     transition: all 0.3s ease;
     position: relative;
-    z-index: 23;
 }
 
-.cart-item-controls .edit-quantity-btn:hover {
+.quantity-toggle-modal:hover {
     font-size: 1.2em;
     background-color: #f0f0f0;
     padding: 10px;
     border-radius: 8px;
 }
 
-.edit-quantity-btn.expanded {
-    width: 100%;
-    font-size: 1.2em;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 24;
-}
-
-.cart-item-quantity {
+.quantity-controls-modal {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
 
+.quantity-control-container-modal {
+    display: flex;
+    align-items: center;
+}
+
 .quantity-btn,
-.delete-btn {
+.trash-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -150,12 +139,13 @@
     margin: 0 5px;
 }
 
-.delete-btn {
+.trash-btn {
     color: red;
     font-size: 1.2em;
+    margin-left: 10px;
 }
 
-.cart-total-button {
+.cart-total-button-modal {
     width: calc(100% - 40px);
     padding: 20px 20px;
     background-color: #007BFF;
@@ -172,6 +162,6 @@
     transition: all 0.3s ease;
 }
 
-.cart-total-button:hover {
+.cart-total-button-modal:hover {
     transform: scale(1.05);
 }

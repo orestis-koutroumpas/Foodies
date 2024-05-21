@@ -4,12 +4,12 @@ import { getProductDetails, closeModal } from '../storePage/modalManagement.js';
 import { openCartModal, extractStoreNameFromURL } from './cart-modal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
     const addToCartButton = document.querySelector('.modal-footer .btn');
 
     if (addToCartButton) {
         addToCartButton.addEventListener('click', () => {
             const productDetails = getProductDetails();
+            console.log('Product details:', productDetails); // Log product details
             addToCartButton.classList.add('active');
             addProductToCart(productDetails);
         });
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function addProductToCart(productDetails) {
-    const cartItemsContainer = document.getElementById('cartItemsContainer');
-    const emptyCartMessage = document.querySelector('.cart-empty');
+    const cartItemsContainer = document.getElementById('cartItemsContainerModal');
+    const emptyCartMessage = document.querySelector('.cart-empty-modal');
 
     if (!cartItemsContainer) {
         console.error('Cart items container not found.');
@@ -39,21 +39,33 @@ function addProductToCart(productDetails) {
         emptyCartMessage.style.display = 'none';
     }
 
+    const quantity = parseInt(productDetails.quantity, 10);
+    if (isNaN(quantity)) {
+        console.error('Invalid quantity:', productDetails.quantity);
+        return;
+    }
+
+    const price = parseFloat(productDetails.finalPrice.replace('€', '').replace(',', '.')).toFixed(2);
+
     const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
+    cartItem.className = 'cart-item-modal';
 
     cartItem.innerHTML = `
-        <div class="cart-item-details">
-            <span>${productDetails.productName}</span>
-            <span class="cart-item-price"><strong>${parseFloat(productDetails.finalPrice.replace('€', '').replace(',', '.')).toFixed(2)} €</strong></span>
+        <div class="cart-item-image-modal" style="display: none;">
+            <img src="${productDetails.image}" alt="${productDetails.productName}">
         </div>
-        <div class="cart-item-controls">
-            <button class="edit-quantity-btn">${productDetails.quantity} <i class="fas fa-chevron-down"></i></button>
+        <div class="cart-item-details-modal">
+            <span>${productDetails.productName}</span>
+            <span class="cart-item-price-modal" data-price-per-unit="${(price / quantity).toFixed(2)}"><strong>${price} €</strong></span>
+        </div>
+        <div class="quantity-display-modal">
+            <button class="quantity-toggle-modal">
+                ${quantity} <i class="fas fa-chevron-down"></i>
+            </button>
         </div>
     `;
 
     cartItemsContainer.appendChild(cartItem);
-    console.log('Cart item added to DOM:', cartItem);
 
     // Attach event listeners to the new cart item
     attachEventListeners(cartItem);
@@ -61,107 +73,168 @@ function addProductToCart(productDetails) {
 }
 
 function attachEventListeners(cartItem) {
-    const editQuantityBtn = cartItem.querySelector('.edit-quantity-btn');
+    const quantityToggle = cartItem.querySelector('.quantity-toggle-modal');
 
-    if (editQuantityBtn) {
-        console.log('Attaching click event to quantity button:', editQuantityBtn);
-        editQuantityBtn.addEventListener('click', function(event) {
-            console.log('Quantity button clicked');
-            event.stopPropagation();
-            toggleQuantityControls(editQuantityBtn, cartItem);
+    if (quantityToggle) {
+        quantityToggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent immediate reversion
+            toggleQuantityControls(this);
         });
-    } else {
-        console.error('Edit quantity button not found.');
     }
-}
 
-function toggleQuantityControls(editQuantityBtn, cartItem) {
-    const quantity = editQuantityBtn.textContent.trim().split(' ')[0];
-    const isExpanded = editQuantityBtn.classList.toggle('expanded');
-
-    if (isExpanded) {
-        editQuantityBtn.innerHTML = `
-            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
-            <span class="quantity">${quantity}</span>
-            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
-            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-        `;
-        attachSubEventListeners(editQuantityBtn, cartItem);
-    } else {
-        editQuantityBtn.innerHTML = `${quantity} <i class="fas fa-chevron-down"></i>`;
-    }
-}
-
-function attachSubEventListeners(editQuantityBtn, cartItem) {
-    const minusBtn = editQuantityBtn.querySelector('.quantity-btn.minus');
-    const plusBtn = editQuantityBtn.querySelector('.quantity-btn.plus');
-    const deleteBtn = editQuantityBtn.querySelector('.delete-btn');
-    const quantitySpan = editQuantityBtn.querySelector('.quantity');
-
-    if (minusBtn) {
-        minusBtn.addEventListener('click', function(event) {
-            console.log('Minus button clicked');
-            event.stopPropagation();
-            let quantity = parseInt(quantitySpan.textContent);
-            if (quantity > 1) {
-                quantity--;
-                quantitySpan.textContent = quantity;
-                updateCartTotal();
+    document.addEventListener('click', function(event) {
+        const expandedControls = document.querySelectorAll('.quantity-controls-modal');
+        expandedControls.forEach(control => {
+            if (!control.contains(event.target)) {
+                revertQuantityDisplay(control);
             }
         });
-    } else {
-        console.error('Minus button not found.');
+    });
+}
+
+function toggleQuantityControls(toggle) {
+    const cartItem = toggle.closest('.cart-item-modal');
+    const quantityText = toggle.textContent.trim().split(' ')[0];
+    const quantity = parseInt(quantityText, 10);
+
+    if (isNaN(quantity)) {
+        console.error('Invalid quantity:', quantityText);
+        return;
     }
 
-    if (plusBtn) {
-        plusBtn.addEventListener('click', function(event) {
-            console.log('Plus button clicked');
-            event.stopPropagation();
-            let quantity = parseInt(quantitySpan.textContent);
-            quantity++;
-            quantitySpan.textContent = quantity;
-            updateCartTotal();
-        });
-    } else {
-        console.error('Plus button not found.');
-    }
+    const quantityControls = document.createElement('div');
+    quantityControls.className = 'quantity-controls-modal';
+    quantityControls.innerHTML = `
+        <div class="quantity-control-container-modal">
+            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+            <p class="item-quantity-modal">${quantity}</p>
+            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+        </div>
+        <button class="quantity-btn trash"><i class="fas fa-trash-alt"></i></button>
+    `;
 
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', function(event) {
-            console.log('Delete button clicked');
-            event.stopPropagation();
-            const cartItemsContainer = document.getElementById('cartItemsContainer');
-            cartItemsContainer.removeChild(cartItem);
-            updateCartTotal();
-        });
-    } else {
-        console.error('Delete button not found.');
+    const quantityDisplay = toggle.parentNode;
+    quantityDisplay.innerHTML = '';
+    quantityDisplay.appendChild(quantityControls);
+
+    attachQuantityButtonListeners(cartItem);
+}
+
+function attachQuantityButtonListeners(cartItem) {
+    const minusButton = cartItem.querySelector('.quantity-btn.minus');
+    const plusButton = cartItem.querySelector('.quantity-btn.plus');
+    const trashButton = cartItem.querySelector('.quantity-btn.trash');
+
+    minusButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        decreaseQuantity(this);
+    });
+
+    plusButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        increaseQuantity(this);
+    });
+
+    trashButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click from propagating to document
+        removeCartItem(this);
+    });
+}
+
+function decreaseQuantity(button) {
+    let quantityElement = button.nextElementSibling;
+    let currentQuantity = parseInt(quantityElement.textContent, 10);
+
+    if (currentQuantity > 1) {
+        let newQuantity = currentQuantity - 1;
+        quantityElement.textContent = newQuantity;
+        updateItemPrice(button, newQuantity);
+        updateCartTotal();
     }
+}
+
+function increaseQuantity(button) {
+    let quantityElement = button.previousElementSibling;
+    let currentQuantity = parseInt(quantityElement.textContent, 10);
+
+    let newQuantity = currentQuantity + 1;
+    quantityElement.textContent = newQuantity;
+    updateItemPrice(button, newQuantity);
+    updateCartTotal();
+}
+
+function updateItemPrice(button, newQuantity) {
+    let cartItem = button.closest('.cart-item-modal');
+    let priceElement = cartItem.querySelector('.cart-item-price-modal');
+    let pricePerUnit = parseFloat(priceElement.dataset.pricePerUnit);
+    let newPrice = pricePerUnit * newQuantity;
+    priceElement.innerHTML = `<strong>${newPrice.toFixed(2)} €</strong>`;
+}
+
+function revertQuantityDisplay(display) {
+    const quantityElement = display.querySelector('.item-quantity-modal');
+    const quantity = quantityElement ? quantityElement.textContent : "0";
+
+    const quantityDisplay = display.parentNode;
+    quantityDisplay.innerHTML = `
+        <div class="quantity-display-modal">
+            <button class="quantity-toggle-modal">
+                ${quantity} <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    `;
+    attachEventListeners(quantityDisplay);
+    updateCartTotal();
+}
+
+function removeCartItem(button) {
+    let cartItem = button.closest('.cart-item-modal');
+    cartItem.remove();
+    updateCartTotal();
 }
 
 function updateCartTotal() {
-    const cartItemsContainer = document.getElementById('cartItemsContainer');
-    const emptyCartMessage = document.querySelector('.cart-empty');
-    let totalButton = document.getElementById('cartTotal');
+    const cartItemsContainer = document.getElementById('cartItemsContainerModal');
+    const emptyCartMessage = document.querySelector('.cart-empty-modal');
+    let totalButton = document.getElementById('cartTotalModal');
 
     if (!cartItemsContainer) return;
 
     let total = 0;
-    let itemCount = 0;
-    cartItemsContainer.querySelectorAll('.cart-item').forEach(cartItem => {
-        const quantitySpan = cartItem.querySelector('.quantity');
-        const quantity = quantitySpan ? parseInt(quantitySpan.textContent) : parseInt(cartItem.querySelector('.edit-quantity-btn').textContent.split(' ')[0]);
-        const priceSpan = cartItem.querySelector('.cart-item-details .cart-item-price strong');
+    let cartItems = [];
+    cartItemsContainer.querySelectorAll('.cart-item-modal').forEach(cartItem => {
+        const quantitySpan = cartItem.querySelector('.item-quantity-modal');
+        const quantity = quantitySpan ? parseInt(quantitySpan.textContent.trim(), 10) : parseInt(cartItem.querySelector('.quantity-toggle-modal').textContent.trim().split(' ')[0], 10);
+
+        if (isNaN(quantity)) {
+            console.error('Invalid quantity detected:', quantitySpan ? quantitySpan.textContent : cartItem.querySelector('.quantity-toggle-modal').textContent);
+            return;
+        }
+
+        const priceSpan = cartItem.querySelector('.cart-item-details-modal .cart-item-price-modal strong');
         const price = priceSpan ? parseFloat(priceSpan.textContent.replace('€', '').replace(',', '.')) : 0;
+        const name = cartItem.querySelector('.cart-item-details-modal span').textContent;
+        const image = cartItem.querySelector('.cart-item-image-modal img')?.src || '';
+
+        console.log('Cart Item:', { name, price, quantity, image });
+
         total += price;
-        itemCount += 1;
+        cartItems.push({
+            name: name,
+            price: price,
+            quantity: quantity,
+            image: image
+        });
     });
 
-    if (itemCount > 0) {
+    console.log('Total:', total);
+    console.log('Cart Items:', cartItems);
+
+    if (cartItems.length > 0) {
         if (!totalButton) {
             totalButton = document.createElement('button');
-            totalButton.id = 'cartTotal';
-            totalButton.className = 'cart-total-button';
+            totalButton.id = 'cartTotalModal';
+            totalButton.className = 'cart-total-button-modal';
             document.getElementById('cartModal').appendChild(totalButton);
         }
         totalButton.textContent = `Total: ${total.toFixed(2)} €`;
@@ -169,6 +242,10 @@ function updateCartTotal() {
 
         totalButton.addEventListener('click', function() {
             console.log('Total button clicked');
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            localStorage.setItem('totalPrice', total.toFixed(2));
+            const storeName = extractStoreNameFromURL();
+            window.location.href = `/store/${storeName}/checkout`;
         });
     } else {
         if (totalButton) {
@@ -177,9 +254,8 @@ function updateCartTotal() {
     }
 
     if (emptyCartMessage) {
-        emptyCartMessage.style.display = itemCount > 0 ? 'none' : 'block';
+        emptyCartMessage.style.display = cartItems.length > 0 ? 'none' : 'block';
     }
 }
 
 window.updateCartTotal = updateCartTotal; // Make updateCartTotal accessible globally
-

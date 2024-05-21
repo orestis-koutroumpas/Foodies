@@ -39,10 +39,9 @@ export function openModal(product) {
     const modalName = document.getElementById('product-name');
     const modalDescription = document.getElementById('product-description');
     const modalPrice = document.getElementById('product-price');
-    // const modalIngredients = document.getElementById('ingredients-list');
-    const modalComment = document.getElementById('comment');
     const quantitySpan = document.getElementById('quantity');
     const totalPrice = document.getElementById('total-price');
+    const modalComment = document.getElementById('comment');
 
     if (modal) {
         modal.classList.add('open');
@@ -68,16 +67,46 @@ export function openModal(product) {
     modalName.textContent = product.name;
     modalDescription.textContent = product.description;
     modalPrice.textContent = `${product.price.toFixed(2)} €`;
-    quantitySpan.value = 1;
-    totalPrice.textContent = `${product.price.toFixed(2)} €`;
 
-    // updateIngredientsList(product, modalIngredients);
-    modalComment.value = '';
+    // Check localStorage for saved quantity and total price
+    const savedState = JSON.parse(localStorage.getItem(`product-${product.id}`));
+    if (savedState) {
+        quantitySpan.textContent = savedState.quantity;
+        totalPrice.textContent = savedState.totalPrice;
+    } else {
+        quantitySpan.textContent = '1';
+        totalPrice.textContent = `${product.price.toFixed(2)} €`;
+    }
 
+    // Update total price when quantity changes
     quantitySpan.addEventListener('input', function () {
-        const quantity = parseInt(this.value);
+        const quantity = parseInt(this.textContent);
         const price = product.price * quantity;
         totalPrice.textContent = `${price.toFixed(2)} €`;
+    });
+
+    // Save state to localStorage when modal is closed
+    const closeModalButton = document.querySelector('.close-icon');
+    closeModalButton.addEventListener('click', () => {
+        const quantity = parseInt(quantitySpan.textContent);
+        const price = product.price * quantity;
+        localStorage.setItem(`product-${product.id}`, JSON.stringify({
+            quantity: quantity,
+            totalPrice: `${price.toFixed(2)} €`
+        }));
+        closeModal();
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target.id === 'overlay') {
+            const quantity = parseInt(quantitySpan.textContent);
+            const price = product.price * quantity;
+            localStorage.setItem(`product-${product.id}`, JSON.stringify({
+                quantity: quantity,
+                totalPrice: `${price.toFixed(2)} €`
+            }));
+            closeModal();
+        }
     });
 }
 
@@ -104,20 +133,20 @@ export function closeModal() {
     document.body.style.overflow = '';
 }
 
-
 // Function to get product details from the modal
 export function getProductDetails() {
     const modalHeaderH1 = document.querySelector('#product-name-header');
     const totalPrice = document.getElementById('total-price');
     const modalComment = document.getElementById('comment');
     const quantitySpan = document.getElementById('quantity');
-
+    const modalImage = document.getElementById('product-image');
 
     return {
         productName: modalHeaderH1.textContent,
         quantity: quantitySpan.textContent,
         finalPrice: totalPrice.textContent,
-        comment: modalComment.value
+        comment: modalComment.value,
+        image: modalImage.src
     };
 }
 

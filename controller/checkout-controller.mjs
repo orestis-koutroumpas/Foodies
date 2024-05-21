@@ -1,49 +1,43 @@
 // controller/checkout-controller.mjs
 
-export async function checkoutController(req, res) {
+import { getStoresByName } from '../model/model.mjs';
+
+export async function checkoutController(req, res, options = {}) {
     try {
-        // Sample data for cart items
-        const cartItems = [
-            {
-                name: 'Bbq Burger',
-                image: '/images/store-items/menu-items/burgers/bbq_burger.avif',
-                price: 10,
-                quantity: 1
-            },
-            {
-                name: 'Chicken Burger',
-                image: '/images/store-items/menu-items/burgers/chicken_burger.avif',
-                price: 15,
-                quantity: 1
-            },
-            {
-                name: 'Amita Motion',
-                image: '/images/store-items/menu-items/drinks/amita_motion.avif',
-                price: 5.80,
-                quantity: 1
-            },
-            {
-                name: 'Coca Cola Light',
-                image: '/images/store-items/menu-items/drinks/coca_cola_light.avif',
-                price: 10.50,
-                quantity: 1
-            }
-        ];
+        const { storeName } = req.params;
+        const formattedStoreName = storeName.replace(/-/g, ' ');
 
-        const totalPrice = 41.3;
+        const storeData = await getStoresByName(formattedStoreName);
 
-        // Render the checkout page with sample data
+        if (!storeData || storeData.length === 0) {
+            res.status(404).send('Store not found');
+            return;
+        }
+
+        const store = storeData[0];
+
+        const deliveryTimeParts = store.estimated_delivery_time.split(':');
+        const estimatedMinutes = parseInt(deliveryTimeParts[1], 10);
+
+        if (isNaN(estimatedMinutes)) {
+            throw new Error('Invalid estimated delivery time format');
+        }
+
+        const minDeliveryTime = estimatedMinutes;
+        const maxDeliveryTime = estimatedMinutes + 15;
+
         res.render('checkout', { 
             pageTitle: "Checkout",
-            storeName: "Burger Place",
-            minDeliveryTime: 15,
-            maxDeliveryTime: 25,
-            address: "Karolou 14",
+            storeName: formattedStoreName,
+            minDeliveryTime: minDeliveryTime,
+            maxDeliveryTime: maxDeliveryTime,
+            address: store.address,
             renderCss: [
                 '/css/checkout-styles.css'
             ],
-            cartItems: cartItems,
-            totalPrice: totalPrice
+            cartItems: [], // Will be populated by client-side JavaScript
+            totalPrice: 0, // Will be populated by client-side JavaScript
+            isHidden: options.isHidden || false
         });
     } catch (error) {
         console.error('Error fetching cart data:', error);
