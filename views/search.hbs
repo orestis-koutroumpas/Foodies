@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="{{this}}">
 {{/each}}
 
-<!-- Stores Section-->
 <section id="stores">
     <h1>Search results for {{search}}</h1>
+    <!-- Message if unmatched results -->
     {{#if message}}
     <div class="search-message">
-        <img src="images/sad_face.gif" alt="Sad face">
+        <img src="images/stores/sad_face.gif" alt="Sad face">
         <p>{{message}}</p>
     </div>
     {{else}}
@@ -19,8 +19,8 @@
     {{#each stores}}
     <div class="store">
         <div class="store-container">
+            <!-- Store Image -->
             <div class="store-image">
-                <!-- Store Image -->
                 <img src="{{this.image}}" alt="{{this.name}}">
             </div>
             <div class="store-description">
