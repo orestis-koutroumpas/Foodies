@@ -20,8 +20,9 @@
                                 <div class="service-image">
                                     <img src="{{image}}" alt="{{alt}}">
                                 </div>
-                                <div class="service-name">
-                                    <p>{{name}}</p>
+                                <div class="service-details">
+                                    <p class="service-name">{{name}}</p>
+                                    <p class="service-chars">Partner stores: {{storesNumber}}</p>
                                 </div>
                             </div>
                         {{/each}}
@@ -40,8 +41,9 @@
                                 <div class="service-image">
                                     <img src="{{image}}" alt="{{alt}}">
                                 </div>
-                                <div class="service-name">
-                                    <p>{{name}}</p>
+                                <div class="service-details">
+                                    <p class="service-name">{{name}}</p>
+                                    <img src="{{rating}}" alt="Rating" class="service-chars">
                                 </div>
                             </div>
                         {{/each}}

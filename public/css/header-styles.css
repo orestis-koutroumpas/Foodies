@@ -83,6 +83,7 @@ header.scrolled {
     margin-left: 30px;
 }
 
+/* User menu */
 .sub-menu-wrap {
     position: absolute;
     top: 100%; 
@@ -123,7 +124,7 @@ header.scrolled {
 
 .sub-menu hr {
     border: 0;
-    height: 1px;
+    height: 2px;
     width: 100%;
     background: #ccc;
     margin: 15px 0 10px;
@@ -138,7 +139,7 @@ header.scrolled {
 }
 
 .sub-menu-link p {
-    width: 100%;
+    width: 90%;
 }
 
 .sub-menu-link img {
@@ -150,7 +151,7 @@ header.scrolled {
 }
 
 .sub-menu-link span {
-    font-size: 16px;
+    font-size: 20px;
     transition: transform 0.5s;
 }
 

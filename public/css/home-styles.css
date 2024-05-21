@@ -52,17 +52,18 @@
     padding-bottom: 1.5em;
 }
 
-/* Styles for individual service items */
 .service-item {
     cursor: pointer; 
     flex: 0 0 300px; 
-    height: 225px; 
+    height: 250px;
     margin: 0.75em; 
     text-align: center;
+    display: flex;
     flex-direction: column; 
-    justify-content: center; 
+    justify-content: flex-start; 
+    align-items: center;
     border-radius: 0.625em; 
-    border: 0.125em #fefefe;
+    border: 0.125em solid #fefefe; 
     overflow: hidden; 
     position: relative;
     transition: transform 0.3s ease; 
@@ -73,24 +74,43 @@
     transform: scale(1.05); 
 }
 
-/* Styles for service item images */
+.service-image {
+    width: 100%;
+}
+
 .service-image img {
     width: 100%; 
     height: 200px; 
     object-fit: cover; 
 }
 
-/* Styles for service item paragraphs */
-.service-name p {
+.service-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; 
+    flex: 1; 
+}
+
+.service-name {
     font-weight: bold; 
     font-size: 1em; 
     font-style: normal; 
-    transition: font-size 0.3s ease; 
-    position: absolute;
-    top: 88%; 
-    left: 0%; 
-    width: 100%; 
-    padding: 0 0; 
+    margin: 0; 
+}
+
+.service-chars {
+    font-weight: normal; 
+    font-size: 0.8em; 
+    font-style: italic; 
+    margin: 0; 
+}
+
+.service-details img.service-chars {
+    width: auto;
+    height: 1em; 
+    margin-left: 5px; 
 }
 
 /* Media query for smaller screens */
