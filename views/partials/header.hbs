@@ -22,6 +22,7 @@
         <div class="user-cart-group">
             <div id="user-profile" class="user-icon"> <!-- User profile icon -->
                 <img src="/images/user/profile.png" class="user-pic" onclick="toggleMenu()">
+                    <!-- User menu -->
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
@@ -43,7 +44,8 @@
                     </div>
                 </img>
             </div>
-            <div id="cart" class="cart-icon" style="{{#if isHidden}}display:none;{{/if}}"> <!-- Cart icon -->
+            <!-- Cart icon -->
+            <div id="cart" class="cart-icon" style="{{#if isHidden}}display:none;{{/if}}">
                 <a href="/cart-modal">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
                 </a>
@@ -54,12 +56,4 @@
     <div class="header-divider"></div>
 </header>
 
-<script>
-        let subMenu = document.getElementById("subMenu");
-        let userPic = document.getElementById("userPic");
-
-        function toggleMenu() {
-            subMenu.classList.toggle("open-menu");
-        }
-
-</script>
+<script src="/javascript/user-menu.js"></script>

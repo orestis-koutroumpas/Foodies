@@ -1,4 +1,4 @@
-//user-profile.controller.mjs
+// controller/user-profile.controller.mjs
 
 export async function userProfileController(req, res) {
     try {
@@ -26,4 +26,8 @@ export async function userProfileController(req, res) {
         console.error('Error fetching user profile data:', error);
         res.status(500).send('Internal Server Error');
     }
+}
+
+export async function printUserProfile(user) {
+    console.log(user);
 }

@@ -63,3 +63,16 @@ export const getMenuItemsWithPricesByStoreId = (storeId) => {
         throw error;
     }
 };
+
+export const updateUserInfo = (userEmail, newFname, newLname, newAddress, newPhoneNumber) => {
+    try {
+        const stmt = sql.prepare(`
+        UPDATE user
+        SET fname = ?, lname = ?, address = ?, phone_number = ?
+        WHERE email = ?`);
+        stmt.run(newFname, newLname, newAddress, newPhoneNumber, userEmail);
+        console.log("Stmt succesfull")
+    } catch (error) {
+        throw error;
+    }
+}

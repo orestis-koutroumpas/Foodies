@@ -7,8 +7,10 @@ export async function searchController(req, res) {
     try {
         // Extracting the search query from the request
         let search = req.query.q.trim();
-        search = search.charAt(0).toUpperCase() + search.slice(1);
-
+        search = search.charAt(0).toUpperCase() + search.slice(1); // All lowercase
+        if (search.charAt(search.length - 1) === 's') {
+            search = search.slice(0, -1); // Remove last char if 's'
+        }
         // First search by name
         const storeName = search;
         const searchResultsByName = await getStoresByName(storeName).map(modifySearchResult);
