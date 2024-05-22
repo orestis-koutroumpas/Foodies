@@ -74,13 +74,13 @@ export const getUser = async (userEmail) => {
 }
 
 // Updates user info
-export const updateUser = async (userEmail, newPassword, newFname, newLname, newAddress, newPhoneNumber) => {
+export const updateUser = async (userEmail, newFname, newLname, newAddress, newPhoneNumber) => {
     try {
         const stmt = sql.prepare(`
             UPDATE user
-            SET password = ?, fname = ?, lname = ?, address = ?, phone_number = ?
+            SET  fname = ?, lname = ?, address = ?, phone_number = ?
             WHERE email = ?`);
-        stmt.run(newPassword, newFname, newLname, newAddress, newPhoneNumber, userEmail);
+        stmt.run(newFname, newLname, newAddress, newPhoneNumber, userEmail);
     } catch (error) {
         throw error;
     }

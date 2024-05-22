@@ -31,10 +31,9 @@ export async function userProfileController(req, res) {
 }
 
 export async function updateUserInfo(req, res) {
-    const { email, oldPassword, newPassword, fName, lName, address, phoneNumber } = req.body;
-    // To check the passwords
+    const { email, fName, lName, address, phoneNumber } = req.body;
     try {
-        await updateUser(email, newPassword, fName, lName, address, phoneNumber); 
+        await updateUser(email, fName, lName, address, phoneNumber); 
         res.status(200).send('User profile updated successfully!');
     } catch (error) {
         console.error(error);

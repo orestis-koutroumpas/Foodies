@@ -3,26 +3,13 @@
 document.getElementById("saveChangesButton").addEventListener("click", function() {
     // Get the values from the input fields
     const email = document.getElementById("email").value;
-
-    const oldPassword = document.getElementById("old-password").value; // To fix !!!
-    const newPassword1 = document.getElementById("new-password-1").value; // To fix !!!
-    const newPassword2 = document.getElementById("new-password-2").value; // To fix !!!
-
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
     const address = document.getElementById("address").value;
     const phoneNumber = document.getElementById("phoneNumber").value;
 
-    if (newPassword1 !== newPassword2) {
-        alert("New passwords do not match. Please try again.");
-        return; // Exit the function if passwords do not match
-    }
-    const newPassword = newPassword1 || oldPassword;
-    
     const user = {
         email: email,
-        oldPassword: oldPassword,
-        newPassword: newPassword,
         fName: firstName,
         lName: lastName,
         address: address,
