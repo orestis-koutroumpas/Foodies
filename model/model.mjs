@@ -64,14 +64,23 @@ export const getMenuItemsWithPricesByStoreId = (storeId) => {
     }
 };
 
-export const updateUserInfo = (userEmail, newFname, newLname, newAddress, newPhoneNumber) => {
+export const getUser = async (userEmail) => {
+    try {
+        const stmt = sql.prepare(`SELECT * FROM user where email = ?`);
+        return stmt.get(userEmail);
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Updates user info
+export const updateUser = async (userEmail, newPassword, newFname, newLname, newAddress, newPhoneNumber) => {
     try {
         const stmt = sql.prepare(`
-        UPDATE user
-        SET fname = ?, lname = ?, address = ?, phone_number = ?
-        WHERE email = ?`);
-        stmt.run(newFname, newLname, newAddress, newPhoneNumber, userEmail);
-        console.log("Stmt succesfull")
+            UPDATE user
+            SET password = ?, fname = ?, lname = ?, address = ?, phone_number = ?
+            WHERE email = ?`);
+        stmt.run(newPassword, newFname, newLname, newAddress, newPhoneNumber, userEmail);
     } catch (error) {
         throw error;
     }

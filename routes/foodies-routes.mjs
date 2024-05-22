@@ -52,6 +52,11 @@ router.get('/user-profile', async (req, res) => {
     userProfileController(req, res);
 });
 
+router.post('/user-profile', async (req, res) => {
+    const { updateUserInfo } = await import(`../controller/user-profile-controller.mjs`);
+    updateUserInfo(req, res);
+});
+
 router.get('/store/:storeName/cart-modal', cartController);
 
 router.get('/store/:storeName/checkout', async (req, res) => {
