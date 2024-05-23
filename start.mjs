@@ -9,10 +9,10 @@ if (process.env.NODE_ENV !== 'production') {
    dotenv.config();
 }
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const server = foodies.listen(port, () => {
-   console.log(`Server running at http://0.0.0.0:${port}`);
+   console.log(`Server running at http://127.0.0.1:${port}`);
 });
 
 // Graceful shutdown

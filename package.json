@@ -26,8 +26,5 @@
   },
   "engines": {
     "node": ">=14.0.0"
-  },
-  "devDependencies": {
-    "@flydotio/dockerfile": "^0.5.7"
   }
 }

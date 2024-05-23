@@ -8,7 +8,7 @@ const foodiesSession = session({
     secret: secretKey, 
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Note: set to true in production with HTTPS
+    cookie: { secure: true } // Note: set to true in production with HTTPS
 });
 
 export default foodiesSession;
