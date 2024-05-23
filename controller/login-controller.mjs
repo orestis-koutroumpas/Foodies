@@ -1,4 +1,4 @@
-// controller/login-controller.mjs
+/* // controller/login-controller.mjs
 
 import bcrypt from 'bcrypt';
 import { getUserByEmail, registerUser } from '../model/model.mjs';
@@ -18,7 +18,7 @@ export let doRegister = async function (req, res) {
     }
 }
 
-export let doLogin = async function (req, res) {
+export let doLogin = async function (req, res) {/*  */
     try {
         const { email, password } = req.body;
         const user = await getUserByEmail(email);
@@ -118,4 +118,4 @@ export async function renderLoginPage(req, res) {
 //         console.error('Error during login:', error);
 //         res.status(500).send('Internal Server Error');
 //     }
-// };
+// }; */

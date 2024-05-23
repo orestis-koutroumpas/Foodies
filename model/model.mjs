@@ -2,7 +2,7 @@
 
 // Importing the Better SQLite library
 import db from 'better-sqlite3';
-import bcrypt from 'bcrypt';
+//import bcrypt from 'bcrypt';
 
 // Creating a new SQLite database connection
 const sql = new db('model/db/foodies.sqlite', { fileMustExist: true });
@@ -87,7 +87,7 @@ export let getUserByEmail = async (email) => {
     }
 };
 
-// Function to register a user with a password
+/* // Function to register a user with a password
 export let registerUser = async (email, password, fname, lname, address, phone_number) => {
     const user = await getUserByEmail(email);
     if (user != undefined) {
@@ -102,7 +102,7 @@ export let registerUser = async (email, password, fname, lname, address, phone_n
             throw error;
         }
     }
-};
+}; */
 
 
 // Updates user info

@@ -1,5 +1,5 @@
 {
-  "name": "foodies-app",
+  "name": "foodies",
   "version": "1.0.0",
   "description": "A food delivery app",
   "main": "start.mjs",
@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "better-sqlite3": "^10.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

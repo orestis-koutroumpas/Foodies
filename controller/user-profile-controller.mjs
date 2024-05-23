@@ -1,4 +1,4 @@
-// controller/user-profile.controller.mjs
+/* // controller/user-profile.controller.mjs
 
 import bcrypt from 'bcrypt';
 import { getUserByEmail, updateUser, updateUserPassword } from '../model/model.mjs';
@@ -64,3 +64,4 @@ export async function changeUserPassword(req, res) {
         res.status(500).send('Internal Server Error');
     }
 }
+ */
