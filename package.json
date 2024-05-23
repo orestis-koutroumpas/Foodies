@@ -4,7 +4,6 @@
   "description": "A food delivery app",
   "main": "start.mjs",
   "scripts": {
-    "postinstall": "node ./model/db/populateDB.js",
     "clean": "rm -rf node_modules",
     "reinstall": "npm run clean && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
