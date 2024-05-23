@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
-
+console.log("dsfggrd")
 // Use JSON middleware
 app.use(express.json());
 
