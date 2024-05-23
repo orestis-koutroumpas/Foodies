@@ -315,53 +315,53 @@ const productCategories = [
 function getRandomPrice(category) {
     switch (category) {
         case 'Coffees':
-            return (Math.random() * 2 + 1).toFixed(2); // Random price between 2 and 3
+            return Math.floor((Math.random() * 2 + 1).toFixed(2)); // Random price between 2 and 3
         case 'Teas':
-            return (Math.random() * 1.5 + 1.5).toFixed(2); // Random price between 1.5 and 3
+            return Math.floor((Math.random() * 1.5 + 1.5).toFixed(2)); // Random price between 1.5 and 3
         case 'Sandwiches':
-            return (Math.random() * 3 + 3).toFixed(2); // Random price between 3 and 6
+            return Math.floor((Math.random() * 3 + 3).toFixed(2)); // Random price between 3 and 6
         case 'Sweet Loukoumades':
         case 'Savory Loukoumades':
-            return (Math.random() * 1.5 + 2).toFixed(2); // Random price between 2 and 3.5
+            return Math.floor((Math.random() * 1.5 + 2).toFixed(2)); // Random price between 2 and 3.5
         case 'Sweet Pancakes':
         case 'Savory Pancakes':
-            return (Math.random() * 2 + 3).toFixed(2); // Random price between 3 and 5
+            return Math.floor((Math.random() * 2 + 3).toFixed(2)) + 0.4; // Random price between 3 and 5
         case 'Sweet Waffles':
         case 'Savory Waffles':
-            return (Math.random() * 2 + 3.5).toFixed(2); // Random price between 3.5 and 5.5
+            return Math.floor((Math.random() * 2 + 3.5).toFixed(2)); // Random price between 3.5 and 5.5
         case 'Desserts':
-            return (Math.random() * 3 + 2.5).toFixed(2); // Random price between 2.5 and 5.5
+            return Math.floor((Math.random() * 3 + 2.5).toFixed(2)); // Random price between 2.5 and 5.5
         case 'Ice Cream':
-            return (Math.random() * 1.5 + 2).toFixed(2); // Random price between 2 and 3.5
+            return Math.floor((Math.random() * 1.5 + 2).toFixed(2)) + 0.3; // Random price between 2 and 3.5
         case 'Sodas':
         case 'Drinks':
-            return (Math.random() * 1.5 + 1).toFixed(2); // Random price between 1 and 2.5
+            return Math.floor((Math.random() * 1.5 + 1).toFixed(2)); // Random price between 1 and 2.5
         case 'Starters':
-            return (Math.random() * 3 + 2.5).toFixed(2); // Random price between 2.5 and 5.5
+            return Math.floor((Math.random() * 3 + 2.5).toFixed(2)); // Random price between 2.5 and 5.5
         case 'Fries':
-            return (Math.random() * 2 + 1.5).toFixed(2); // Random price between 1.5 and 3.5
+            return Math.floor((Math.random() * 2 + 1.5).toFixed(2)); // Random price between 1.5 and 3.5
         case 'Salads':
-            return (Math.random() * 3 + 3).toFixed(2); // Random price between 3 and 6
+            return Math.floor((Math.random() * 3 + 3).toFixed(2)); // Random price between 3 and 6
         case 'Burger':
         case 'Vegan Burger':
-            return (Math.random() * 3 + 5).toFixed(2); // Random price between 5 and 8
+            return Math.floor((Math.random() * 3 + 5).toFixed(2)) + 0.8; // Random price between 5 and 8
         case 'Beverages':
-            return (Math.random() * 2 + 3).toFixed(2); // Random price between 3 and 5
+            return Math.floor((Math.random() * 2 + 3).toFixed(2)); // Random price between 3 and 5
         case 'Pasta':
         case 'Vegan Pasta':
-            return (Math.random() * 3 + 4).toFixed(2); // Random price between 4 and 7
+            return Math.floor((Math.random() * 3 + 4).toFixed(2)) + 0.3; // Random price between 4 and 7
         case 'Pizza':
-            return (Math.random() * 5 + 6).toFixed(2); // Random price between 6 and 11
+            return Math.floor((Math.random() * 5 + 6).toFixed(2)); // Random price between 6 and 11
         case 'Vegan Pizza':
-            return (Math.random() * 5 + 8).toFixed(2); // Random price between 8 and 13
+            return Math.floor((Math.random() * 5 + 8).toFixed(2)); // Random price between 8 and 13
         case 'Sweet Crepes':
         case 'Savory Crepes':
         case 'Vegan Crepes':
-            return (Math.random() * 2 + 3).toFixed(2); // Random price between 3 and 5
+            return Math.floor((Math.random() * 2 + 3).toFixed(2)); // Random price between 3 and 5
         case 'Vegan Sandwiches':
-            return (Math.random() * 2 + 4).toFixed(2); // Random price between 4 and 6
+            return Math.floor((Math.random() * 2 + 4).toFixed(2)) + 0.5; // Random price between 4 and 6
         default:
-            return (Math.random() * 5 + 1).toFixed(2); // Random price between 1 and 6
+            return Math.floor((Math.random() * 5 + 1).toFixed(2)); // Random price between 1 and 6
     }
 }
 
