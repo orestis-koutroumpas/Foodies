@@ -5,6 +5,7 @@ import { engine } from 'express-handlebars';
 import routes from './routes/foodies-routes.mjs';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import foodiesSession from './app-setup/app-setup-session.mjs';
 
 // Load environment variables only if not in production
 if (process.env.NODE_ENV !== 'production') {
@@ -12,6 +13,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
+
+// Use JSON middleware
+app.use(express.json());
+
+//Session activation
+app.use(foodiesSession)
 
 app.get('*', (req, res, next) => {
     res.locals.currentPath = req.path;
@@ -26,6 +33,7 @@ app.set('view engine', '.hbs');
 app.use(express.static('public'));
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: false }));
+
 
 // Routes
 app.use('/', routes);

@@ -26,12 +26,16 @@ export async function checkoutController(req, res, options = {}) {
         const minDeliveryTime = estimatedMinutes;
         const maxDeliveryTime = estimatedMinutes + 15;
 
+        // Extract user address from session
+        const user = req.session.user;
+        const userAddress = user ? user.address : 'No address found';
+
         res.render('checkout', { 
             pageTitle: "Checkout",
             storeName: formattedStoreName,
             minDeliveryTime: minDeliveryTime,
             maxDeliveryTime: maxDeliveryTime,
-            address: store.address,
+            address: userAddress,
             renderCss: [
                 '/css/checkout-styles.css'
             ],

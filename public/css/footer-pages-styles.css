@@ -13,14 +13,17 @@
     font-size: 2.5rem; 
     margin-bottom: 20px; 
     text-align: center; 
+    color: var(--Heading-color);
+    font-weight: bold;
 }
 
 /* Styles for paragraphs within .page */
 .page p {
     font-size: 1.2rem; 
     line-height: 1.6; 
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: left;
+    color: #34495e;
 }
 
 /* Styles for secondary headings */
@@ -29,6 +32,8 @@
     margin-top: 40px; 
     margin-bottom: 20px; 
     text-align: center;
+    color: var(--Heading-color);
+    font-weight: bold;
 }
 
 /* Styles for team members section */
@@ -57,10 +62,12 @@
     font-size: 1.5rem; 
     margin-bottom: 5px; 
 }
- .team-member a {
+
+/* Styles for team member links */
+.team-member a {
     text-decoration: none;
     color: black;
- }
+}
 
 /* Styles for team member roles */
 .team-member p {
@@ -79,4 +86,26 @@
 .page ul li {
     font-size: 1.1rem; 
     margin-bottom: 10px;
+}
+
+ul.styled-list {
+    list-style-type: none;
+    padding-left: 20px;
+    font-size: 1.1em;
+    line-height: 1.6em;
+}
+
+ul.styled-list li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+}
+
+ul.styled-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--Heading-color);
+    font-size: 1.5em;
+    line-height: 0.8em;
 }

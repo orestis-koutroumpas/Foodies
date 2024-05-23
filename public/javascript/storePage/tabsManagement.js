@@ -9,10 +9,10 @@ export async function initializeTabsManagement(storeName, tabsBoxSelector) {
             throw new Error('Network response was not ok');
         }
         const storeDetails = await storeDetailsResponse.json();
-        const storeCategory = storeDetails.category;
+        const storeId = storeDetails.id; // Extract the store ID from the store details
 
         // Fetch tabs data based on store category
-        await fetchTabsData(storeCategory);
+        await fetchTabsData(storeId);
 
         const tabsData = getTabsData();
 

@@ -37,9 +37,9 @@ const categoryPriority = [
 ];
 
 
-export async function fetchTabsData(category) {
+export async function fetchTabsData(storeId) {
     try {
-        const response = await fetch(`/api/tabs/${category}`);
+        const response = await fetch(`/api/tabs/${storeId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

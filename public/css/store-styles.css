@@ -814,7 +814,7 @@ input[type="checkbox"]:checked:before {
 .btn {
     width: 22em;
     height: 5em;
-    background-color: #007BFF;
+    background-color: var(--button-color);
     color: var(--white-color);
     padding: 10px 10px;
     margin-left: 15px;
@@ -948,7 +948,7 @@ input[type="checkbox"]:checked:before {
 
 .quantity-controls i {
     cursor: pointer;
-    color: #007BFF;
+    color: var(--button-color);
 }
 
 .close-icon {

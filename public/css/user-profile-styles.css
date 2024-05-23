@@ -1,7 +1,7 @@
 /* public/css/user-profile-styles.css */
 
 .button-primary {
-    background-color: #4CAF50;
+    background-color: var(--button-color);
     cursor: pointer;
     color: white;
     border-radius: 0.5em;

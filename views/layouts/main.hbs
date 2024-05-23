@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/header-styles.css">
     <link rel="stylesheet" href="/css/footer-styles.css">
     <link rel="stylesheet" href="/css/cart-modal-styles.css">
+    <link rel="stylesheet" href="/css/login-styles.css">
     <!-- Icon -->
     <link rel="icon" href="/images/logo/foodies-white.png">
     <!-- Additional styling -->
@@ -33,14 +34,16 @@
     </svg>  
 </head>
 <body>
-    {{> header}}
-    {{!-- {{> login}} --}}
-    {{>cart-modal}}
-    {{{body}}}
+    <div class="wrapper">
+        {{> header}}
+        {{>cart-modal}}
+        {{{body}}}
+    </div>
     {{> footer}}
 </body>
 <!-- JS -->
 <script src="/javascript/scroll.js"></script>
 <script type="module" src="/javascript/cartModal/cart-modal.js"></script>
 <script type="module" src="/javascript/cartModal/cart.js"></script>
+<script src="/javascript/login.js"></script>
 </html>

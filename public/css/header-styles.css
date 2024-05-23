@@ -44,6 +44,67 @@ header.scrolled {
     transform: scale(1.1);
 }
 
+/* Modal styles */
+.location-modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.location-content {
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 60%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.location-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.location-content .close:hover,
+.location-content .close:focus {
+    color: var(--black-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#saveLocationBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--button-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#saveLocationBtn:hover {
+    background-color: var(--button-hover-color);
+}
+
 /* Search form style */
 .search-form {
     order: 2;
@@ -61,34 +122,54 @@ header.scrolled {
     border-radius: 2em;
 }
 
+/* CSS for the placeholder */
+.cart-placeholder {
+    display: inline-block;
+    visibility: hidden;
+    width: 40px; /* Adjust the width to match the cart icon */
+    height: 40px; /* Adjust the height to match the cart icon */
+    margin-right: 150px; /* Match the cart icon's margin-right */
+    
+}
+
 /* User and cart icons container */
 .user-cart-group {
     order: 3;
     display: flex;
     align-items: center;
     margin-right: 1em;
+    position: relative;
+}
+
+/* Icon group styles */
+.icon-group {
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* User icon */
 .user-icon {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25em;
+    border-radius: 2em;
+    position: relative;
     cursor: pointer;
-    padding-right: 80px;
-    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
 }
 
-.user-pic {
-    width: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 30px;
+.user-icon a {
+    color: var(--black-color);
 }
 
 /* User menu */
 .sub-menu-wrap {
     position: absolute;
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%); 
+    top: calc(100% + 10px);
+    right: 10px;
     width: 300px;
     max-height: 0px;
     overflow: hidden;
@@ -104,7 +185,8 @@ header.scrolled {
     padding: 20px;
     margin: 10px;
     border-radius: 10%;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .user-info {
@@ -161,7 +243,7 @@ header.scrolled {
 
 .sub-menu-link:hover p {
     font-weight: 600;
-} 
+}
 
 /* Cart icon */
 .cart-icon {
@@ -178,22 +260,66 @@ header.scrolled {
     color: var(--black-color);
 }
 
+/* Hover effect for user and cart icons */
+.user-icon:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
 .cart-icon:hover {
     transform: scale(1.1);
 }
 
+/* Adjustments for user circle icon */
+.fa-circle-user {
+    margin-right: 21px;
+}
 
-/* Icon group styles */
-.icon-group {
-    transition: transform 0.3s ease, color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
+/* Ensure smooth transition for the chevron arrow */
+.fa-chevron-up {
+    transition: transform 0.3s ease;
 }
 
 /* Rotate chevron down icon */
-.fa-chevron-down.flipped {
+.fa-chevron-up.flipped {
     transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }
+
+/* Login/Signup Icon Container */
+.login-signup-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    margin-right: 150px;
+}
+
+/* Login/Signup Button */
+.login-signup-button {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: background 0.3s ease,
+        transform 0.3s ease;
+    border: none;
+    color: var(--black-color);
+    font-size: 1em;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.login-signup-button:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* Ensuring the button text is centered */
+.login-signup-button span {
+    display: inline-block;
+    line-height: 1;
+}
+
 
 .header-divider {
     width: 100%;
@@ -210,12 +336,21 @@ header.scrolled {
         margin-right: 10px;
     }
 
+    .cart-placeholder {
+        display: none;
+    }
+
     .logo-location-group {
         left: 30px;
     }
 
     .user-cart-group {
         right: 20px;
+    }
+
+    .login-signup-icon {
+        margin-right: -15px;
+    
     }
 }
 

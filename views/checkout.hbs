@@ -69,13 +69,23 @@
                 <p>Total: {{totalPrice}} €</p>
             </div>
             <div class="place-order">
-                <form action="/place-order" method="POST">
-                    <button type="submit">Place Order</button>
-                </form>
+                <button type="button" id="placeOrderBtn">Place Order</button>
             </div>
         </div>
 
     </div>
 </section>
+
+
+<!-- Modal -->
+<div id="placeOrderModal" class="place-order-modal">
+    <div class="place-order-content">
+        <h2>Order Confirmation</h2>
+        <p>Your order has been placed successfully!</p>
+        <p>Order details will be sent to your email.</p>
+        <button id="redirectToHomeBtn" class="home-button">Go to Home</button>
+    </div>
+</div>
+
 
 <script src="/javascript/checkout.js"></script>

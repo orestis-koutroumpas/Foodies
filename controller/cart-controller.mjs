@@ -32,10 +32,7 @@ export async function cartController(req, res) {
             throw new Error('Invalid estimated delivery time format');
         }
 
-        const minDeliveryTime = estimatedMinutes + 10;
-        const maxDeliveryTime = estimatedMinutes + 15;
-
-        const deliveryTime = `${minDeliveryTime}' - ${maxDeliveryTime}'`;
+        const deliveryTime = `${estimatedMinutes}'`;
 
         res.render('partials/cart-modal', {
             layout: false, // Ensure no layout is used for partial rendering

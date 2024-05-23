@@ -1,18 +1,24 @@
 // public/javascript/user-menu.js
 
 // Event listener to close the user menu
-document.addEventListener("click", function(event) {
+document.addEventListener('DOMContentLoaded', function () {
     let subMenu = document.getElementById("subMenu");
-    let userPic = document.querySelector(".user-pic");
+    let userIcon = document.getElementById("user-profile");
+    let arrow = document.getElementById("arrow");
 
-    // Check if the clicked target is not the userPic or a descendant of subMenu
-    if (!subMenu.contains(event.target) && event.target !== userPic) {
-        subMenu.classList.remove("open-menu");
+    function toggleMenu() {
+        subMenu.classList.toggle("open-menu");
+        arrow.classList.toggle("flipped");
     }
-});
 
-// Function to open and close the menu when clicking the user img
-function toggleMenu() {
-    let subMenu = document.getElementById("subMenu");
-    subMenu.classList.toggle("open-menu");
-}
+    userIcon.addEventListener('click', function (event) {
+        event.stopPropagation();
+        toggleMenu();
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!userIcon.contains(event.target) && subMenu.classList.contains("open-menu")) {
+            toggleMenu();
+        }
+    });
+});

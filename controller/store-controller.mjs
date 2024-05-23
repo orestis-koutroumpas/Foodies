@@ -1,6 +1,6 @@
 // controller/store-controller.mjs
 
-import { getStoresByName, getProductCategoriesByStoreCategory, getMenuItemsWithPricesByStoreId } from '../model/model.mjs';
+import { getStoresByName, getProductCategoriesByStore, getMenuItemsWithPricesByStoreId } from '../model/model.mjs';
 
 
 export async function storeController(req, res) {
@@ -8,7 +8,7 @@ export async function storeController(req, res) {
         const storeName = req.params.storeName; // Get the store name from the URL, with '-'
         const formattedStoreName = storeName.replace(/-/g, ' '); // Replace '-' with spaces
 
-        const storeData = await getStoresByName(formattedStoreName);
+        const storeData =  getStoresByName(formattedStoreName);
 
         if (!storeData || storeData.length === 0) {
             res.status(404).send('Store not found');
@@ -21,7 +21,7 @@ export async function storeController(req, res) {
         const bannerImageUrl = `/images/store-items/Banners/${formattedStoreName}.avif`;
 
         // Get the menu items with prices for this store
-        const menuItemsWithPrices = await getMenuItemsWithPricesByStoreId(store.id);
+        const menuItemsWithPrices =  getMenuItemsWithPricesByStoreId(store.id);
 
 
         const viewData = {
@@ -51,7 +51,7 @@ export async function storeController(req, res) {
 export async function getStoreInfo(req, res) {
     try {
         const storeName = req.params.storeName.replace(/-/g, ' '); // Format the store name from URL
-        const stores = await getStoresByName(storeName);
+        const stores =  getStoresByName(storeName);
 
         if (stores.length === 0) {
             res.status(404).json({ error: 'Store not found' });
@@ -79,12 +79,11 @@ export async function getStoreInfo(req, res) {
 
 export async function getTabsByCategory(req, res) {
     try {
-        const { category } = req.params;
+        const { storeId } = req.params;
 
-        const productCategories = await getProductCategoriesByStoreCategory(category);
-        const tabsData = productCategories.map(category => category.name);
-
-        res.json(tabsData);
+        const productCategories = await getProductCategoriesByStore(storeId);
+        
+        res.json(productCategories);
     } catch (error) {
         console.error('Error fetching tabs data:', error);
         res.status(500).json({ error: 'Internal Server Error' });

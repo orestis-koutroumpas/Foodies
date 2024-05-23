@@ -25,7 +25,7 @@ function handleModalScroll(modalImage, modalContent, modalHeader, modalHeaderH1,
 
 // Function to update total price
 function updateTotalPrice(modalPrice, quantitySpan, totalPrice) {
-    const price = parseFloat(modalPrice.textContent.replace('€', '')) * parseInt(quantitySpan.textContent);
+    const price = parseFloat(parseFloat(modalPrice.textContent) * parseInt(quantitySpan.textContent));
     totalPrice.textContent = `${price.toFixed(2)} €`;
 }
 
@@ -38,7 +38,7 @@ export function openModal(product) {
     const modalImage = document.getElementById('product-image');
     const modalName = document.getElementById('product-name');
     const modalDescription = document.getElementById('product-description');
-    const modalPrice = document.getElementById('product-price');
+    const modalPrice = document.getElementById('product-price');  
     const quantitySpan = document.getElementById('quantity');
     const totalPrice = document.getElementById('total-price');
     const modalComment = document.getElementById('comment');
@@ -59,6 +59,9 @@ export function openModal(product) {
         modalBackdrop.classList.add('open');
     }
 
+    const price = parseFloat(product.price);
+    const formattedPrice = `${price.toFixed(2)} €`;
+
     modalHeaderH1.textContent = product.name;
     modalInfoH1.textContent = product.name;
     document.body.style.overflow = 'hidden';
@@ -66,8 +69,9 @@ export function openModal(product) {
     modalImage.alt = product.name;
     modalName.textContent = product.name;
     modalDescription.textContent = product.description;
-    modalPrice.textContent = `${product.price.toFixed(2)} €`;
+    modalPrice.textContent = formattedPrice;
 
+    modalComment.value = '';
     // Check localStorage for saved quantity and total price
     const savedState = JSON.parse(localStorage.getItem(`product-${product.id}`));
     if (savedState) {
@@ -75,7 +79,7 @@ export function openModal(product) {
         totalPrice.textContent = savedState.totalPrice;
     } else {
         quantitySpan.textContent = '1';
-        totalPrice.textContent = `${product.price.toFixed(2)} €`;
+        totalPrice.textContent = formattedPrice;
     }
 
     // Update total price when quantity changes

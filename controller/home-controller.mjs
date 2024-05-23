@@ -2,7 +2,7 @@
 
 import { getAllStores } from '../model/model.mjs';
 
-export async function homeController(req, res) {
+export async function homeController(req, res, options = {}) {
     try {
         // Fetch all store data from the model
         const storesData = await getAllStores();
@@ -31,14 +31,15 @@ export async function homeController(req, res) {
             rating: `images/stores/rating/stars${store.rating}.png`
         }));
         
-
         const data = {
             pageTitle: "The best online delivery application!",
             foodCategories,
             partnerStores,
             renderCss: [
                 '/css/home-styles.css'
-            ]
+            ],
+            isHidden: options.isHidden || false,
+            isAuthenticated: req.session.isAuthenticated || false // Add isAuthenticated status
         };
 
         res.render('home', data);

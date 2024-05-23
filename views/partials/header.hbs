@@ -1,7 +1,8 @@
 <!-- views/partials/header.hbs -->
+
 <!-- Header -->
 
-<header> 
+<header>
     <div class="header-container"> <!-- Container for header content -->
         <div class="logo-location-group"> <!-- Group for logo and location -->
             <div class="logo"> <!-- Logo -->
@@ -10,8 +11,15 @@
                 </a>
             </div>
             <div id="location" class="location-icon"> <!-- Location icon -->
-                <i class="fa-solid fa-location-arrow fa-2x"></i> 
-                <span id="location-text">Location <i class="fa-solid fa-chevron-down"></i></span> 
+                <i class="fa-solid fa-location-arrow fa-2x"></i>
+                <span id="location-text">
+                    {{#if isAuthenticated}}
+                        {{user.address}}
+                    {{else}}
+                        Location
+                    {{/if}}
+                        <i class="fa-solid fa-chevron-down"></i>
+                </span>
             </div>
         </div>
         <div class="search-form"> <!-- Search form -->
@@ -20,40 +28,67 @@
             </form>
         </div>
         <div class="user-cart-group">
-            <div id="user-profile" class="user-icon"> <!-- User profile icon -->
-                <img src="/images/user/profile.png" class="user-pic" onclick="toggleMenu()">
-                    <!-- User menu -->
-                    <div class="sub-menu-wrap" id="subMenu">
-                        <div class="sub-menu">
-                            <div class="user-info">
-                                <img src="/images/user/user.png">
-                                <h3>FName Lname</h3>
+            {{#if isAuthenticated}}
+                <div id="user-profile" class="user-icon"> <!-- User profile icon -->
+                    <span class="icon-group" onclick="toggleMenu()">
+                        <i class="fa-solid fa-circle-user fa-2x"></i>
+                        <i id="arrow" class="fa-solid fa-chevron-up"></i>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <img src="/images/user/user.png">
+                                    <h3>{{user.fname}} {{user.lname}}</h3>
+                                </div>
+                                <hr>
+                                <a href="/user-profile" class="sub-menu-link">
+                                    <img src="/images/user/edit.png">
+                                    <p>Edit Profile</p>
+                                    <span></span>
+                                </a>
+                                <a href="/logout" class="sub-menu-link">
+                                    <img src="/images/user/logout.png">
+                                    <p>Logout</p>
+                                    <span></span>
+                                </a>
                             </div>
-                            <hr>
-                            <a href="/user-profile" class="sub-menu-link">
-                                <img src="/images/user/edit.png">
-                                <p>Edit Profile</p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="/images/user/logout.png">
-                                <p>Logout</p>
-                                <span></span>
-                            </a>
                         </div>
-                    </div>
-                </img>
-            </div>
-            <!-- Cart icon -->
-            <div id="cart" class="cart-icon" style="{{#if isHidden}}display:none;{{/if}}">
-                <a href="/cart-modal">
-                    <i class="fa-solid fa-cart-plus fa-2x"></i>
-                </a>
-            </div>
-            <div id="cart-placeholder" class="cart-placeholder" style="{{#unless isHidden}}display:none;{{/unless}}"></div>
+                    </span>
+                </div>
+                <div id="cart" class="cart-icon" style="{{#if isHidden}}display:none;{{/if}}"> <!-- Cart icon -->
+                    <a href="/cart-modal">
+                        <i class="fa-solid fa-cart-plus fa-2x"></i>
+                    </a>
+                </div>
+                <div id="cart-placeholder" class="cart-placeholder" style="{{#unless isHidden}}display:none;{{/unless}}">
+                </div>
+            {{else}}
+                <div id="login-signup" class="login-signup-icon"> <!-- Login/SignUp button -->
+                    <button class="login-signup-button">Login / Sign Up</button>
+                </div>
+            {{/if}}
         </div>
     </div>
     <div class="header-divider"></div>
 </header>
 
+
+<!-- Login/SignUp Modal -->
+<div class="modal" id="loginModal" style="display: none;">
+    <div class="login-container" id="login-container" style="display: none;">
+        {{> login }}
+    </div>
+</div>
+
+
+<!-- Location Modal -->
+<div id="locationModal" class="location-modal" style="display: none;">
+    <div class="location-content">
+        <span class="close">&times;</span>
+        <div id="map" style="width: 100%; height: 400px; margin-top: 30px; border-radius: 10px"></div>
+        <button id="saveLocationBtn">Save</button>
+    </div>
+</div>
+
+
 <script src="/javascript/user-menu.js"></script>
+<script src="/javascript/location-modal.js"></script>

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (addToCartButton) {
         addToCartButton.addEventListener('click', () => {
             const productDetails = getProductDetails();
-            console.log('Product details:', productDetails); // Log product details
             addToCartButton.classList.add('active');
             addProductToCart(productDetails);
         });
@@ -62,6 +61,9 @@ function addProductToCart(productDetails) {
             <button class="quantity-toggle-modal">
                 ${quantity} <i class="fas fa-chevron-down"></i>
             </button>
+        </div>
+        <div class="cart-comment-wrapper" style="display: none;">
+            <input type="text" class="cart-item-comment-input" placeholder="Add a comment" value="${productDetails.comment || ''}">
         </div>
     `;
 
@@ -215,20 +217,18 @@ function updateCartTotal() {
         const price = priceSpan ? parseFloat(priceSpan.textContent.replace('€', '').replace(',', '.')) : 0;
         const name = cartItem.querySelector('.cart-item-details-modal span').textContent;
         const image = cartItem.querySelector('.cart-item-image-modal img')?.src || '';
-
-        console.log('Cart Item:', { name, price, quantity, image });
+        const commentInput = cartItem.querySelector('.cart-item-comment-input'); // Assuming each cart item has an input for comments
+        const comment = commentInput ? commentInput.value.trim() : '';
 
         total += price;
         cartItems.push({
             name: name,
             price: price,
             quantity: quantity,
-            image: image
+            image: image,
+            comment: comment
         });
     });
-
-    console.log('Total:', total);
-    console.log('Cart Items:', cartItems);
 
     if (cartItems.length > 0) {
         if (!totalButton) {
@@ -241,7 +241,6 @@ function updateCartTotal() {
         totalButton.style.display = 'block';
 
         totalButton.addEventListener('click', function() {
-            console.log('Total button clicked');
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             localStorage.setItem('totalPrice', total.toFixed(2));
             const storeName = extractStoreNameFromURL();

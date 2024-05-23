@@ -3,7 +3,7 @@
 import { getStoresByCategory, getStoresByName } from '../model/model.mjs';
 
 // Controller function for handling search requests
-export async function searchController(req, res) {
+export async function searchController(req, res, options = {}) {
     try {
         // Extracting the search query from the request
         let search = req.query.q.trim();
@@ -33,7 +33,8 @@ export async function searchController(req, res) {
                 stores: [],
                 renderCss: [
                     '/css/search-styles.css'
-                ]
+                ],
+                isHidden: options.isHidden || false
             });
         } else {
             res.render('search', { 
@@ -42,8 +43,9 @@ export async function searchController(req, res) {
                 numStores: searchResults.length, 
                 stores: searchResults,
                 renderCss: [
-                    '/css/search-styles.css'
-                ]
+                    '/css/search-styles.css',
+                ],
+                isHidden: options.isHidden || false
             });
         }
 

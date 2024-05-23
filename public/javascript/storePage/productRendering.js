@@ -62,9 +62,12 @@ function createProductElement(product) {
     productInfo.innerHTML = `<h3>${product.name}</h3>`;
     productElement.appendChild(productInfo);
 
+    const price = parseFloat(product.price);
+    const formattedPrice = `${price.toFixed(2)} €`;
+
     const priceElement = document.createElement('p');
     priceElement.classList.add('product-price');
-    priceElement.textContent = `${product.price.toFixed(2)} €`;
+    priceElement.textContent = formattedPrice;
     productElement.appendChild(priceElement);
 
     const descriptionElement = document.createElement('p');
