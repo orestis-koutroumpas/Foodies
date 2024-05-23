@@ -1,1 +1,1 @@
-web: node start.mjs
+web: npm start
