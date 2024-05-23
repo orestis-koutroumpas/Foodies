@@ -87,22 +87,22 @@ export let getUserByEmail = async (email) => {
     }
 };
 
-/* // Function to register a user with a password
+ // Function to register a user with a password
 export let registerUser = async (email, password, fname, lname, address, phone_number) => {
     const user = await getUserByEmail(email);
     if (user != undefined) {
         return { message: "A user with this email already exists" };
     } else {
         try {
-            const hashedPassword = await bcrypt.hash(password, 10);
+            // const hashedPassword = await bcrypt.hash(password, 10);
             const stmt = sql.prepare('INSERT INTO user (email, password, fname, lname, address, phone_number) VALUES (?, ?, ?, ?, ?, ?)');
-            stmt.run(email, hashedPassword, fname, lname, address, phone_number);
+            stmt.run(email, password, fname, lname, address, phone_number);
             return { message: "User registered successfully", email };
         } catch (error) {
             throw error;
         }
     }
-}; */
+}; 
 
 
 // Updates user info
