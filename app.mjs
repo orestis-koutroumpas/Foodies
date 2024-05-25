@@ -1,5 +1,3 @@
-// app.mjs
-
 import express from 'express';
 import path from 'path';
 import { engine } from 'express-handlebars';
@@ -16,6 +14,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const app = express();
 
+// Trust proxy if behind one (e.g., Heroku)
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 // Serve static files
 app.use(express.static('public'));
 
@@ -25,6 +28,7 @@ app.use(foodiesSession);
 // Middleware to set authentication state
 app.use(setAuthState);
 
+// Middleware to log session data
 app.use((req, res, next) => {
     console.log('Session data:', req.session);
     next();
@@ -35,7 +39,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('*', (req, res, next) => {
+// Middleware to add current path to locals
+app.use((req, res, next) => {
     res.locals.currentPath = req.path;
     next();
 });

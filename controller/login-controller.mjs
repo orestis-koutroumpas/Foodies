@@ -1,5 +1,3 @@
-// controller/login-controller.mjs
-
 import bcrypt from 'bcryptjs';
 import { getUserByEmail, registerUser } from '../model/model.mjs';
 
@@ -39,7 +37,7 @@ export let doRegister = async function (req, res) {
             return res.json({ success: false });
         }
     } catch (error) {
-        console.error('Registration error: ' + error);
+        console.error('Registration error:', error);
         return res.json({ success: false, message: error.message });
     }
 };
@@ -70,6 +68,7 @@ export let doLogin = async function (req, res) {
                     console.error('Session save error:', err);
                     return res.json({ success: false, message: 'Error during login' });
                 }
+                console.log('Session saved:', req.session);
                 return res.json({ success: true });
             });
         } else {
@@ -126,4 +125,4 @@ export async function renderLoginPage(req, res) {
         console.error('Error rendering login page:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
