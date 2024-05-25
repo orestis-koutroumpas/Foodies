@@ -25,7 +25,7 @@ async function openCartModal(storeName) {
         window.history.pushState({ path: `/store/${storeName}/cart-modal` }, '', `/store/${storeName}/cart-modal`);
 
         // Reattach the event listener to the new close button in the modal content
-        document.querySelector('.close-cart').addEventListener('click', closeModal);
+        document.querySelector('.close-cart').addEventListener('click', closecartModal);
 
         setTimeout(() => {
             window.updateCartTotal(); // Ensure cart total is updated when modal is opened
@@ -35,7 +35,7 @@ async function openCartModal(storeName) {
     }
 }
 
-function closeModal() {
+function closecartModal() {
     const cartModal = document.getElementById('cartModal');
     const cartOverlay = document.getElementById('cartOverlay');
 
@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
         openCartModal(storeName);
     });
 
-    cartOverlay.addEventListener('click', closeModal);
+    cartOverlay.addEventListener('click', closecartModal);
     window.addEventListener('popstate', function(event) {
         if (!window.location.pathname.includes('/cart-modal')) {
-            closeModal();
+            closecartModal();
         }
     });
 
@@ -80,4 +80,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-export { openCartModal, closeModal, extractStoreNameFromURL };
+export { openCartModal, closecartModal, extractStoreNameFromURL };

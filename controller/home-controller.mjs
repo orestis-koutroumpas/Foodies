@@ -39,10 +39,13 @@ export async function homeController(req, res, options = {}) {
                 '/css/home-styles.css'
             ],
             isHidden: options.isHidden || false,
-            isAuthenticated: req.session.isAuthenticated || false // Add isAuthenticated status
+            isAuthenticated: res.locals.isAuthenticated ,
+            user: res.locals.user
         };
 
+        console.log(data);
         res.render('home', data);
+
     } catch (error) {
         console.error('Error fetching store data:', error);
         res.status(500).send('Internal Server Error');

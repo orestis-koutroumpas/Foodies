@@ -2,7 +2,7 @@
 
 // Importing the Better SQLite library
 import db from 'better-sqlite3';
-//import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 // Creating a new SQLite database connection
 const sql = new db('model/db/foodies.sqlite', { fileMustExist: true });
@@ -94,9 +94,9 @@ export let registerUser = async (email, password, fname, lname, address, phone_n
         return { message: "A user with this email already exists" };
     } else {
         try {
-            // const hashedPassword = await bcrypt.hash(password, 10);
+            const hashedPassword = await bcrypt.hash(password, 10);
             const stmt = sql.prepare('INSERT INTO user (email, password, fname, lname, address, phone_number) VALUES (?, ?, ?, ?, ?, ?)');
-            stmt.run(email, password, fname, lname, address, phone_number);
+            stmt.run(email, hashedPassword, fname, lname, address, phone_number);
             return { message: "User registered successfully", email };
         } catch (error) {
             throw error;

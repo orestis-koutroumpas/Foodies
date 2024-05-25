@@ -1,3 +1,14 @@
+// login.js
+
+export function openModal() {
+    const modal = document.getElementById("loginModal");
+    const loginContainer = document.getElementById("login-container");
+    modal.style.display = "flex";
+    modal.classList.add("blur");
+    loginContainer.style.display = "block";
+    document.body.classList.add("modal-open");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById('login-container');
     const registerBtn = document.getElementById('register');
@@ -19,15 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         container.classList.remove("active");
     });
 
-    function openModal() {
-        const modal = document.getElementById("loginModal");
-        const loginContainer = document.getElementById("login-container");
-        modal.style.display = "flex";
-        modal.classList.add("blur");
-        loginContainer.style.display = "block";
-        document.body.classList.add("modal-open");
-    }
-
     function closeModal() {
         const modal = document.getElementById("loginModal");
         const loginContainer = document.getElementById("login-container");
@@ -45,7 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const loginSignupButton = document.querySelector('.login-signup-button');
     if (loginSignupButton) {
-        loginSignupButton.addEventListener('click', openModal);
+        loginSignupButton.addEventListener('click', () => {
+            // Store the current URL in localStorage before opening the modal
+            localStorage.setItem('intendedUrl', window.location.href);
+            openModal();
+        });
     }
 
     const loginForm = document.getElementById('sign-in');
@@ -157,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
             signInMessage.innerText = "";
             const response = await fetch('/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -170,7 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
                     signInMessage.innerText = "";
                     closeModal();
-                    window.location.href = '/home';
+                    // Redirect to the intended URL after login
+                    const intendedUrl = localStorage.getItem('intendedUrl') || '/home';
+                    window.location.href = intendedUrl;
                 }, 800);
             } else {
                 signInButton.innerText = "Sign In";
@@ -202,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
             signUpMessage.innerText = "";
             const response = await fetch('/signup', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -1,11 +1,13 @@
 // app.mjs
 
 import express from 'express';
+import path from 'path';
 import { engine } from 'express-handlebars';
 import routes from './routes/foodies-routes.mjs';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import foodiesSession from './app-setup/app-setup-session.mjs';
+import { setAuthState } from './controller/login-controller.mjs';
 
 // Load environment variables only if not in production
 if (process.env.NODE_ENV !== 'production') {
@@ -13,12 +15,25 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
-console.log("dsfggrd")
+
+// Serve static files
+app.use(express.static('public'));
+
+// Session activation
+app.use(foodiesSession);
+
+// Middleware to set authentication state
+app.use(setAuthState);
+
+app.use((req, res, next) => {
+    console.log('Session data:', req.session);
+    next();
+});
+
 // Use JSON middleware
 app.use(express.json());
-
-//Session activation
-app.use(foodiesSession)
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('*', (req, res, next) => {
     res.locals.currentPath = req.path;
@@ -26,16 +41,22 @@ app.get('*', (req, res, next) => {
 });
 
 // Set up Handlebars view engine
-app.engine('.hbs', engine({ extname: '.hbs' }));
-app.set('view engine', '.hbs');
-
-// Middleware
-app.use(express.static('public'));
-app.use(bodyParser.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: false }));
-
+app.engine('hbs', engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    layoutsDir: path.join(path.resolve(), 'views', 'layouts'),
+    partialsDir: path.join(path.resolve(), 'views', 'partials')
+}));
+app.set('view engine', 'hbs');
+app.set('views', path.join(path.resolve(), 'views'));
 
 // Routes
 app.use('/', routes);
+
+// Error handling
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
 
 export { app as foodies };
