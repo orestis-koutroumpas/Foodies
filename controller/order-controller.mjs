@@ -1,22 +1,31 @@
 // controller/order-controller.mjs
 
-import { insertOrder, insertOrderContent, getMenuItemIdByName } from '../model/model.mjs';
+import { insertOrder, insertOrderContent, getMenuItemIdByName, insertPayment } from '../model/model.mjs'; // Import necessary functions from the model
 
+// Function to handle order submission
 export const submitOrder = async (req, res) => {
-    const { userEmail, storeId, deliveryAddress, price, tip, items } = req.body;
+    // Destructure order details from the request body
+    const { userEmail, storeId, deliveryAddress, orderPrice, tip, items, method, paymentAmount } = req.body;
 
     try {
-        const orderId = insertOrder(userEmail, storeId, deliveryAddress, price, tip);
+        // Insert order details and get the generated order ID
+        const orderId = insertOrder(userEmail, storeId, deliveryAddress, orderPrice, tip);
 
+        // Loop through each item in the order
         for (const item of items) {
-            console.log('Processing item:', item);
+            // Get the menu item ID by item name
             const menuItemId = getMenuItemIdByName(item.name);
-            console.log('Menu item ID:', menuItemId);
+            // Insert order content for each item
             insertOrderContent(orderId, menuItemId, item.comment);
         }
 
-        res.status(200).json({ message: 'Order submitted successfully' });
+        // Insert payment details
+        insertPayment(orderId, userEmail, paymentAmount, method);        
+
+        // Send success response
+        res.status(200).json({ message: 'Order and payment submitted successfully' });
     } catch (error) {
+        // Log the error and send error response
         console.error('Error submitting order:', error);
         if (!res.headersSent) {
             res.status(500).json({ error: 'Internal Server Error' });

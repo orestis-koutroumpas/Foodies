@@ -1,20 +1,13 @@
 // login.js
 
-export function openModal() {
-    const modal = document.getElementById("loginModal");
-    const loginContainer = document.getElementById("login-container");
-    modal.style.display = "flex";
-    modal.classList.add("blur");
-    loginContainer.style.display = "block";
-    document.body.classList.add("modal-open");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById('login-container');
-    const registerBtn = document.getElementById('register');
-    const loginBtn = document.getElementById('login');
-    const signUpButton = document.getElementById('sign-up-button');
-    const signInButton = document.getElementById('sign-in-button');
+    const container = document.getElementById('login-container'); // Get the login container element
+    const registerBtn = document.getElementById('register'); // Get the register button element
+    const loginBtn = document.getElementById('login'); // Get the login button element
+    const signUpButton = document.getElementById('sign-up-button'); // Get the sign-up button element
+    const signInButton = document.getElementById('sign-in-button'); // Get the sign-in button element
+
+    // Create message elements for sign-up and sign-in feedback
     const signUpMessage = document.createElement('div');
     signUpMessage.id = 'sign-up-message';
     signUpButton.insertAdjacentElement('afterend', signUpMessage);
@@ -22,14 +15,27 @@ document.addEventListener("DOMContentLoaded", function () {
     signInMessage.id = 'sign-in-message';
     signInButton.insertAdjacentElement('afterend', signInMessage);
 
+    // Event listener to switch to the registration form
     registerBtn.addEventListener('click', () => {
         container.classList.add("active");
     });
 
+    // Event listener to switch to the login form
     loginBtn.addEventListener('click', () => {
         container.classList.remove("active");
     });
 
+    // Function to open the modal
+    function openModal() {
+        const modal = document.getElementById("loginModal");
+        const loginContainer = document.getElementById("login-container");
+        modal.style.display = "flex";
+        modal.classList.add("blur");
+        loginContainer.style.display = "block";
+        document.body.classList.add("modal-open");
+    }    
+
+    // Function to close the modal
     function closeModal() {
         const modal = document.getElementById("loginModal");
         const loginContainer = document.getElementById("login-container");
@@ -39,24 +45,26 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.remove("modal-open");
     }
 
+    // Event listener to close the modal when clicking outside of it
     window.onclick = function (event) {
         if (event.target === document.getElementById("loginModal")) {
             closeModal();
         }
     }
 
+    // Event listener to open the modal and store the current URL
     const loginSignupButton = document.querySelector('.login-signup-button');
     if (loginSignupButton) {
         loginSignupButton.addEventListener('click', () => {
-            // Store the current URL in localStorage before opening the modal
-            localStorage.setItem('intendedUrl', window.location.href);
+            localStorage.setItem('intendedUrl', window.location.href); // Store the current URL
             openModal();
         });
     }
 
-    const loginForm = document.getElementById('sign-in');
-    const registerForm = document.getElementById('sign-up');
+    const loginForm = document.getElementById('sign-in'); // Get the login form element
+    const registerForm = document.getElementById('sign-up'); // Get the register form element
 
+    // Function to show error messages
     function showError(input, message) {
         const inputGroup = input.parentElement;
         const errorMessage = inputGroup.querySelector('.error-message');
@@ -69,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         validIcon.style.display = 'none';
     }
 
+    // Function to clear error messages
     function clearError(input) {
         const inputGroup = input.parentElement;
         const errorMessage = inputGroup.querySelector('.error-message');
@@ -81,27 +90,31 @@ document.addEventListener("DOMContentLoaded", function () {
         validIcon.style.display = 'block';
     }
 
+    // Function to validate email format
     function validateEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
+    // Function to validate name format
     function validateName(name) {
         const nameRegex = /^[A-Za-zΆ-Ϋά-ώ]+$/;
         return nameRegex.test(name);
     }
 
+    // Function to validate address format
     function validateAddress(address) {
-        // Address validation: Road name, number (single or range), region, optional postal code with commas or spaces
         const addressRegex = /^[A-Za-zΆ-Ϋά-ώ\s]+[,\s]+(\d+|\d+-\d+)[,\s]+[A-Za-zΆ-Ϋά-ώ\s]+[,\s]*\d{0,5}$/;
         return addressRegex.test(address);
     }
 
+    // Function to validate phone number format
     function validatePhoneNumber(phone) {
         const phoneRegex = /^\d{10}$/;
         return phoneRegex.test(phone);
     }
 
+    // Function to validate form fields
     function validateForm(form) {
         let isValid = true;
 
@@ -148,12 +161,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return isValid;
     }
 
+    // Event listener for login form submission
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(loginForm);
         const data = Object.fromEntries(formData.entries());
 
-        // Validate form here
+        // Validate form fields
         if (!validateForm(loginForm)) {
             return;
         }
@@ -196,12 +210,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Event listener for registration form submission
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(registerForm);
         const data = Object.fromEntries(formData.entries());
 
-        // Validate form here
+        // Validate form fields
         if (!validateForm(registerForm)) {
             return;
         }
@@ -307,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Function to clear form validation states
     function clearFormValidation(form) {
         const inputs = form.querySelectorAll('input');
         inputs.forEach(input => {

@@ -72,6 +72,13 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 
+.favorite-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
 .favorite-stores-container {
     display: flex;
     flex-wrap: wrap;

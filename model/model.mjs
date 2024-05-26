@@ -59,6 +59,8 @@ export let getProductCategoriesByStore = (storeId) => {
     }
 };
 
+
+
 // Function to get menu items with prices for a specific store by store ID
 export let getMenuItemsWithPricesByStoreId = (storeId) => {
     try {
@@ -86,6 +88,37 @@ export let getMenuItemIdByName = (name) => {
     }
 };
 
+// Function to search products by store name and query
+export let searchProducts = (storeName, query) => {
+    try {
+        const categoriesStmt = sql.prepare(`
+            SELECT DISTINCT pc.id, pc.name
+            FROM product_category pc
+            JOIN category_item ci ON pc.id = ci.category_id
+            JOIN menu_item mi ON ci.menu_item_id = mi.id
+            JOIN menu m ON mi.id = m.menu_item_id
+            JOIN store s ON m.store_id = s.id
+            WHERE s.name = ? AND (mi.name LIKE ? OR pc.name LIKE ?)
+        `);
+        const searchTerm = `%${query}%`;
+        const categories = categoriesStmt.all(storeName, searchTerm, searchTerm);
+
+        const productsStmt = sql.prepare(`
+            SELECT mi.id, mi.name, mi.description, mi.image, m.price, pc.name as category
+            FROM menu_item mi
+            JOIN category_item ci ON mi.id = ci.menu_item_id
+            JOIN product_category pc ON ci.category_id = pc.id
+            JOIN menu m ON mi.id = m.menu_item_id
+            JOIN store s ON m.store_id = s.id
+            WHERE s.name = ? AND mi.name LIKE ?
+        `);
+        const products = productsStmt.all(storeName, searchTerm);
+
+        return { categories, products };
+    } catch (error) {
+        throw error;
+    }
+};
 
 // Function to get a user by email
 export let getUserByEmail = async (email) => {
@@ -198,5 +231,18 @@ export let insertOrderContent = (orderId, menuItemId, comment) => {
         throw error;
     }
 };
+
+export let insertPayment = (orderId, userEmail, amount, method) => {
+    try {
+        const stmt = sql.prepare(`
+            INSERT INTO payment (order_id, user_email, amount, method)
+            VALUES (?, ?, ?, ?)
+        `);
+        stmt.run(orderId, userEmail, amount, method);
+    } catch (error) {
+        throw error;
+    }
+};
+
 
 export default sql;

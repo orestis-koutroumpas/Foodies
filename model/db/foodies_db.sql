@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS "order" (
 );
 
 CREATE TABLE IF NOT EXISTS "order_content" (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "order_id" INTEGER,
     "menu_item_id" INTEGER,
     "comment" VARCHAR,
-    PRIMARY KEY ("order_id", "menu_item_id"),
     FOREIGN KEY ("order_id") REFERENCES "order" ("id")
         ON UPDATE RESTRICT
         ON DELETE RESTRICT,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS "order_content" (
 );
 
 CREATE TABLE IF NOT EXISTS "payment" (
-    "id" INTEGER PRIMARY KEY,
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "order_id" INTEGER,
     "user_email" VARCHAR,
     "amount" VARCHAR,
