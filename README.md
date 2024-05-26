@@ -2,7 +2,7 @@
 
 Welcome to Foodies!
 
-Foodies is an application developed as part of the group project for the ECE_GK802 Internet Programming course at the Department of Electrical and Computer Engineering and Computer Technology of the University of Patras.
+Foodies is an application developed as part of the group project for the ECE_CK802 Internet Programming Course within the ECE department of the Univeristy of Patras.
 
 ## Installation Instructions
 
