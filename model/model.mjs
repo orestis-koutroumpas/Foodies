@@ -59,8 +59,6 @@ export let getProductCategoriesByStore = (storeId) => {
     }
 };
 
-
-
 // Function to get menu items with prices for a specific store by store ID
 export let getMenuItemsWithPricesByStoreId = (storeId) => {
     try {
@@ -75,6 +73,19 @@ export let getMenuItemsWithPricesByStoreId = (storeId) => {
         throw error;
     }
 };
+
+
+// Function to retrieve the menu item ID based on the name
+export let getMenuItemIdByName = (name) => {
+    try {
+        const stmt = sql.prepare("SELECT id FROM menu_item WHERE name = ? LIMIT 1");
+        const menuItem = stmt.get(name);
+        return menuItem ? menuItem.id : null;
+    } catch (error) {
+        throw error;
+    }
+};
+
 
 // Function to get a user by email
 export let getUserByEmail = async (email) => {
@@ -143,3 +154,49 @@ export const updateUserAddress = async (userEmail, newAddress) => {
         throw error;
     }
 };
+
+// Function to retrieve previous orders for a user
+export let getOrdersByUserEmail = (email) => {
+    try {
+        const stmt = sql.prepare(`
+            SELECT o.*, s.name as store_name
+            FROM "order" o
+            JOIN "store" s ON o.store_id = s.id
+            WHERE o.user_email = ?
+            ORDER BY o.date_of_order DESC
+        `);
+        const orders = stmt.all(email);
+        return orders;
+    } catch (error) {
+        throw error;
+    }
+};
+
+// Function to insert a new order
+export let insertOrder = (userEmail, storeId, deliveryAddress, price, tip) => {
+    try {
+        const stmt = sql.prepare(`
+            INSERT INTO "order" (user_email, store_id, date_of_order, delivery_address, price, tip)
+            VALUES (?, ?, DATE('now'), ?, ?, ?)
+        `);
+        const info = stmt.run(userEmail, storeId, deliveryAddress, price, tip);
+        return info.lastInsertRowid;
+    } catch (error) {
+        throw error;
+    }
+};
+
+// Function to insert order content
+export let insertOrderContent = (orderId, menuItemId, comment) => {
+    try {
+        const stmt = sql.prepare(`
+            INSERT INTO order_content (order_id, menu_item_id, comment)
+            VALUES (?, ?, ?)
+        `);
+        stmt.run(orderId, menuItemId, comment);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export default sql;

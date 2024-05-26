@@ -70,3 +70,38 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     padding     : 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
+
+
+.favorite-stores-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.favorite-store-card {
+    background-color: var(--white-color);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.12);
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.favorite-store-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.favorite-store-card h4 {
+    margin: 15px 0;
+}
+
+.favorite-store-card .store-rating {
+    color: #ff9800;
+}
+
+.favorite-store-card .store-rating i {
+    margin: 0 2px;
+}

@@ -32,9 +32,12 @@ export async function checkoutController(req, res, options = {}) {
 
         res.render('checkout', { 
             pageTitle: "Checkout",
+            storeId: store.id,
             storeName: formattedStoreName,
             minDeliveryTime: minDeliveryTime,
             maxDeliveryTime: maxDeliveryTime,
+            user: user,
+            deliveryFee: store.delivery_fee,
             address: userAddress,
             renderCss: [
                 '/css/checkout-styles.css'

@@ -24,7 +24,7 @@ export async function initializeTabsManagement(storeName, tabsBoxSelector) {
 }
 
 
-export function generateTabs(tabsBoxSelector, tabsData) {
+function generateTabs(tabsBoxSelector, tabsData) {
     const tabsBox = document.querySelector(tabsBoxSelector);
 
     while (tabsBox.firstChild) {
@@ -47,7 +47,7 @@ export function generateTabs(tabsBoxSelector, tabsData) {
     });
 }
 
-export function handleIcons(scrollVal) {
+function handleIcons(scrollVal) {
     const tabsBox = document.querySelector(".tabs-box");
     const arrowIcons = document.querySelectorAll(".icon i");
     let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;

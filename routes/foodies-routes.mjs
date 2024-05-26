@@ -8,6 +8,7 @@ import { getMenuItemsWithPricesByStoreId } from '../model/model.mjs';
 import { cartController } from '../controller/cart-controller.mjs';
 import { doLogin, doRegister, doLogout, checkAuthenticated, renderLoginPage } from '../controller/login-controller.mjs';
 import { updateAddress, userProfileController, updateUserInfo, changeUserPassword } from '../controller/user-profile-controller.mjs';
+import { submitOrder } from '../controller/order-controller.mjs';
 
 const router = express.Router();
 
@@ -80,6 +81,8 @@ router.get('/store/:storeName/checkout-status', (req, res) => {
         res.json({ isAuthenticated: false });
     }
 });
+
+router.post('/submit-order', checkAuthenticated, submitOrder);
 
 router.get('/about', footerPagesController);
 router.get('/privacy-policy', footerPagesController);

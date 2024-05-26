@@ -14,7 +14,7 @@ export async function cartController(req, res) {
 
         const formattedStoreName = storeName.replace(/-/g, ' '); // Replace '-' with spaces
 
-        const storeData = await getStoresByName(formattedStoreName);
+        const storeData = getStoresByName(formattedStoreName);
 
         if (!storeData || storeData.length === 0) {
             res.status(404).send('Store not found');
@@ -28,6 +28,8 @@ export async function cartController(req, res) {
 
         const estimatedMinutes = parseInt(deliveryTimeParts[1], 10);
 
+        const minimumOrder = store.min_order;
+
         if (isNaN(estimatedMinutes)) {
             throw new Error('Invalid estimated delivery time format');
         }
@@ -37,6 +39,7 @@ export async function cartController(req, res) {
         res.render('partials/cart-modal', {
             layout: false, // Ensure no layout is used for partial rendering
             deliveryTime: deliveryTime,
+            minimumOrder: minimumOrder,
             renderCss: [
                 '/css/cart-modal-styles.css'
             ]

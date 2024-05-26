@@ -68,7 +68,6 @@ export let doLogin = async function (req, res) {
                     console.error('Session save error:', err);
                     return res.json({ success: false, message: 'Error during login' });
                 }
-                console.log('Session saved:', req.session);
                 return res.json({ success: true });
             });
         } else {
@@ -99,8 +98,6 @@ export function checkAuthenticated(req, res, next) {
 }
 
 export function setAuthState(req, res, next) {
-    console.log('Session ID:', req.sessionID);
-    console.log('Session Data:', req.session);
 
     if (req.session && req.session.isAuthenticated && req.session.user) {
         res.locals.isAuthenticated = true;
@@ -109,7 +106,6 @@ export function setAuthState(req, res, next) {
         res.locals.isAuthenticated = false;
         res.locals.user = null;
     }
-    console.log('AuthState:', res.locals.isAuthenticated, res.locals.user);
     next();
 }
 

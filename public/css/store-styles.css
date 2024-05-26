@@ -142,6 +142,11 @@
     /* Add a blur effect */
 }
 
+.Store-Info .right-group .right-group-container .Liked-Store.liked {
+    color: rgb(186, 84, 84);
+    text-shadow: 0 0 5px red;
+}
+
 .Store-Info .right-group .right-group-container .Liked-Store:hover {
     transform: scale(1.1);
     color: rgb(186, 84, 84);

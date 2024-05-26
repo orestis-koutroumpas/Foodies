@@ -1,9 +1,9 @@
 import express from 'express';
 import path from 'path';
 import { engine } from 'express-handlebars';
-import routes from './routes/foodies-routes.mjs';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import routes from './routes/foodies-routes.mjs';
 import foodiesSession from './app-setup/app-setup-session.mjs';
 import { setAuthState } from './controller/login-controller.mjs';
 
@@ -27,12 +27,6 @@ app.use(foodiesSession);
 
 // Middleware to set authentication state
 app.use(setAuthState);
-
-// Middleware to log session data
-app.use((req, res, next) => {
-    console.log('Session data:', req.session);
-    next();
-});
 
 // Use JSON middleware
 app.use(express.json());

@@ -19,8 +19,16 @@
         </div>
     </div>
 
+    <!-- Progress Bar -->
     <!-- No initial total button here, it will be added dynamically -->
+    
     
 </div>
 
 <div id="cartOverlay" class="cart-overlay"></div>
+
+<script>
+    window.minimumOrderAmount = "{{ minimumOrder }}";
+</script>
+<script type="module" src="/javascript/cartModal/cart-modal.js"></script>
+<script type="module" src="/javascript/cartModal/cart.js"></script>

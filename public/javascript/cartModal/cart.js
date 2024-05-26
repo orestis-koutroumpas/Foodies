@@ -3,6 +3,7 @@
 import { getProductDetails, closeModal } from '../storePage/modalManagement.js';
 import { openCartModal, extractStoreNameFromURL } from './cart-modal.js';
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButton = document.querySelector('.modal-footer .btn');
 
@@ -199,6 +200,9 @@ function updateCartTotal() {
     const cartItemsContainer = document.getElementById('cartItemsContainerModal');
     const emptyCartMessage = document.querySelector('.cart-empty-modal');
     let totalButton = document.getElementById('cartTotalModal');
+    let progressBarContainer = document.getElementById('cartProgressBarContainer');
+    let progressBar = document.getElementById('cartProgressBar');
+    const minimumOrderAmount = parseFloat(window.minimumOrderAmount.replace('€', '')); // Remove currency symbol and convert to number
 
     if (!cartItemsContainer) return;
 
@@ -217,10 +221,10 @@ function updateCartTotal() {
         const price = priceSpan ? parseFloat(priceSpan.textContent.replace('€', '').replace(',', '.')) : 0;
         const name = cartItem.querySelector('.cart-item-details-modal span').textContent;
         const image = cartItem.querySelector('.cart-item-image-modal img')?.src || '';
-        const commentInput = cartItem.querySelector('.cart-item-comment-input'); // Assuming each cart item has an input for comments
+        const commentInput = cartItem.querySelector('.cart-item-comment-input');
         const comment = commentInput ? commentInput.value.trim() : '';
 
-        total += price;
+        total += price; 
         cartItems.push({
             name: name,
             price: price,
@@ -231,24 +235,58 @@ function updateCartTotal() {
     });
 
     if (cartItems.length > 0) {
+        if (!progressBarContainer) {
+            progressBarContainer = document.createElement('div'); // Create progress bar container if it doesn't exist
+            progressBarContainer.id = 'cartProgressBarContainer';
+            progressBarContainer.className = 'progress-bar-container';
+            document.getElementById('cartModal').insertBefore(progressBarContainer, totalButton); // Insert progress bar container before total button
+
+            progressBar = document.createElement('div'); // Create progress bar if it doesn't exist
+            progressBar.id = 'cartProgressBar';
+            progressBar.className = 'progress-bar';
+            progressBarContainer.appendChild(progressBar); // Append progress bar to progress bar container
+        }
+
         if (!totalButton) {
             totalButton = document.createElement('button');
             totalButton.id = 'cartTotalModal';
-            totalButton.className = 'cart-total-button-modal';
+            totalButton.className = 'cart-total-button-modal disabled';
             document.getElementById('cartModal').appendChild(totalButton);
         }
+
         totalButton.textContent = `Total: ${total.toFixed(2)} €`;
         totalButton.style.display = 'block';
 
         totalButton.addEventListener('click', function() {
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            localStorage.setItem('totalPrice', total.toFixed(2));
-            const storeName = extractStoreNameFromURL();
-            window.location.href = `/store/${storeName}/checkout`;
+            if (total >= minimumOrderAmount) {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem('totalPrice', total.toFixed(2));
+                const storeName = extractStoreNameFromURL();
+                window.location.href = `/store/${storeName}/checkout`;
+            }
         });
+
+        if (progressBarContainer) {
+            progressBarContainer.style.display = 'flex';
+            const progress = (total / minimumOrderAmount) * 100;
+            progressBar.style.width = `${Math.min(progress, 100)}%`;
+        }
+
+        if (total >= minimumOrderAmount) {
+            totalButton.disabled = false;
+            totalButton.classList.remove('disabled');
+        } else {
+            totalButton.disabled = true;
+            totalButton.classList.add('disabled');
+        }
+
     } else {
         if (totalButton) {
             totalButton.remove();
+        }
+
+        if (progressBarContainer) {
+            progressBarContainer.style.display = 'none';
         }
     }
 
@@ -257,4 +295,4 @@ function updateCartTotal() {
     }
 }
 
-window.updateCartTotal = updateCartTotal; // Make updateCartTotal accessible globally
+window.updateCartTotal = updateCartTotal;

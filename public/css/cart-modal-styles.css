@@ -145,6 +145,32 @@
     margin-left: 10px;
 }
 
+.progress-bar-container {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    bottom: 90px;
+    overflow: hidden;
+    position: relative;
+    height: 20px;
+    z-index: 23;
+}
+
+.progress-bar {
+    width: 0;
+    height: 60%;
+    background-color: var(--button-color);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    margin: auto;
+    z-index: 24;
+}
+
+
 .cart-total-button-modal {
     width: calc(100% - 40px);
     padding: 20px 20px;
@@ -165,4 +191,9 @@
 .cart-total-button-modal:hover {
     transform: scale(1.05);
     background-color: var(--button-hover-color);
+}
+
+.cart-total-button-modal.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }

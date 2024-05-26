@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No cart items found.');
     }
 
-    placeOrderBtn.addEventListener('click', function () {
+    placeOrderBtn.addEventListener('click', async function () {
         const cartItems = [];
         document.querySelectorAll('.cart-item').forEach(cartItem => {
             const name = cartItem.querySelector('.item-details p').textContent;
@@ -80,9 +80,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(cartItems); // You can handle this array as needed
 
-        modal.style.display = 'flex';
-    });
+        const orderDetails = {
+            userEmail: window.userEmail, // Retrieve this from the user's session or local storage
+            storeId: window.storeId, // Retrieve the store ID dynamically
+            deliveryAddress: window.userAddress, // Retrieve this from the user's profile or input
+            tip: parseFloat(document.querySelector('input[name="tipAmount"]:checked').value) || 0,
+            price: parseFloat(localStorage.getItem('totalPrice')) - parseFloat(window.deliveryFee),
+            items: cartItems
+        };
 
+        modal.style.display = 'flex';
+
+        try {
+            const response = await fetch('/submit-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderDetails)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                modal.style.display = 'flex';
+            } else {
+                const error = await response.json();
+                console.error('Error:', error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
     redirectToHomeBtn.addEventListener('click', function () {
         window.location.href = '/home';
     });
@@ -264,6 +293,8 @@ function updateCartData() {
 
     const tipAmount = parseFloat(document.querySelector('input[name="tipAmount"]:checked').value) || 0;
     total += tipAmount;
+
+    total += parseFloat(window.deliveryFee);
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     localStorage.setItem('totalPrice', total.toFixed(2));

@@ -42,8 +42,6 @@ export async function homeController(req, res, options = {}) {
             isAuthenticated: res.locals.isAuthenticated ,
             user: res.locals.user
         };
-
-        console.log(data);
         res.render('home', data);
 
     } catch (error) {

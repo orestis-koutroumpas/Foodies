@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "menu_item" (
 );
 
 CREATE TABLE IF NOT EXISTS "order" (
-    "id" INTEGER PRIMARY KEY,
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_email" VARCHAR,
     "store_id" INTEGER,
     "date_of_order" DATE,

@@ -1,15 +1,22 @@
 // public/javascript/location-modal.js
 
 function loadTomTomScript(callback) {
-    const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.14.0/maps/maps-web.min.js';
-    scriptElement.async = true;
-    scriptElement.defer = true;
-    scriptElement.onload = callback;
-    scriptElement.onerror = function() {
-        console.error('Failed to load TomTom SDK script');
-    };
-    document.head.appendChild(scriptElement);
+    if (!window.tomtomScriptLoaded) {
+        const scriptElement = document.createElement('script');
+        scriptElement.src = 'https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.14.0/maps/maps-web.min.js';
+        scriptElement.async = true;
+        scriptElement.defer = true;
+        scriptElement.onload = () => {
+            window.tomtomScriptLoaded = true;
+            callback();
+        };
+        scriptElement.onerror = function() {
+            console.error('Failed to load TomTom SDK script');
+        };
+        document.head.appendChild(scriptElement);
+    } else {
+        callback();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,9 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let initialPosition = { lat: 37.7749, lng: -122.4194 }; // Default position
 
         if (userAddress && /[a-zA-Z0-9\s,]/.test(userAddress) && !/^\d+(\.\d+)?,\s*\d+(\.\d+)?$/.test(userAddress)) {
-            // If userAddress is an address string
             try {
-                const response = await fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(userAddress)}.json?key=9qYT4o7IeUnR3jVy3igqtiSIT3XUMphV`);
+                const response = await fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(userAddress)}.json?key=9qYT4o7IeUnR3jVy3igqtiSIT3XUMphV&language=en-US`);
                 const data = await response.json();
 
                 if (data.results && data.results.length > 0) {
@@ -60,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching geocode data:', error);
             }
         } else if (userAddress && /^\d+(\.\d+)?,\s*\d+(\.\d+)?$/.test(userAddress)) {
-            // If userAddress contains only coordinates
             const [lat, lng] = userAddress.split(',').map(Number);
             if (!isNaN(lat) && !isNaN(lng)) {
                 initialPosition = { lat, lng };
@@ -71,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tt.setProductInfo('FoodiesApp', '1.0');
             map = tt.map({
                 key: '9qYT4o7IeUnR3jVy3igqtiSIT3XUMphV',
-                container: 'map',
+                container: 'modal-map',
                 center: initialPosition,
                 zoom: 15
             });
@@ -84,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function getAddressFromCoordinates(lat, lng) {
         try {
-            const response = await fetch(`https://api.tomtom.com/search/2/reverseGeocode/${lat},${lng}.json?key=9qYT4o7IeUnR3jVy3igqtiSIT3XUMphV`);
+            const response = await fetch(`https://api.tomtom.com/search/2/reverseGeocode/${lat},${lng}.json?key=9qYT4o7IeUnR3jVy3igqtiSIT3XUMphV&language=en-US`);
             const data = await response.json();
             if (data.addresses && data.addresses.length > 0) {
                 return data.addresses[0].address.freeformAddress;
