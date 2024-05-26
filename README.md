@@ -1,50 +1,56 @@
-# Οδηγίες Εγκατάστασης
+# Foodies
 
-Για να εγκαταστήσετε το project, ακολουθήστε τα παρακάτω βήματα:
+Welcome to Foodies!
 
-1. **Κλωνοποίηση ή Λήψη του Project**
-   - Κλωνοποιήστε το αποθετήριο χρησιμοποιώντας την εντολή:
-     ```sh
+Foodies is an application developed as part of the group project for the ECE_CK802 Internet Programming Course within the ECE department of the Univeristy of Patras.
+
+## Installation Instructions
+
+To install the project, follow these steps:
+
+1. **Clone or Download the Project**
+   - Clone the repository using the command:
+     ```
      git clone https://github.com/orestis-koutroumpas/Foodies
      ```
-   - Εναλλακτικά, κατεβάστε το αρχείο ZIP από το αποθετήριο και αποσυμπιέστε το στον επιθυμητό φάκελο.
+   - Alternatively, download the ZIP file from the repository and extract it to the desired folder.
 
-2. **Εγκατάσταση των Εξαρτήσεων**
+2. **Install Dependencies**
 
-    a. **Ανοίξτε ένα τερματικό και μεταβείτε στον φάκελο του project:**
+    a. **Open a terminal and navigate to the project folder:**
 
-    ```sh
-    cd <όνομα_φακέλου_του_project>
+    ```
+    cd <project_folder_name>
     ```
 
-    b. **Βεβαιωθείτε ότι έχετε εγκαταστήσει το Node.js στον υπολογιστή σας.** Μπορείτε να το ελέγξετε εκτελώντας τις ακόλουθες εντολές:
+    b. **Make sure you have Node.js installed on your computer.** You can check by running the following commands:
 
-    ```sh
+    ```
     node -v
     ```
 
-    ```sh
+    ```
     npm -v
     ```
 
-    Αν δεν έχετε εγκαταστήσει το Node.js, μπορείτε να το κάνετε από τον [επίσημο ιστότοπο του Node.js](https://nodejs.org/).
+    If you haven't installed Node.js, you can do so from the [official Node.js website](https://nodejs.org/).
 
-    c. **Εκτελέστε την εντολή για να εγκατασταθούν όλα τα απαραίτητα πακέτα:**
+    c. **Run the following command to install all necessary packages:**
 
-    ```sh
+    ```
     npm install
     ```
 
-    Αυτή η διαδικασία θα εγκαταστήσει όλες τις απαραίτητες εξαρτήσεις που απαιτούνται για το έργο σας, όπως ορίζονται στο αρχείο `package.json`.
+    This process will install all the necessary dependencies required for your project as defined in the `package.json` file.
 
-3. **Εκκίνηση του Server**
-   - Για να ξεκινήσετε τον server, εκτελέστε την ακόλουθη εντολή:
-     ```sh
+3. **Start the Server**
+   - To start the server, run the following command:
+     ```
      npm start
      ```
 
-Μετά από αυτά τα βήματα, ο server θα είναι έτοιμος και η εφαρμογή θα είναι διαθέσιμη για χρήση.
+After these steps, the server will be up and running, and the application will be available for use.
 
-## Διαθεσιμότητα Εφαρμογής
+## Application Availability
 
-Η εφαρμογή είναι διαθέσιμη στον ιστότοπο [Foodies App](https://foodies-app-58fe3d79abda.herokuapp.com/).
+The application is available on the website [Foodies App](https://foodies-app-58fe3d79abda.herokuapp.com/).
