@@ -50,7 +50,7 @@ To install the project, follow these steps:
     This process will install all the necessary dependencies required for your project as defined in the `package.json` file.
 
 3. **Start the Server**
-   - To start the server, run the following command:
+   To start the server, run the following command:
      ```
      npm start
      ```
