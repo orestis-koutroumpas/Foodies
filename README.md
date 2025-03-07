@@ -5,8 +5,9 @@ Welcome to Foodies!
 This is a full-stack web application designed to simulate the complete process of placing and managing a delivery order. The app allows users to select delivery options via different stores and place an order. Built with a modern tech stack, this project demonstrates the use of various web technologies for both frontend and backend development.
 
 <p align="center"> 
-   <video width="75%" controls> <source src="screenshots/small_demo.gif" type="video/gif"> Your browser does not support the video tag. </video>
+   <img src="screenshots/small_demo.gif" width="75%" alt="Demo GIF">
 </p>
+
 
 ## Installation Instructions
 
