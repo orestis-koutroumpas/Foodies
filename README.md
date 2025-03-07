@@ -8,6 +8,7 @@ This is a full-stack web application designed to simulate the complete process o
    <img src="screenshots/small_demo.gif" width="75%" alt="Demo GIF">
 </p>
 
+[Watch Demo Video](screenshots/foodies_demo.mp4)
 
 ## Installation Instructions
 
