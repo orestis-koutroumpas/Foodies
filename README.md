@@ -25,27 +25,21 @@ To install the project, follow these steps:
 
     a. **Open a terminal and navigate to the project folder:**
 
-    ```
-    cd <project_folder_name>
-    ```
+       cd <project_folder_name>
+       
 
     b. **Make sure you have Node.js installed on your computer.** You can check by running the following commands:
 
-    ```
-    node -v
-    ```
-
-    ```
-    npm -v
-    ```
+       node -v
+   
+       npm -v
 
     If you haven't installed Node.js, you can do so from the [official Node.js website](https://nodejs.org/).
 
     c. **Run the following command to install all necessary packages:**
 
-    ```
-    npm install
-    ```
+       npm install
+       
 
     This process will install all the necessary dependencies required for your project as defined in the `package.json` file.
 
