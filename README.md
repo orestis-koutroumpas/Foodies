@@ -53,8 +53,7 @@ After these steps, the server will be up and running, and the application will b
 
 ## Application Availability
 
-The application is available on the website [Foodies App](https://foodies-app-58fe3d79abda.herokuapp.com/).
+~~The application is available on the website [Foodies App](https://foodies-app-58fe3d79abda.herokuapp.com/).~~
 
----
 
 **Note:** This application is no longer hosted.
